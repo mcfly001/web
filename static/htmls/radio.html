@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/default.js"></script>
+    <script src="../js/wlan.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="main">
+            <div class="choose_area">
+                <ol class="ol_tag clear">
+                    <li><a href="radio.html" class="selected">RADIO</a></li>
+                </ol>
+            </div>
+            <div class="addf" id="addf" style="display: none;">
+                <div data-key="disable" id="addf-head" class="addf-head"><a href="#" class="close" id="close">关闭</a></div>
+                <div class="addf-cont">
+                    <input type="hidden" name="wifiname" id ="wifiname" >
+                    <!-- 基础配置 -->
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="ifname" for="" class="addf-line-le">无线射频开关：</label>
+                        <div class="addf-line-mid">
+                            <select id="disabled">
+                                <option data-key="toenable" selected value="0">开启</option>
+                                <option data-key="disable" value="1">关闭</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="wireless_modes" for="" class="addf-line-le">无线模式：</label>
+                        <div class="addf-line-mid">
+                            <select id="hwmode">
+                                <option value="11b">11b</option>
+                                <option value="11bg">11bg</option>
+                                <option value="11g">11g</option>
+                                <option value="11ng">11ng</option>
+                                <option value="11a">11a</option>
+                                <option value="11na">11na</option>
+                                <option value="11ac">11ac</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="wirlesse_channels" for="" class="addf-line-le">无线信道：</label>
+                        <div class="addf-line-mid">
+                            <select id="channel" >
+                                <option value="auto">auto</option>
+                                <option value="1">1 - 2412MHz</option>
+                                <option value="2">2 - 2417MHz</option>
+                                <option value="3">3 - 2422MHz</option>
+                                <option value="4">4 - 2427MHz</option>
+                                <option value="5">5 - 2432MHz</option>
+                                <option value="6">6 - 2437MHz</option>
+                                <option value="7">7 - 2442MHz</option>
+                                <option value="8">8 - 2447MHz</option>
+                                <option value="9">9 - 2452MHz</option>
+                                <option value="10">10 - 2457MHz</option>
+                                <option value="11">11 - 2462MHz</option>
+                                <option value="12">12 - 2467MHz</option>
+                                <option value="13">13 - 2472MHz</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="transmit_powers" for="" class="addf-line-le">发射功率：</label>
+                        <div class="addf-line-mid">
+                            <select id="txpower" >
+                                    <option value="20">20dBm</option>
+                                    <option value="19">19dBm</option>
+                                    <option value="18">18dBm</option>
+                                    <option value="17">17dBm</option>
+                                    <option value="16">16dBm</option>
+                                    <option value="15">15dBm</option>
+                                    <option value="14">14dBm</option>
+                                    <option value="13">13dBm</option>
+                                    <option value="12">12dBm</option>
+                                    <option value="11">11dBm</option>
+                                    <option value="10">10dBm</option>
+                                    <option value="9">9dBm</option>
+                                    <option value="8">8dBm</option>
+                                    <option value="7">7dBm</option>
+                                    <option value="6">6dBm</option>
+                                    <option value="5">5dBm</option>
+                                    <option value="4">4dBm</option>
+                                    <option value="3">3dBm</option>
+                                    <option value="2">2dBm</option>
+                                    <option value="1">1dBm</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="advanced_conf" for="" class="addf-line-le">高级配置：</label>
+                        <div class="addf-line-mid unfolder-div">
+                            <button id="unfolder" src="img/unfolder.png" style="background-image: url('../img/unfolder.png'); width: 24px; height: 24px; min-width: 26px; background-repeat:no-repeat;" ></button>
+                        </div>
+
+                        <div class="addf-line-mid folder-div" style="display:none;">
+                            <button id="folder" src="img/folder.png" style="background-image: url('../img/folder.png'); width: 24px; height: 24px; min-width: 26px; background-repeat:no-repeat;" ></button>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>                            
+
+                    <!-- 高级配置 -->
+                    <div class="advance-setting" style="display:none;">
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="rts_thres" for="" class="addf-line-le">RTS门限：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="rts" class="form-control" value="" maxlength="32">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">(1~2346)</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="frame_seg_thres" for="" class="addf-line-le">报文分段门限：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="frag" class="form-control" value="" maxlength="32">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">(256~2346)</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="beacon_intervals" for="" class="addf-line-le">Beacon帧间隔：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="bintval" class="form-control" value="" maxlength="32">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">(100~1000)</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="dtim_intervals" for="" class="addf-line-le">DTIM间隔：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="dtim_period" class="form-control">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">(1~255)</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <!--<div class="addf-line">
+                            <div class="clear"></div>
+                            <label for="" class="addf-line-le">回应超时时间：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="acktimeout" class="form-control">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">(1~372微秒)</span></div>
+                            <div class="clear"></div>
+                        </div>-->
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="preambles" for="" class="addf-line-le">前导码：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="shpreamble" class="form-control">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">(0~1)</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="country_code" for="" class="addf-line-le">国家码：</label>
+                            <div class="addf-line-mid">
+                                <select id="country">
+                                    <option selected value="CN">CN</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="spatial_flows" for="" class="addf-line-le">空间流：</label>
+                            <div class="addf-line-mid">
+                                <select id="rxchainmask" onchange="selectspace(this, 0)">
+                                    <option value="1">1*1</option>
+                                    <option value="3">2*2</option>
+                                    <option value="7">3*3</option>
+                                </select>
+                                <select id="txchainmask" style="display:none">
+                                    <option value="1">1*1</option>
+                                    <option value="3">2*2</option>
+                                    <option value="7">3*3</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="channel_bands" for="" class="addf-line-le">信道带宽：</label>
+                            <div class="addf-line-mid">
+                                <select id="htmode">
+                                    <option value="HT20">20MHz</option>
+                                    <option value="HT40-">40-MHz</option>
+                                    <option value="HT40+">40+MHz</option>
+                                    <option value="HT40">Auto 20/40MHz</option>
+                                    <option value="HT80">80MHz</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label for="" class="addf-line-le">A-MPDU：</label>
+                            <div class="addf-line-mid">
+                                <select id="ampdu">
+                                    <option data-key="toenable" selected value="64">开启</option>
+                                    <option data-key="disable" value="0">关闭</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label for="" class="addf-line-le">A-MSDU：</label>
+                            <div class="addf-line-mid">
+                                <select id="amsdu">
+                                    <option data-key="toenable" selected value="3">开启</option>
+                                    <option data-key="disable" value="0">关闭</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="packet_intervals" for="" class="addf-line-le">发包间隔：</label>
+                            <div class="addf-line-mid">
+                                <select id="shortgi">
+                                    <option selected value="1">(short)400ns</option>
+                                    <option value="0">(long)800ns</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="protection_modes" for="" class="addf-line-le">保护模式：</label>
+                            <div class="addf-line-mid">
+                                <select id="protmode">
+                                    <option data-key="disable" value="0">关闭</option>
+                                    <option value="1">cts-to-self</option>
+                                    <option value="2">RTS/CTS</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="addf-foot">
+                    <button data-key="apply" class="sure">确定</button>
+                    <button data-key="cancle" class="cansel">取消</button>
+                </div>
+
+            </div>
+            <table id="table" class="display">
+                <thead>
+                    <tr class="tab-th">
+						<th data-key="number">序号</th>
+                        <th data-key="wirless_switch">无线射频开关</th>
+                        <th data-key="rts_thre">RTS门限</th>
+                        <th data-key="frame_seg_thre">报文分段门限</th>
+                        <th data-key="beacon_interval">Beacon帧间隔</th>
+                        <th data-key="dtim_interval">DTIM间隔</th>
+                        <th data-key="preamble">前导码</th>
+                        <th data-key="country_code">国家码</th>
+                        <th data-key="wireless_mode">无线模式</th>
+                        <th data-key="wirlesse_channel">无线信道</th>
+                        <th data-key="transmit_power">发射功率</th>
+                        <th data-key="spatial_flow">空间流</th>
+                        <th data-key="channel_band">信道带宽</th>
+                        <th>A-MPDU</th>
+                        <th>A-MSDU</th>
+                        <th data-key="packet_interval">发包间隔</th>
+                        <th data-key="protection_mode">保护模式</th>
+                        <th data-key="opt">操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+
+(function() {
+    $.ajax({
+        url: url_host + 'wireless_device&action=read' + url_time,
+        type: "GET",
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            if (data.result.code == 0) {
+                var data_result = data.result.data;
+                var line_num = 0;
+                var table = $("#table").DataTable({
+                    "data": data_result,
+                    "autoWidth": false,
+                    paging: false,
+                    bFilter: false,    //去掉搜索框方法三：这种方法可以
+                    bLengthChange: false,   //去掉每页显示多少条数据方法
+                    "columnDefs" : [{
+                        // 定义操作列,######以下是重点########
+                        "targets" : 17,//操作按钮目标列
+                        "data" : null,
+                        orderable: false,
+                        "render": function ( data, type, full, meta ) {
+                            line_num++
+                            return '<a href=# class="edit ' + line_num + '" id="modify">' + allResources['modify'][g_lang] +  '</a>';
+                        }
+                    }],
+                    "columns": [
+                        {
+                            "data": null,
+                            "orderable": false
+                        },
+                        {
+                            "data": "disabled",
+                            render: function(data, type, row, meta) {
+                                switch(data){
+                                    case "0":
+                                        return allResources['toenable'][g_lang]
+                                    case "1":
+                                        return allResources['disable'][g_lang]
+                                    default:
+                                        return "N/A"
+                                }
+                            }
+                        },
+                        {
+                            "data": "rts"  
+                        },
+                        {
+                            "data": "frag"
+                        },
+                        {
+                            "data": "bintval"
+                        },
+                        {
+                            "data": "dtim_period"
+                        },
+                        {
+                            "data": "shpreamble"
+                        },
+                        {
+                            "data": "country"
+                        },
+                        {
+                            "data": "hwmode"
+                        },
+                        {
+                            "data": "channel"
+                        },
+                        {
+                            "data": "txpower",
+                            render: function(data, type, row, meta) {
+                                return data + 'dBm';
+                            }
+                        },
+                        {
+                            "data": "rxchainmask",
+                            render: function(data, type, row, meta) {
+                                switch(data){
+                                    case "1":
+                                        return "1*1"
+                                    case "3":
+                                        return "2*2"
+                                    case "7":
+                                        return "3*3"
+                                    default:
+                                        return "N/A"
+                                }
+                            }
+                        },
+                        {
+                            "data": "htmode",
+                            render: function(data, type, row, meta) {
+                                switch(data){
+                                    case "HT20":
+                                        return "20MHz"
+                                    case "HT40":
+                                        return "Auto 20/40MHz"
+                                    case "HT40-":
+                                        return "40-MHz"
+                                    case "HT40+":
+                                        return "40+MHz"
+                                    case "HT80":
+                                        return "80MHz"
+                                    default:
+                                        return "N/A"
+                                }
+                            }
+                        },
+                        {
+                            "data": "ampdu",
+                            render: function(data, type, row, meta) {
+                                switch(data){
+                                    case "0":
+                                        return allResources['disable'][g_lang]
+                                    case "64":
+                                        return allResources['toenable'][g_lang]
+                                    default:
+                                        return "N/A"
+                                }
+                            }
+                        },
+                        {
+                            "data": "amsdu",
+                            render: function(data, type, row, meta) {
+                                switch(data){
+                                    case "0":
+                                        return allResources['disable'][g_lang]
+                                    case "3":
+                                        return allResources['toenable'][g_lang]
+                                    default:
+                                        return "N/A"
+                                }
+                            }
+                        },
+                        {
+                            "data": "shortgi",
+                            render: function(data, type, row, meta) {
+                                switch(data){
+                                    case "0":
+                                        return "800ns"
+                                    case "1":
+                                        return "400ns"
+                                    default:
+                                        return "N/A"
+                                }
+                            }
+                        },
+                        {
+                            "data": "protmode",
+                            render: function(data, type, row, meta) {
+                                switch(data){
+                                    case "0":
+                                        return allResources['disable'][g_lang]
+                                    case "1":
+                                        return "cts-to-self"
+                                    case "2":
+                                        return "RTS/CTS"
+                                    default:
+                                        return "N/A"
+                                }
+                            }
+                        },
+                        {
+                            "data": null
+                        }
+                    ],
+                    "order": [[1, 'asc']],
+                    language: { //多语言
+                        "url": lang_url
+                    },
+                    "dom": "lftip"
+
+                });
+
+                //序号列
+                table.on( 'order.dt search.dt', function () {
+                    table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                        cell.innerHTML = i+1;
+                    } );
+                } ).draw();
+
+                //页面弹窗
+                function showAddf(rfconfig) {
+                    $("#hwmode option").remove();
+                    $("#channel option").remove();
+                    $("#htmode option").remove();
+                    if(rfconfig['.name'] == 'wifi0') {
+                        $("#hwmode")
+                        .append('<option value="11b">11b</option>')
+                        .append('<option value="11bg">11bg</option>')
+                        .append('<option value="11ng">11ng</option>');
+
+                        $("#htmode")
+                        .append('<option value="HT20">20MHz</option>>')
+                        .append('<option value="HT40">Auto 20/40MHz</option>')
+                        .append('<option value="HT40-">40-MHz</option>')
+                        .append('<option value="HT40+">40+MHz</option>');
+
+                        $("#channel")
+                        .append('<option value="auto">auto</option>>')
+                        .append('<option value="1">1 - 2412MHz</option>')
+                        .append('<option value="2">2 - 2417MHz</option>')
+                        .append('<option value="3">3 - 2422MHz</option>')
+                        .append('<option value="4">4 - 2427MHz</option>')
+                        .append('<option value="5">5 - 2432MHz</option>')
+                        .append('<option value="6">6 - 2437MHz</option>')
+                        .append('<option value="7">7 - 2442MHz</option>')
+                        .append('<option value="8">8 - 2447MHz</option>')
+                        .append('<option value="9">9 - 2452MHz</option>')
+                        .append('<option value="10">10 - 2457MHz</option>')
+                        .append('<option value="11">11 - 2462MHz</option>')
+                        .append('<option value="12">12 - 2467MHz</option>')
+                        .append('<option value="13">13 - 2472MHz</option>');
+
+
+                    } else if (rfconfig['.name'] == 'wifi1') {
+                        $("#hwmode")
+                        .append('<option value="11a">11a</option>')
+                        .append('<option value="11ac">11ac</option>')
+                        .append('<option value="11na">11na</option>');
+
+                        $("#htmode")
+                        .append('<option value="HT20">20MHz</option>>')
+                        .append('<option value="HT40-">40-MHz</option>')
+                        .append('<option value="HT40+">40+MHz</option>')
+                        .append('<option value="HT80">80MHz</option>');
+
+                        $("#channel")
+                        .append('<option value="auto">auto</option>>')
+                        .append('<option value="36">36 - 5180MHz</option>')
+                        .append('<option value="40">40 - 5200MHz</option>')
+                        .append('<option value="44">44 - 5220MHz</option>')
+                        .append('<option value="48">48 - 5240MHz</option>')
+                        .append('<option value="52">52 - 5260MHz</option>')
+                        .append('<option value="56">56 - 5280MHz</option>')
+                        .append('<option value="60">60 - 5300MHz</option>')
+                        .append('<option value="64">64 - 5320MHz</option>')
+                        .append('<option value="149">149 - 5745MHz</option>')
+                        .append('<option value="153">153 - 5765MHz</option>')
+                        .append('<option value="157">157 - 5785MHz</option>')
+                        .append('<option value="161">161 - 5805MHz</option>')
+                        .append('<option value="165">165 - 5825MHz</option>');
+
+                    }
+                    showDiv([".addf", ".div-bgd"]);
+                    //根据传入的参数，在页面上显示
+                    $("#wifiname").val(rfconfig['.name'])
+                    $("#disabled").val(rfconfig.disabled);
+                    $("#rts").val(rfconfig.rts);
+                    $("#frag").val(rfconfig.frag);
+                    $("#bintval").val(rfconfig.bintval);
+                    $("#dtim_period").val(rfconfig.dtim_period);
+                    $("#hwmode").val(rfconfig.hwmode);
+                    $("#channel").val(rfconfig.channel);
+                    $("#txpower").val(rfconfig.txpower);
+                    $("#acktimeout").val(rfconfig.acktimeout);
+                    $("#shpreamble").val(rfconfig.shpreamble);
+                    $("#country").val(rfconfig.country);
+                    $("#rxchainmask").val(rfconfig.rxchainmask);
+                    $("#txchainmask").val(rfconfig.txchainmask);
+                    $("#htmode").val(rfconfig.htmode);
+                    $("#ampdu").val(rfconfig.ampdu);
+                    $("#amsdu").val(rfconfig.amsdu);
+                    $("#shortgi").val(rfconfig.shortgi);
+                    $("#protmode").val(rfconfig.protmode);
+                    $("#ldpc").val(rfconfig.ldpc);
+                    $("#tx_stbc").val(rfconfig.tx_stbc);
+                    $("#rx_stbc").val(rfconfig.rx_stbc);
+                };
+
+                //给href绑定点击事件
+                $('#table tbody').on( 'click', 'a#modify', function () {
+                    action = "modify";
+                    action_line = $(this).parent().find(".edit").attr("class");
+                    index = parseInt(action_line.substr(4)) - 1;
+                    rfconfig = data_result[index]
+
+                    showAddf(rfconfig);
+                    $('#folder').trigger('click');
+                });
+
+                $('#table tbody').on( 'click', 'a#delete', function () {
+                    action = "delete";
+                    //删除处理
+                });   
+
+                $("#unfolder").click(function() {
+                    hideDiv([".unfolder-div"]);
+                    showDiv([".folder-div"]);
+                    showDiv([".advance-setting"]);
+                });
+
+                $("#folder").click(function() {
+                    hideDiv([".folder-div"]);
+                    showDiv([".unfolder-div"]);
+                    hideDiv([".advance-setting"]);
+                });
+            } else {
+                console.log("code is not 0")
+            }
+        },
+        error: function() {
+            console.log("no data");
+        }
+
+    })
+})();
+
+
+function selectspace(sel){
+    var val = $(sel).val();
+    switch(val)
+    {
+        case 1:
+            $("#txchainmask").val('1');
+            break;
+        case 3:
+            $("#txchainmask").val('3');
+            break;
+        case 7:
+            $("#txchainmask").val('7');
+            break;
+        default:
+            break;
+    }
+}
+
+//action根据增加、删除的不同予以更改
+$(".sure").click(function() {
+    speedset_submit_config();
+})
+
+function speedset_submit_config() {
+    var param = {};
+    param.disabled = $("#disabled").val();
+    param.rts = $("#rts").val();
+    param.frag = $("#frag").val();
+    param.bintval = $("#bintval").val();
+    param.dtim_period = $("#dtim_period").val();
+    param.hwmode = $("#hwmode").val();
+    param.channel = $("#channel").val();
+    param.txpower = $("#txpower").val();
+    //param.acktimeout = $("#acktimeout").val();
+    param.shpreamble = $("#shpreamble").val();
+    param.country = $("#country").val();
+    param.rxchainmask = $("#rxchainmask").val();
+    param.txchainmask = $("#txchainmask").val();
+    param.htmode = encodeURIComponent($("#htmode").val());
+    param.ampdu = $("#ampdu").val();
+    param.amsdu = $("#amsdu").val();
+    param.shortgi = $("#shortgi").val();
+    param.protmode = $("#protmode").val();
+    param.ldpc = $("#ldpc").val();
+    param.tx_stbc = $("#tx_stbc").val();
+    param.rx_stbc = $("#rx_stbc").val();
+
+    if(!num_check(allResources['rts_thre'][g_lang], param.rts, 1, 2346)){
+        return;
+    }
+    if(!num_check(allResources['frame_seg_thre'][g_lang], param.frag, 256, 2346)){
+        return;
+    }
+    if(!num_check(allResources['beacon_interval'][g_lang], param.bintval, 100, 1000)){
+        return;
+    }
+    if(!num_check(allResourcs['dtim_interval'][g_lang], param.dtim_period, 1, 255)){
+        return;
+    }
+    if(!num_check(allResources['preamble'][g_lang], param.shpreamble, 0, 1)){
+        return;
+    }
+
+
+    var submit_data = "";
+    for(para in param) {
+        if (param[para]) {
+            submit_data += "&" + para + "=" + param[para];
+        }
+        
+    }
+    
+    /* 判断是否没有修改任何参数 */
+    if (submit_data == "") {
+        lang_alert('no_config_change');
+        return;
+    } 
+
+    getReq ($("#wifiname").val(), submit_data);
+}
+/*type_wifi: wifi0/wifi1/all*/
+/* 提交修改 */
+function getReq (type_wifi, submit_para) {
+    var url = url_host + 'wireless_device&action=modify&device=' + type_wifi + submit_para + url_time;
+    check_code0(url)
+}
+
+</script>
+
+</html>
+

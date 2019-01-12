@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bootstrap-dist/css/bootstrap.min.css">
+    <script src="../js/default.js"></script>
+    <style>
+        .btn-stat-op {
+            margin-left: -30%;
+        }
+        #dns_switch_d,
+        #dns_switch_p {
+            margin-top: 5px;
+        }
+
+        .text-primary {
+            color: #676868;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .le {
+            float: left;
+            width: 15%;
+            text-align: right;
+            height: 40px;
+            margin-top: .015rem;
+            font-size: 16px;
+            color: #272822;
+        }
+        .mid {
+            float: left;
+            width: 60%;
+            margin-left: 3%;
+            font-size: 16px;
+            color: #383830;
+        }
+        .bi-div {
+            top:200%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="choose_area">
+            <ol class="ol_tag clear">
+                <li><a data-key="basic_info" href="#" class="selected"></a></li>
+            </ol>
+        </div>
+
+        <div id="basic-info" class="bi-div">
+            <br><br>
+            <div class="line">
+                <div class="clear"></div>
+                <div class="le">
+                    <span data-key="serial_number"></span>
+                </div>
+                <div class="mid">
+                    <span id="SN"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <div class="clear"></div>
+                <div class="le">
+                    <span data-key="mac_addr"></span>
+                </div>
+                <div class="mid">
+                    <span id="MAC"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <div class="clear"></div>
+                <div class="le">
+                    <span data-key="product_model"></span>
+                </div>
+                <div class="mid">
+                    <span id="PM"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <div class="clear"></div>
+                <div class="le">
+                    <span data-key="software_ver"></span>
+                </div>
+                <div class="mid">
+                    <span id="SV"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <div class="clear"></div>
+                <div class="le">
+                    <span data-key="sys_res"></span>
+                </div>
+                <div class="mid">
+                    <span id="CPU"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <div class="clear"></div>
+                <div class="le">
+                    <span></span>
+                </div>
+                <div class="mid">
+                    <span id="MEM"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <div class="clear"></div>
+                <div class="le">
+                    <span data-key="run_time"></span>
+                </div>
+                <div class="mid">
+                    <span id="UT"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <div class="clear"></div>
+                <div class="le">
+                    <span data-key="sys_times">：</span>
+                </div>
+                <div class="mid">
+                    <span id="ST"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+var real_data;
+
+$(document).ready(function() {
+    real_data = get_real_data("overview.lua");
+    $("#SN").text(real_data.SN);
+    $("#MAC").text(real_data.MAC);
+    $("#PM").text(real_data.PM);
+    $("#SV").text(real_data.SV);
+    $("#CPU").text(allResources['cpu_usage'][g_lang] + real_data.CPU);
+    $("#MEM").text(allResources['mem_usage'][g_lang] + real_data.MEM);
+    $("#UT").text(SecToUptime(real_data.UT));
+    $("#ST").text(real_data.ST);
+})
+
+var time_lang = {
+    'day': {
+        zh: '天',
+        en: 'days, '
+    },
+    'hour': {
+        zh: '小时',
+        en: ':'
+    },
+    'min': {
+        zh: '分钟',
+        en: ':'
+    },
+    'sec': {
+        zh: '秒',
+        en: ''
+    }
+}
+
+function SecToUptime(sec)
+{
+    var str = ""
+    var days = Math.floor(sec/(3600*24));
+    var hours = Math.floor(sec/3600)%24;
+    var mins = Math.floor(sec/60)%60;
+    var secs = parseInt(sec%60);
+
+    if (days > 0){
+        str += days;
+        str += time_lang['day'][g_lang];
+    }
+
+    if (hours > 0){
+        str += hours;
+        str += time_lang['hour'][g_lang]
+    }
+
+    if (mins > 0){
+        str += mins;
+        str += time_lang['min'][g_lang]
+    }
+
+    if (secs > 0){
+        str += secs;
+        str += time_lang['sec'][g_lang];
+    }
+
+    return str;
+}
+
+</script>
+
+</html>

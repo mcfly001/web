@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/default.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="main">
+            <div class="choose_area">
+                <ol class="ol_tag clear">
+                    <li><a data-key="clients_list" href="stalist.html" class="selected">终端列表</a></li>
+                </ol>
+            </div>
+            <table id="table" class="display">
+                <thead>
+                    <tr class="tab-th">
+                        <th data-key="client_type">终端类型</th>
+                        <th>MAC</th>
+                        <th>IP</th>
+                        <th data-key="up_rate">上行速率</th>
+                        <th data-key="down_rate">下行速率</th>
+                        <th data-key="signal_strength">信号强度</th>
+                        <th data-key="send_rate">发送速率</th>
+                        <th data-key="receive_rate">接收速率</th>
+                        <th data-key="online_time">在线时长</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+$(document).ready(function() {
+    var real_data = get_real_data("stalist.lua");
+    //var real_data = [{"mac":"b0:e2:35:c1:a2:4b","ip":"10.0.2.243","ifname":"wlan10","upbytes":"2.19MB","downbytes":"89.1007MB","uprate":"5396.88KB/s","downrate":"244.25KB/s","online":"1123 seconds","tx80211rate":"263.3M","rx80211rate":"325M","chan":"36","rssi":"-1"},{"mac":"b0:e2:35:c1:a2:4b","ip":"10.0.2.243","ifname":"awlan10","upbytes":"2.19MB","downbytes":"89.1007MB","uprate":"5.39KB/s","downrate":"2441.27KB/s","online":"1000123 seconds","tx80211rate":"263.5M","rx80211rate":"325M","chan":"36","rssi":"-2"},{"mac":"b0:e2:35:c1:a2:4b","ip":"10.0.2.243","ifname":"lan","upbytes":"2.19MB","downbytes":"89.1007MB","uprate":"2396.9KB/s","downrate":"24400.57KB/s","online":"13635 seconds","tx80211rate":"263.6M","rx80211rate":"325M","chan":"36","rssi":"-3"}]
+    console.log(real_data);
+    var table = $("#table").DataTable({
+        "data": real_data,
+        "columns": [{
+                "data": "ifname",
+                render: function(data, type, row, meta) {
+                        if (data.indexOf("ath1") >= 0) {
+                            return "WiFi 5G"
+                        } else if (data.indexOf("ath0") >= 0) {
+                            return "WiFi 2G"
+                        } else {
+                        	return "LAN"
+                        }
+                    }
+            },
+            {
+                "data": "mac"
+            },
+            {
+                "data": "ip"
+            },
+            {
+                "data": "uprate",
+                "type": "rate-sort",
+                render: function(data, type, row, meta) {
+                		i = data.indexOf("KB")
+                		rate = parseFloat(data.substring(0,i))
+                		//alert(rate)
+
+                        if (rate >= 1024) {
+                        	rate = rate/1024;
+                            return Math.round(rate*100)/100 + "MB/s";
+                        } else {
+                            return rate + "KB/s";
+                        }
+                    }
+            },
+            {
+                "data": "downrate",
+                "type": "rate-sort",
+                render: function(data, type, row, meta) {
+                		i = data.indexOf("KB")
+                		rate = parseFloat(data.substring(0,i))
+                		//alert(rate)
+
+                        if (rate >= 1024) {
+                        	rate = rate/1024;
+                            return Math.round(rate*100)/100 + "MB/s";
+                        } else {
+                            return rate + "KB/s";
+                        }
+                    }
+            },
+            {
+                "data": "rssi"
+            },
+            {
+                "data": "tx80211rate"
+            },
+            {
+                "data": "rx80211rate"
+            },
+            {
+                "data": "online",
+                "type": "time-sort",
+                render: function(data, type, row, meta) {
+                		i = data.indexOf(" seconds")
+                		time = parseInt(data.substring(0,i))
+                		return formatSeconds(time)
+                    }
+            }
+        ],
+        "pagingType": "full_numbers",
+        "lengthMenu": [10, 30],
+        'fnDrawCallback': function(table) {
+            var newnode = creGoPage("changePage1", "dataTable-btn-1");
+            document.getElementById("table_paginate").appendChild(newnode);
+            $('#dataTable-btn-1').click(function(e) {
+                if ($("#changePage1").val() && $("#changePage1").val() > 0) {
+                    console.log($("#changePage1").val());
+                    var redirectpage = $("#changePage1").val() - 1;
+                } else {
+                    var redirectpage = 0;
+                }
+                table.fnPageChange(redirectpage);
+            });
+        },
+        language: { //多语言
+            "url": lang_url
+        },
+        "dom": "lftip"
+
+    });
+});
+
+
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+	//rate-sort
+    "rate-sort-pre": function ( a ) {
+    	i = a.indexOf("MB")
+        if (i >= 0) {
+        	rate = parseFloat(a.substring(0, i)) * 1024
+        } else {
+        	i = a.indexOf("KB")
+        	if (i >= 0) {
+        		rate = parseFloat(a.substring(0, i))
+        	} else {
+        		rate = 0
+        	}
+        }
+        return rate
+    },
+ 
+    "rate-sort-asc": function ( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+ 
+    "rate-sort-desc": function ( a, b ) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    },
+
+    //time-sort
+    "time-sort-pre": function ( a ) {
+		seconds = 0;
+		arr = a.split(' ');
+		for (i=0; i<arr.length; i++ ){
+			tmp = arr[i]
+	        if ((j = tmp.indexOf("d")) && j >= 0) {
+	        	seconds = seconds + parseInt(tmp.substring(0,j))*24*60*60;
+	        } else if ((j = tmp.indexOf("h")) && j >= 0) {
+	        	seconds = seconds + parseInt(tmp.substring(0,j))*60*60;
+	        } else if ((j = tmp.indexOf("m")) && j >= 0) {
+	        	seconds = seconds + parseInt(tmp.substring(0,j))*60;
+	        } else if ((j = tmp.indexOf("s")) && j >= 0) {
+	        	seconds = seconds + parseInt(tmp.substring(0,j));
+	        }
+		}
+        return seconds
+    },
+ 
+    "time-sort-asc": function ( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+ 
+    "time-sort-desc": function ( a, b ) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    }
+} );
+
+
+
+function formatSeconds(value) {
+    var sTime = value;// 秒 
+    var mTime = -1;// 分  
+    var hTime = -1;// 小时
+    var dTime = -1;// 天 
+    if(sTime > 60) {
+        mTime = parseInt(sTime/60);
+        sTime = parseInt(sTime%60);
+        if(mTime > 60) {  
+            hTime = parseInt(mTime/60);
+            mTime = parseInt(mTime%60);
+            if(hTime > 24) {  
+            	dTime = parseInt(hTime/24);
+            	hTime = parseInt(hTime%60);
+			}   
+        }  
+    }
+
+    var result = "";
+
+    if (dTime != -1) {
+    	result = result + dTime + "d ";
+    }
+
+    if (hTime != -1) {
+    	result = result + hTime + "h ";
+    }
+        
+    if (mTime != -1) {
+    	result = result + mTime + "m ";
+    }
+        
+    if (sTime != -1) {
+    	result = result + sTime + "s";
+    }
+    return result;  
+} 
+
+
+//value --- 12d 23h 34m 56s
+function format2Seconds(value) {
+	alert(value)
+	var seconds = 0;
+	var arr = value.split(' ');
+	for(var i in arr){
+		tmp = arr[i]
+		alert(tmp)
+        if ((j = tmp.indexOf("d")) && j >= 0) {
+        	seconds = seconds + parseInt(tmp.substring(0,j))*24*60*60;
+        } else if ((j = tmp.indexOf("h")) && j >= 0) {
+        	seconds = seconds + parseInt(tmp.substring(0,j))*60*60;
+        } else if ((j = tmp.indexOf("m")) && j >= 0) {
+        	seconds = seconds + parseInt(tmp.substring(0,j))*60;
+        } else if ((j = tmp.indexOf("s")) && j >= 0) {
+        	alert(j + "index")
+        	seconds = seconds + parseInt(tmp.substring(0,j));
+        	alert(seconds)
+        }
+	}
+	alert(seconds)
+	return seconds;
+} 
+</script>
+
+</html>

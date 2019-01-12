@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/default.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="main">
+            <div class="choose_area">
+                <ol class="ol_tag clear">
+                    <li><a href="wlan.html" class="selected">WLAN</a></li>
+                </ol>
+            </div>
+            <div class="addf" id="addf" style="display: none;">
+                <div data-key="disable" id="addf-head" class="addf-head"><a href="#" class="close" id="close">关闭</a></div>
+                <div class="addf-cont">
+                    <!-- 基础配置 -->
+                    <input type="hidden" id="wlan_name" value="">
+
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="ssid_names" for="" class="addf-line-le">SSID名称：</label>
+                        <div class="addf-line-mid">
+                            <input type="text" id="ssid" class="form-control" value="Smart-WiFi" maxlength="32">
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="hide_ssids" for="" class="addf-line-le">隐藏SSID：</label>
+                        <div class="addf-line-mid">
+                            <input type="checkbox" id="hidden">
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="encoding_rules" for="" class="addf-line-le">编码规则：</label>
+                        <div class="addf-line-mid">
+                            <select id="code_type">               
+                                <option selected value="GB2312">GB2312</option>
+                                <option value="UTF-8">UTF-8</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="radio_fres" for="" class="addf-line-le">射频：</label>
+                        <div class="addf-line-mid">
+                            <select id="radioid" >
+                                <option value=0>2G</option>
+                                <option value=1>5G</option>
+                                <option value=2 selected="selected">2G+5G</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="vlan_interface" for="" class="addf-line-le">VLAN接口：</label>
+                        <!-- 修改为选择vlan接口下拉表 -->
+                        <div class="addf-line-mid">
+                            <select id="vlan_interface">
+                                <option value="lan" selected="selected">lan</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <!-- 加密配置 -->
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="security_strategys" for="" class="addf-line-le">安全策略：</label>
+                        <div class="addf-line-mid">
+                            <select id="auth_mode">
+                                <option value=0>OPEN</option>
+                                <option value=1>WEP</option>
+                                <option value=4>WPA(EAP)</option>
+                                <option value=8>WPA2(EAP)</option>
+                                <option value=16>WPA-PSK</option>
+                                <option value=32>WPA2-PSK</option>
+                                <option value=33 selected="selected">WPA/WPA2-PSK</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <!-- 加密配置项 -->
+                    <div class="chiphers-setting">
+                            <div class="addf-line WLAN_PWD_DIV">
+                                <div class="clear"></div>
+
+                                <div class="WPA_AUTH_DIV">
+                                    <label data-key="wireless_passwds" id="WPA_AUTH" class="addf-line-le">无线密码：</label>
+                                </div>
+
+                                <div class="addf-line-le WEP_AUTH_DIV" style="display:none;">
+                                    <select id="keynum" >
+                                        <option data-key="formats" value='1' selected="selected">密码1</option>
+                                        <option data-key="formats" value='2'>密码2</option>
+                                        <option data-key="formats" value='3'>密码3</option>
+                                        <option data-key="formats" value='4'>密码4</option>
+                                    </select>
+                                    <label>：</label>
+                                </div>
+
+                                <div class="addf-line-mid">
+                                    <input type="text" id="ssid_pwd" class="form-control" maxlength="32">
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="addf-line SECURITY_CIPHERS_DIV">
+                                <div class="clear"></div>
+                                <label data-key="encryption_types" for="" class="addf-line-le">加密类型：</label>
+                                <div class="addf-line-mid">
+                                    <select id="chiphers">
+                                        <option data-key="64bit" value='1'>64位</option>
+                                        <option data-key="128bit" value='2'>128位</option>
+                                        <option data-key="152bit" value='3'>152位</option>
+                                        <option value='4'>CCMP</option>
+                                        <option value='5'>TKIP</option>
+                                        <option value='6' selected="selected">CCMP/TKIP</option>
+                                    </select>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="addf-line SECURITY_KEY_TYPE_DIV">
+                                <div class="clear"></div>
+                                <label data-key="passwd_types" for="" class="addf-line-le">密码类型：</label>
+                                <div class="addf-line-mid">
+                                    <input name="keytype" type="radio" value='0'>ASCII
+                                    <input data-key="passwd_t_hex" name="keytype" type="radio" value='1'>十六进制
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="addf-line AUTO_KEY_DIV" style="display:none;">
+                                <div class="clear"></div>
+                                <label data-key="paswd_t_auto" for="" class="addf-line-le">自动生成密码：</label>
+                                <div class="addf-line-mid">
+                                    <input type="text" id="AUTO_KEY" class="form-control"/>
+                                </div>
+                                <div class="addf-line-rig">
+                                    <input data-key="passwd_t_generate" id="gen_keys" type="BUTTON" value="产生密钥">
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <!-- radius配置 -->
+                            <div class="radius-setting" style="display:none;">
+                                <div class="addf-line">
+                                    <div class="clear"></div>
+                                    <label data-key="rad_server_addr" for="" class="addf-line-le">RADIUS服务器地址：</label>
+                                    <div class="addf-line-mid">
+                                        <input type="text" id="auth_server" class="form-control">
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+
+                                <div class="addf-line">
+                                    <div class="clear"></div>
+                                    <label data-key="rad_server_port" for="" class="addf-line-le">RADIUS服务器端口：</label>
+                                    <div class="addf-line-mid">
+                                        <input type="text" id="auth_port" class="form-control">
+                                    </div>
+                                    <div class="addf-line-rig"><span class="hints">(1~65535)</span></div>
+                                    <div class="clear"></div>
+                                </div>
+
+                                <div class="addf-line">
+                                    <div class="clear"></div>
+                                    <label data-key="rad_server_key" class="addf-line-le">RADIUS服务器密钥：</label>
+                                    <div class="addf-line-mid">
+                                        <input type="text" id="auth_secret" class="form-control" maxlength="64">
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+
+                                <div class="addf-line">
+                                    <div class="clear"></div>
+                                    <label data-key="rad_acct_server_addr" for="" class="addf-line-le">RADIUS计费服务器地址：</label>
+                                    <div class="addf-line-mid">
+                                        <input type="text" id="acct_server" class="form-control">
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+
+                                <div class="addf-line">
+                                    <div class="clear"></div>
+                                    <label data-key="rad_acct_server_port" for="" class="addf-line-le">RADIUS计费服务器端口：</label>
+                                    <div class="addf-line-mid">
+                                        <input type="text" id="acct_port" class="form-control">
+                                    </div>
+                                    <div class="addf-line-rig"><span class="hints">(1~65535)</span></div>
+                                    <div class="clear"></div>
+                                </div>
+
+                                <div class="addf-line">
+                                    <div class="clear"></div>
+                                    <label data-key="rad_acct_server_key" class="addf-line-le">RADIUS计费服务器密钥：</label>
+                                    <div class="addf-line-mid">
+                                        <input type="text" id="acct_secret" class="form-control" maxlength="64">
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="addf-line">
+                        <div class="clear"></div>
+                        <label data-key="advanced_conf" for="" class="addf-line-le">高级配置：</label>
+                        <div class="addf-line-mid unfolder-div">
+                            <button id="unfolder" src="img/unfolder.png" style="background-image: url('../img/unfolder.png'); width: 24px; height: 24px; min-width: 26px; background-repeat:no-repeat;" ></button>
+                        </div>
+
+                        <div class="addf-line-mid folder-div" style="display:none;">
+                            <button id="folder" src="img/folder.png" style="background-image: url('../img/folder.png'); width: 24px; height: 24px; min-width: 26px; background-repeat:no-repeat;" ></button>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>                            
+
+                    <!-- 高级配置 -->
+                     <div class="advance-setting" style="display:none;">
+                         <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="wireless" for="" class="addf-line-le">无线：</label>
+                            <div class="addf-line-mid">
+                                <select id="disabled">
+                                    <option data-key="toenable" selected value=0>开启</option>
+                                    <option data-key="disable" value=1>关闭</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="sta_isolation" for="" class="addf-line-le">STA隔离：</label>
+                            <div class="addf-line-mid">
+                                <select id="isolate">
+                                    <option data-key="disable" selected value="0">关闭</option>
+                                    <option data-key="toenable" value="1">开启</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label for="" class="addf-line-le">QoS：</label>
+                            <div class="addf-line-mid">
+                                <select id="wmm" >
+                                    <option data-key="disable" value=0>关闭</option>
+                                    <option data-key="toenable" selected value=1>开启</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label for="" class="addf-line-le">WDS：</label>
+                            <div class="addf-line-mid">
+                                <select id="wds">
+                                    <option data-key="disable" selected value=0>关闭</option>
+                                    <option data-key="toenable" value=1>开启</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="sta_maxs" for="" class="addf-line-le">最大用户数：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="maxsta" class="form-control" value="64">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="sta_downs" for="" class="addf-line-le">STA下行：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="stamaxtfdown" class="form-control" value="0">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">kbps</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="sta_ups" for="" class="addf-line-le">STA上行：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="stamaxtfup" class="form-control" value="0">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">kbps</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="ssid_downs" for="" class="addf-line-le">SSID下行：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="maxtfdown" class="form-control" value="0">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">kbps</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="ssid_ups" for="" class="addf-line-le">SSID上行：</label>
+                            <div class="addf-line-mid">
+                                <input type="text" id="maxtfup" class="form-control" value="0">
+                            </div>
+                            <div class="addf-line-rig"><span class="hints">kbps</span></div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <!-- 组播转单播 -->
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="mul_to_uni" for="" class="addf-line-le">组播转单播：</label>
+                            <div class="addf-line-mid">
+                                <select id="mcastenhance">
+                                    <option data-key="toenable" value=2>开启</option>
+                                    <option data-key="disable" value=4 selected>关闭</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="mcast-setting" style="display:none;">
+                            <div class="addf-line">
+                                <div class="clear"></div>
+                                <label data-key="mul_max_sta" for="" class="addf-line-le">组播最大终端数：</label>
+                                <div class="addf-line-mid">
+                                    <input type="text" id="me_length" class="form-control" value="0">
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="addf-line">
+                                <div class="clear"></div>
+                                <label data-key="mul_timeout" for="" class="addf-line-le">组播超时时间：</label>
+                                <div class="addf-line-mid">
+                                    <input type="text" id="metimeout" class="form-control" value="120000">
+                                </div>
+                                <div data-key="sec_10_600" class="addf-line-rig"><span class="hints">秒(10~600)</span></div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+
+                        <div class="addf-line">
+                            <div class="clear"></div>
+                            <label data-key="mac_filter_rule" for="" class="addf-line-le">MAC过滤规则：</label>
+                            <div class="addf-line-mid">
+                                <select id="macfilter">  
+                                    <option data-key="open" selected value=0>开放式</option>
+                                    <option data-key="whiltelist" value=1>白名单</option>
+                                    <option data-key="blacklist" value=2>黑名单</option>
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="mac-list" style="display:none;">
+                            <div class="addf-line">
+                                <div class="clear"></div>
+                                <label data-key="mac_lists" for="" class="addf-line-le">MAC列表：</label>
+                                <div class="addf-line-mid" id="maclist">
+                                    <input type="text" class="form-control" id="maclist0">
+                                </div>
+                                <div class="addf-line-rig" id="del"></div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="addf-line">
+                                <div class="clear"></div>
+                                <label class="addf-line-le"></label>
+                                <div class="addf-line-mid">
+                                    <p data-key="format_mac" class="hints">格式：00:11:22:33:44:55</p>
+                                </div>
+                                <div class="addf-line-rig">
+                                    <button data-key="add" class="btn btn-add" onclick="addOption('maclist', 'del', 'maclist0')">增加</button>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="addf-foot">
+                    <button data-key="apply" class="sure">确定</button>
+                    <button data-key="cancle" class="cansel">取消</button>
+                </div>
+
+            </div>
+            <table id="table" class="display">
+                <thead>
+                    <tr class="tab-th">
+                        <th data-key="number">序号</th>
+                        <th data-key="ifname">接口名称</th>
+                        <th data-key="ssid_name">SSID名称</th>
+                        <th data-key="hide_ssid">隐藏SSID</th>
+                        <th data-key="encoding_rule">编码规则</th>
+                        <th data-key="radio_fre">射频</th>
+                        <th data-key="security_strategy">安全策略</th>
+                        <th data-key="encryption_type">加密类型</th>
+                        <th data-key="psk_type">PSK类型</th>
+                        <th data-key="vlan_interfac">VLAN接口</th>
+                        <th data-key="mac_filter_rul">MAC过滤规则</th>
+                        <th data-key="sta_max">最大用户数</th>
+                        <th data-key="ssid_down">SSID下行</th>
+                        <th data-key="ssid_up">SSID上行</th>
+                        <th data-key="sta_down">STA下行</th>
+                        <th data-key="sta_up">STA上行</th>
+                        <th data-key="sta_isolation">STA隔离</th>
+                        <th>QoS</th>
+                        <th>WDS</th>
+                        <th data-key="toenable">启用</th>
+                        <th><button data-key="new" id="Tadd"> 新 建 </button></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+var real_data = ""
+$(document).ready(function() {
+    var line_num = 0;
+    real_data = get_real_data("wireless_wlan.lua");
+    console.log(real_data);
+    var table = $("#table").DataTable({
+        "data": real_data,
+        "autoWidth": false,
+        paging: false,
+        bFilter: false,    //去掉搜索框方法三：这种方法可以
+        bLengthChange: false,   //去掉每页显示多少条数据方法
+        "columnDefs" : [{
+            // 定义操作列,######以下是重点########
+            "targets" : 20,//操作按钮目标列
+            "data" : null,
+            "width": "8%",
+            orderable: false,
+            "render": function ( data, type, full, meta ) {
+                line_num++
+                return '<a href=# class="edit ' + line_num + '" id="modify">' + allResources['modify'][g_lang] + '</a>' + ' | ' + '<a href=# class="delete ' + line_num +'" id="delete">' + allResources['delete'][g_lang] + '</a>';
+            }
+        }],
+        "columns": [
+            {
+                "data": null,
+                "orderable": false
+            },
+            {
+                "data": "wlan_name",
+                "visible": false
+            },
+            {
+                "data": "ssid"
+            },
+            {
+                "data": "hidden",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return "×"
+                        case 1:
+                            return "√"
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "code_type",
+            },
+            {
+                "data": "radioid",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return "2G"
+                        case 1:
+                            return "5G"
+                        case 2:
+                            return "2G+5G"
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "auth_mode",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return "OPEN"
+                        case 1:
+                            return "WEP"
+                        case 4:
+                            return "WPA(EAP)"
+                        case 8:
+                            return "WPA2(EAP)"
+                        case 16:
+                            return "WPA-PSK"
+                        case 32:
+                            return "WPA2-PSK"
+                        case 33:
+                            return "WPA/WPA2-PSK"
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "chiphers",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 1:
+                            return allResources['64bit'][g_lang]
+                        case 2:
+                            return allResources['128bit'][g_lang]
+                        case 3:
+                            return allResources['152bit'][g_lang]
+                        case 4:
+                            return "CCMP"
+                        case 5:
+                            return "TKIP"
+                        case 6:
+                            return "CCMP/TKIP"
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "keytype",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return "ASCII"
+                        case 1:
+                            return allResources['hexadecimal'][g_lang]
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "vlan"
+            },
+            {
+                "data": "macfilter",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return allResources['open'][g_lang]
+                        case 1:
+                            return allResources['whiltelist'][g_lang]
+                        case 2:
+                            return allResources['blacklist'][g_lang]
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "maxsta"
+            },
+            {
+                "data": "maxtfdown",
+                render: function(data, type, row, meta) {
+                    rate = data
+                    //alert(rate)
+
+                    if (rate >= 1024) {
+                        rate = rate/1024;
+                        return Math.round(rate*100)/100 + "Mbps";
+                    } else {
+                        return rate + "Kbps";
+                    }
+                }
+            },
+            {
+                "data": "maxtfup",
+                render: function(data, type, row, meta) {
+                    rate = data
+                    //alert(rate)
+
+                    if (rate >= 1024) {
+                        rate = rate/1024;
+                        return Math.round(rate*100)/100 + "Mbps";
+                    } else {
+                        return rate + "Kbps";
+                    }
+                }
+            },
+            {
+                "data": "stamaxtfdown",
+                render: function(data, type, row, meta) {
+                    rate = data
+                    //alert(rate)
+
+                    if (rate >= 1024) {
+                        rate = rate/1024;
+                        return Math.round(rate*100)/100 + "Mbps";
+                    } else {
+                        return rate + "Kbps";
+                    }
+                }
+            },
+            {
+                "data": "stamaxtfup",
+                render: function(data, type, row, meta) {
+                    rate = data
+                    //alert(rate)
+
+                    if (rate >= 1024) {
+                        rate = rate/1024;
+                        return Math.round(rate*100)/100 + "Mbps";
+                    } else {
+                        return rate + "Kbps";
+                    }
+                }
+            },
+            {
+                "data": "isolate",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return "×"
+                        case 1:
+                            return "√"
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "wmm",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return "×"
+                        case 1:
+                            return "√"
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "wds",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return "×"
+                        case 1:
+                            return "√"
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": "disabled",                
+                render: function(data, type, row, meta) {
+                    switch(data){
+                        case 0:
+                            return "√"
+                        case 1:
+                            return "×"
+                        default:
+                            return "N/A"
+                    }
+                }
+            },
+            {
+                "data": null
+            }
+        ],
+        "order": [[1, 'asc']],
+        language: { //多语言
+            "url": lang_url
+        },
+        "dom": "lftip"
+
+    });
+
+    //序号列
+    table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+
+    //获取vlan接口
+    function show_vlan_interface() {
+        var vlans = ""
+        $.ajax({
+            url: url_host + "vlan_interface&action=readVlans" + url_time,
+            type: 'GET',
+            async: false,
+            contentType: 'application/json',  
+            success: function(data) {
+                if (data.result.code == 0) {
+                    vlans = data.result.data;
+                } else {
+                    console.log("code is not 0");
+                }
+            },
+            error: function() {
+            }
+        });
+
+        jQuery("#vlan_interface").empty();
+        if(vlans == ""){
+            jQuery("#vlan_interface").append("<option value='lan'>lan</option>");
+        }else{
+            for(var i=0;i<count(vlans);i++){
+                jQuery("#vlan_interface").append("<option value='" + vlans[i] + "'>" + vlans[i] + "</option>");
+            }
+        }
+    }
+
+    //页面弹窗
+    function showAddf(wlan) {
+        //初始化vlan接口
+        show_vlan_interface()
+
+        showDiv([".addf", ".div-bgd"]);
+        //根据传入的参数，在页面上显示
+        $("#wlan_name").val(wlan.wlan_name);
+        $("#ssid").val(wlan.ssid);
+        $("#radioid").val(wlan.radioid);
+        $("#code_type").val(wlan.code_type);
+        $("#hidden").val(wlan.hidden);
+        $("#auth_mode").val(wlan.auth_mode);
+        $("#chiphers").val(wlan.chiphers);
+
+        $("input:radio[name='keytype']").eq(wlan.keytype).attr("checked",true);
+
+        $("#keynum").val(wlan.keynum);
+        $("#ssid_pwd").val(wlan.ssid_pwd);
+        $("#auth_server").val(wlan.auth_server);
+        $("#auth_port").val(wlan.auth_port);
+        $("#auth_secret").val(wlan.auth_secret);
+        $("#acct_server").val(wlan.acct_server);
+        $("#acct_port").val(wlan.acct_port);
+        $("#acct_secret").val(wlan.acct_secret);
+        $("#vlan_interface").val(wlan.vlan);
+        $("#maxsta").val(wlan.maxsta);
+        $("#stamaxtfdown").val(wlan.stamaxtfdown);
+        $("#stamaxtfup").val(wlan.stamaxtfup);
+        $("#maxtfdown").val(wlan.maxtfdown);
+        $("#maxtfup").val(wlan.maxtfup);
+        $("#mcastenhance").val(wlan.mcastenhance);
+        $("#me_length").val(wlan.me_length);
+        $("#metimeout").val(wlan.metimeout1);
+        $("#isolate").val(wlan.isolate);
+        $("#wmm").val(wlan.wmm);
+        $("#wds").val(wlan.wds);
+        $("#disabled").val(wlan.disabled);
+        $("#macfilter").val(wlan.macfilter);
+        $("#maclist").val(wlan.maclist);
+
+        var maclist = []
+        if (wlan.maclist != "") {
+            maclist = wlan.maclist.split(" ");
+        }
+        $("#maclist").html("");
+        $("#del").html("");
+        for (var i = 0; i < maclist.length; i++) {
+            $("#maclist").append('<input type="text" class="form-control" id="maclist0' + i + '" value="' + maclist[i] + '">');
+            var k = i + 1;
+            $("#del").append('<button class="btn-danger btn" onclick="delOption(this,\'maclist0\')" id="' + k + 'del">' + allResources['delete'][g_lang] + '</button>');
+        };
+        $("#maclist").append('<input type="text" class="form-control" id="maclist0">');
+    };
+
+    function active_trigger() {
+        $('#folder').trigger('click');
+        $('#auth_mode').trigger('change');
+        $('#mcastenhance').trigger('click');
+        $('#macfilter').trigger('click');
+    }
+
+    $("#Tadd").click(function() {
+        var default_wlan = new Wlan();
+        action = "add";
+        showDiv([".addf", ".div-bgd"]);
+        showAddf(default_wlan);
+        active_trigger();
+    });
+
+    //给href绑定点击事件
+    $('#table tbody').on( 'click', 'a#modify', function () {
+        action = "modify";
+        action_line = $(this).parent().find(".edit").attr("class");
+        index = parseInt(action_line.substr(4)) - 1;
+        wlan = real_data[index]
+        //ms转换成s
+        wlan.metimeout1 = wlan.metimeout/1000;
+
+        showAddf(wlan);
+        $("#radioid").attr("disabled","disabled");
+        active_trigger();
+    });
+
+    $('#table tbody').on( 'click', 'a#delete', function () {
+        action = "delete";
+        action_line = $(this).parent().find(".delete").attr("class");
+        index = parseInt(action_line.substr(6)) - 1;
+        wlan = real_data[index]
+
+        del_ssid(wlan);
+    });
+
+    $("#unfolder").click(function() {
+        hideDiv([".unfolder-div"]);
+        showDiv([".folder-div"]);
+        showDiv([".advance-setting"]);
+    });
+
+    $("#folder").click(function() {
+        hideDiv([".folder-div"]);
+        showDiv([".unfolder-div"]);
+        hideDiv([".advance-setting"]);
+    });
+
+    $("#mcastenhance").click(function() {
+        mcastenhance = $("#mcastenhance").val()
+        if(mcastenhance == 2){
+            showDiv([".mcast-setting"]);
+        }else{
+            hideDiv([".mcast-setting"]);
+        }
+    });
+
+    $("#macfilter").click(function() {
+        macfilter = $("#macfilter").val()
+        if(macfilter == 0){
+            hideDiv([".mac-list"]);
+        }else{
+            showDiv([".mac-list"]);
+        }
+    });
+
+    //重新构建加密类型options
+    function build_security_setting(auth_mode, chiphers, keytype) {
+        jQuery("#chiphers").empty();
+
+        //WEP
+        if (auth_mode == 1) {
+            jQuery("#chiphers").append("<option value='1' selected='selected'>64位</option>");
+            jQuery("#chiphers").append("<option value='2'>128位</option>");
+            jQuery("#chiphers").append("<option value='3'>152位</option>"); 
+
+            if (chiphers > 3) {
+                chiphers = 1
+            }
+
+            showDiv([".WLAN_PWD_DIV"]);               
+            hideDiv([".WPA_AUTH_DIV"]);
+            showDiv([".WEP_AUTH_DIV"]);
+            showDiv([".SECURITY_KEY_TYPE_DIV"]);
+            hideDiv([".radius-setting"]);
+
+            //重构密码类型相关配置显示
+            build_security_key_type(keytype)
+        } 
+        //WPA
+        else if (auth_mode == 4 || auth_mode == 8 || auth_mode == 16 || auth_mode == 32 || auth_mode == 33) {
+            jQuery("#chiphers").append("<option value='4'>CCMP</option>");
+            jQuery("#chiphers").append("<option value='5'>TKIP</option>");
+            jQuery("#chiphers").append("<option value='6' selected='selected'>CCMP/TKIP</option>");
+
+            if (chiphers < 4) {
+                chiphers = 6
+            }
+
+            hideDiv([".WEP_AUTH_DIV"]);
+            showDiv([".WPA_AUTH_DIV"]);
+            hideDiv([".SECURITY_KEY_TYPE_DIV"]);
+            hideDiv([".AUTO_KEY_DIV"])
+            
+            if (val == 4 || val == 8) {
+                hideDiv([".WLAN_PWD_DIV"]);
+                showDiv([".radius-setting"]);
+            } else {
+                hideDiv([".radius-setting"]);
+                showDiv([".WLAN_PWD_DIV"]);
+            }
+        }
+
+        $("#chiphers").val(chiphers)
+    }
+
+    //加密类型修改事件：隐藏或显示加密类型相关配置
+    function build_auth_mode(val) {
+        chiphers = $("#chiphers").val()
+        keytype = $("input[name='keytype']:checked").val();
+
+        if(val != 0) {
+            showDiv([".chiphers-setting"]);
+            build_security_setting(val, chiphers, keytype);
+        } else {
+            hideDiv([".chiphers-setting"]);
+        }
+    }
+
+    $('#auth_mode').change(function(){
+        val = $(this).children('option:selected').val();
+        build_auth_mode(val)        
+    })
+
+    //密码类型修改事件：隐藏或显示自动生成密码配置
+    function build_security_key_type(val) {
+        //alert("in build_security_key_type :" + val)
+        if (val == 0) {
+            hideDiv([".AUTO_KEY_DIV"])
+        } else {
+            showDiv([".AUTO_KEY_DIV"])
+        } 
+    }
+
+    $(":radio[name='keytype']").click(function(){ 
+        build_security_key_type($(this).val()) 
+    })
+
+    $("#gen_keys").click(function() {
+        var v=$("#AUTO_KEY").val(),
+        index=$("#chiphers").val(),
+        seed=0, keybyte, pp64, pseed=new Array(4),
+        key, i, j, k, klen;
+        
+        tmp = parseInt(index);
+        switch (tmp)
+        {
+            case 1:
+                klen = 40
+            break;
+            case 2:
+                klen = 104
+            break;
+            case 3:
+                klen = 128
+            break;
+        }
+
+        if (0 == v.length){
+            lang_alert('empty_re_enter')
+            return;
+        }
+
+        k="";
+        pp64="";
+        for (i=0; i < 64; i++)
+            pp64 += v.charAt(i%(v.length));
+        k=MD5(pp64);
+        key=k.toUpperCase().substr(0, klen/4);
+
+        $("#ssid_pwd").val(key);
+    });
+
+});
+
+//action根据增加、删除的不同予以更改
+var action = "";
+$(".sure").click(function(){
+    //获取当前所有配置项的值
+    var wlan = new Wlan();
+
+    //数据校验
+    ret = get_cur_wlan_data_and_check(wlan)
+    if (!ret){
+        return
+    }
+    console.log();
+
+    req_url = "../cgi-bin/wireless_wlan.lua?action=" + action
+    +"&radioid=" + wlan.radioid
+    +"&wlan_name=" + wlan.wlan_name
+    +"&ssid=" + wlan.ssid
+    +"&code_type=" + wlan.code_type
+    +"&hidden=" + wlan.hidden
+    +"&auth_mode=" + wlan.auth_mode
+    +"&chiphers=" + wlan.chiphers
+    +"&keytype=" + wlan.keytype
+    +"&keynum=" + wlan.keynum
+    +"&ssid_pwd=" + wlan.ssid_pwd
+    +"&auth_server=" + wlan.auth_server
+    +"&auth_port=" + wlan.auth_port
+    +"&auth_secret=" + wlan.auth_secret
+    +"&acct_server=" + wlan.acct_server
+    +"&acct_port=" + wlan.acct_port
+    +"&acct_secret=" + wlan.acct_secret
+    +"&vlan=" + wlan.vlan
+    +"&maxsta=" + wlan.maxsta
+    +"&maxtfdown=" + wlan.maxtfdown
+    +"&maxtfup=" + wlan.maxtfup
+    +"&stamaxtfdown=" + wlan.stamaxtfdown
+    +"&stamaxtfup=" + wlan.stamaxtfup
+    +"&mcastenhance=" + wlan.mcastenhance
+    +"&me_length=" + wlan.me_length
+    +"&metimeout=" + wlan.metimeout
+    +"&isolate=" + wlan.isolate
+    +"&wmm=" + wlan.wmm
+    +"&wds=" + wlan.wds
+    +"&disabled=" + wlan.disabled
+    +"&macfilter=" + wlan.macfilter
+    +"&maclist=" + wlan.maclist
+    + url_time;
+
+    //alert(req_url)
+    check_code0(req_url)
+})
+
+</script>
+
+</html>

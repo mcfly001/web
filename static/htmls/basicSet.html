@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/default.js"></script>
+    <style>
+    .addf-line-mid {
+        width: 60%;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="choose_area">
+            <ol class="ol_tag clear">
+                <li><a data-key="basic_setting" href="javascript:;" class="selected">基本设置</a></li>
+            </ol>
+        </div>
+
+        <div class="field-wrap" align="center">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td valign="top">
+                        <fieldset>
+                            <legend><b data-key="basic_setting">基本设置</b></legend>
+                            <div class="vertiplace">
+                                <div class="line">
+                                    <div data-key="sys_times" class="row-rlabel">系统时间：</div>
+                                    <div class="row-text">
+                                        <span id="date">2017年07月07日09:55:39,星期五</span>
+                                        <button data-key="sync_brewer_time" id="sync_time">同步浏览器时间</button>
+                                    </div>
+                                </div>
+                                <div class="line">
+                                    <div data-key="timezone" class="row-rlabel">时区：</div>
+                                    <div class="row-input">
+                                        <input type="text" placeholder="Asia/Shanghai" id="tArea">
+                                        <!-- <select name="timezone" id="timezone"></select> -->
+                                    </div>
+                                </div>
+                                <div class="line">
+                                    <div class="row-rlabel"><label data-key="ntp_client_enable" for="enabled">启用NTP客户端：</label></div>
+                                    <div class="row-input">
+                                        <input type="checkbox" id="enabled" onclick="hide()">
+                                    </div>
+                                </div>
+                                <div class="line" id="l_enableserver">
+                                    <div class="row-rlabel"><label data-key="ntp_server" for="enable_server">NTP服务器：</label></div>
+                                    <div class="row-input">
+                                        <input type="checkbox" id="enable_server">
+                                    </div>
+                                </div>
+                                <div class="line" id="l_ntpserver">
+                                    <div data-key="ntp_server_secondary" class="row-rlabel">备用NTP服务器：</div>
+                                    <div class="row-input">
+                                        <div class="addf-line-mid" id="inputPar">
+                                            <input type="text" class="form-control" id="dhcpoptions0">
+                                        </div>
+                                        <div class="addf-line-rig" id="del"></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="line add_btn">
+                                    <div class="clear"></div>
+                                    <div class="row-rlabel"> </div>
+                                    <div class="row-input">
+                                        <div class="addf-line-mid">
+                                            <span style="display: inline-block; width: 100%; height: 16px;"></span>
+                                        </div>
+                                        <div class="addf-line-rig ">
+                                            <button data-key="add" onclick="addOption('inputPar', 'del', 'dhcpoptions0')">增加</button>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="line-submit rightspan clear">
+                                    <div>
+                                        <button data-key="modify" id="Tchange">修改</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+//时区下拉框加载
+// var zoneinfo = get_real_data("get_zoneinfo.lua"),
+//     node = "";
+// for(var i = 0; i < zoneinfo.length; i++){
+//     node += '<option value="' + zoneinfo[i][0] + '" vtime="' + zoneinfo[i][1] + '">' + zoneinfo[i][0] + '</option>';
+// }
+// $("#timezone").append(node);
+
+
+function showDate(date) {
+    console.log(date)
+    console.log(g_lang)
+    if (g_lang == 'zh'){
+        var a = new Array("日", "一", "二", "三", "四", "五", "六");
+        return date.getFullYear() + "年" + (date.getMonth() + 1) +
+            "月" + date.getDate() + "日 " + date.toTimeString().substr(0, 8) +
+            ",星期" + a[date.getDay()];
+    }
+    else {
+        var a = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+        return a[date.getDay()] + "," + date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear()
+        + " " + date.toTimeString().substr(0, 8) 
+    }
+}
+
+function eq(obj, vserver) {
+    var oServer = obj.server == undefined ? "" : obj.server.join(" ");
+    //oServer = oServer + "  ";
+    return ($("#tArea").val() == obj.zonename) &&
+        (($("#enabled").prop("checked") == true ? "1" : "0") == obj.enabled) &&
+        (($("#enable_server").prop("checked") == true ? "1" : "0") == obj.enable_server) &&
+        vserver == (oServer + "  ")
+}
+
+function hide() {
+    if ($("#enabled").prop("checked") == false) {
+        document.getElementById("l_enableserver").style.display = "none";
+        document.getElementById("l_ntpserver").style.display = "none";
+        $(".add_btn").css("display", "none");
+    } else {
+        document.getElementById("l_enableserver").style.display = "";
+        document.getElementById("l_ntpserver").style.display = "";
+        $(".add_btn").css("display", "");
+    }
+}
+
+var obj = {}, server="";
+(function() {
+    $.ajax({
+        url: '../../cgi-bin/common.cgi?luaname=system_base&action=read' + url_time,
+        type: "GET",
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            obj = data.result;
+            console.log(obj);
+            if (obj.code == 0) {
+                var date = new Date();
+                date.setTime(obj.time * 1000);
+                $("#date").text(showDate(date));
+                $("#tArea").val(obj.zonename);
+                $("#enabled").prop("checked", parseInt(obj.enabled));
+                $("#enable_server").prop("checked", parseInt(obj.enable_server));
+                if (obj.server != undefined && obj.server != "") {
+                    var arr = obj.server;
+                    $("#inputPar").html("");
+                    $("#del").html("");
+                    $("#inputPar").append('<input type="text" class="form-control" id="dhcpoptions0">');
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i] != "") {
+                            var m = i + 1;
+                            $("#dhcpoptions0").before('<input type="text" class="form-control" id="dhcpoption0' + m + '" value="' + arr[i] + '">');
+                            var k = i + 2;
+                            $("#del").append('<button class="btn-danger btn" onclick="delOption(this,\'dhcpoption0\')" id="' + k + 'dels">' + allResources['delete'][g_lang] + '</button>');
+                        }
+                    };
+                }
+            } else {
+                console.log("code is not 0");
+            }
+            hide();
+        },
+        error: function() {
+            console.log("err");
+        }
+    })
+})()
+
+$("#sync_time").click(function() {
+    $("#date").text(showDate(new Date()));
+    $.ajax({
+        url: '../../cgi-bin/common.cgi?luaname=system_base&action=modify&time=' + parseInt((new Date()).getTime() / 1000),
+        type: "GET",
+        contentType: "application/json",
+        dataType: 'json',
+        beforeSend: function() {
+            openLoad();
+        },
+        success: function(data) {
+            var obj = data.result;
+            console.log(obj);
+            closeLoad();
+            if (obj.code == 0) {
+                lang_alert("apply_success")
+                window.location.reload();
+            } else {
+                console.log("code is not 0");
+                lang_alert("apply_fail")
+            }
+        },
+        error: function() {
+            console.log("err");
+            closeLoad();
+            lang_alert("apply_fail")
+        }
+
+    })
+})
+
+$("#Tchange").click(function() {
+    var input_arr = $("#inputPar input"),
+        zonename = $("#tArea").val(),
+        enabled = ($("#enabled").prop("checked") == true ? "1" : "0"),
+        // timezone = $("#timezone option:selected").attr("vtime"),
+        enable_server = ($("#enable_server").prop("checked") == true ? "1" : "0"),
+        url;
+    var vserver = "";
+    for (var i = 0; i < input_arr.length; i++) {
+        vserver += input_arr[i].value + " ";
+    }
+    //数据校验
+    if(zonename == ""){
+        lang_alert('timezone_empty_tips')
+        return false;
+    }
+    if (eq(obj, vserver) == true)
+        lang_alert('no_config_changes')
+    else {
+        url = url_host + 'system_base&action=modify' + "&zonename=" + zonename + "&enabled=" + enabled + "&enable_server=" + enable_server + "&server=" + vserver + url_time;
+        check_code0(url);
+    }
+})
+</script>
+
+</html>
