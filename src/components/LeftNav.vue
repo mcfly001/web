@@ -17,7 +17,7 @@
         :index="items.index"
         @click.native="jumpTo(items.path)"
       >
-        <!-- <i :class="items.icon"></i> -->
+        <i :class="items.icon"></i>
         <span slot="title">{{items.name}}</span>
       </el-menu-item>
 
@@ -26,7 +26,7 @@
         v-if="!!items.children && !!items.children.length"
       >
         <template slot="title">
-          <!-- <i :class="items.icon"></i> -->
+          <i :class="items.icon"></i>
           <span>{{items.name}}</span>
         </template>
         <el-menu-item-group>
@@ -36,7 +36,7 @@
             :key="item.index"
             :index="item.index"
           >
-            <!-- <i :class="item.icon"></i> -->
+            <i :class="item.icon"></i>
             <span slot="title">{{item.name}}</span>
           </el-menu-item>
         </el-menu-item-group>
@@ -212,7 +212,6 @@ export default {
   },
   methods: {
     jumpTo(path) {
-      console.log(path);
       this.$router.push({
         path: path
       });

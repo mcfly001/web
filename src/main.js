@@ -4,7 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import i18n from './lang'
-import { Menu, MenuItemGroup, MenuItem, Submenu, Button, Select, Option } from 'element-ui'
+import { Menu, MenuItemGroup, MenuItem, Submenu, Button, 
+         Select, Option, Breadcrumb, BreadcrumbItem, 
+         Tabs, TabPane, Input, Table, TableColumn, Pagination } from 'element-ui'
 import './index.css'
 
 Vue.config.productionTip = false
@@ -17,7 +19,15 @@ let componentArr = [
   Submenu,
   Button,
   Select,
-  Option
+  Option,
+  Breadcrumb,
+  BreadcrumbItem,
+  Tabs,
+  TabPane,
+  Input,
+  Table,
+  TableColumn,
+  Pagination
 ]
 
 componentArr.forEach(item => {

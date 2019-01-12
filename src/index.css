@@ -12,9 +12,50 @@ html{
 
 html, body{
   height: 100%;
+  background: #f7f7fa;
+}
+
+#app {
+  height: 100%;
 }
 
 iframe{
   border: none;
   width: 99% !important;
+}
+
+.el-input{
+  display: inline-block;
+  width: 160px !important;
+}
+
+.tabs{
+  display: flex;
+  flex-flow: nowrap column;
+  margin: 20px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.tabs .el-tabs__content{
+  flex: 1;
+}
+
+.el-tab-pane{
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.pull-right{
+  float: right;
+}
+
+.el-pagination .el-input{
+  width: 100px !important;
+}
+
+th{
+  background: #f7f7fa !important;
 }
