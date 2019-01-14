@@ -2,8 +2,7 @@
   <el-menu
     :default-active="defaultActive"
     class="leftnav"
-    backgroundColor="#303133"
-    background-color="#545c64"
+    backgroundColor="#333"
     text-color="#fff"
     :unique-opened="true"
     active-text-color="#ffd04b"

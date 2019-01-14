@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import i18n from './lang'
-import { Menu, MenuItemGroup, MenuItem, Submenu, Button, 
-         Select, Option, Breadcrumb, BreadcrumbItem, 
+import { Menu, MenuItemGroup, MenuItem, Submenu, Button, Dropdown, DropdownMenu, DropdownItem,
+         Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem,
          Tabs, TabPane, Input, Table, TableColumn, Pagination } from 'element-ui'
 import './index.css'
 
@@ -18,10 +18,15 @@ let componentArr = [
   MenuItem,
   Submenu,
   Button,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
   Select,
   Option,
   Breadcrumb,
   BreadcrumbItem,
+  Form,
+  FormItem,
   Tabs,
   TabPane,
   Input,

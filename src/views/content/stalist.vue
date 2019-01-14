@@ -44,19 +44,19 @@
         >
           <el-table-column
             prop="date"
-            label="日期"
+            label="用户ID"
             width="180"
           >
           </el-table-column>
           <el-table-column
             prop="name"
-            label="姓名"
+            label="IP地址"
             width="180"
           >
           </el-table-column>
           <el-table-column
             prop="address"
-            label="地址"
+            label="MAC地址"
           >
           </el-table-column>
         </el-table>
