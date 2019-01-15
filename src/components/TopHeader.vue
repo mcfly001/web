@@ -1,7 +1,7 @@
 <template>
   <div class="topnav">
     <div class="logo">
-      <img src="https://assets.2dfire.com/frontend/11dfef885ad8f93b77397febcdd8e127.png" />
+      <img src="../image/logo.png" />
     </div>
     <el-menu
       :default-active="activeIndex"
@@ -71,9 +71,9 @@ export default {
 .logo{
   position: absolute;
   left: 25px;
-  width: 88px;
-  height: 34px;
-  margin-top: 10px;
+  width: 114px;
+  height: 50px;
+  margin-top: 5px;
   z-index: 10000
 }
 

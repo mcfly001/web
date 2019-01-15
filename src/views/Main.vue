@@ -61,7 +61,7 @@ export default {
 }
 
 .right-content {
-  margin-left: 250px;
+  margin-left: 180px;
   height: 100%;
   overflow-y: auto;
 }

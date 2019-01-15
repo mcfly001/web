@@ -1,6 +1,10 @@
 <template>
   <div class="login">
     <div class="form">
+      <div class="logo">
+ <img src="../image/logo.png" />
+      </div>
+       
        <div class="info">
         <h3 class="title">{{ $t('login.title') }}</h3>
         <lang-select class="set-language"/>
@@ -75,13 +79,24 @@ export default {
   position: relative;
 }
 
+.logo{
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.logo>image{
+  display: inline-block;
+  width: 228px;
+  height: 100px;
+}
+
 .form {
   position: absolute;
   left: 50%;
   top: 50%;
   width: 460px;
   height: 500px;
-  transform: translate3d(-50%, -30%, 0);
+  transform: translate3d(-50%, -40%, 0);
 }
 
 .info {

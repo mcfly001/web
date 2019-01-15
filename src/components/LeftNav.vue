@@ -53,13 +53,13 @@ export default {
       defaultActive: '1',
       routerList: [
         {
-          icon: "el-icon-location",
+          icon: "icon iconfont icon-xitongjiankong",
           index: "1",
           name: "系统监控",
           path: "/htmls/overview"
         },
         {
-          icon: "el-icon-menu",
+          icon: "icon iconfont icon-wangluopeizhi",
           index: "2",
           name: "网络配置",
           children: [
@@ -108,7 +108,7 @@ export default {
           ]
         },
         {
-          icon: "el-icon-menu",
+          icon: "icon iconfont icon-wuxianpeizhi",
           index: "3",
           name: "无线配置",
           children: [
@@ -127,7 +127,7 @@ export default {
           ]
         },
         {
-          icon: "el-icon-menu",
+          icon: "icon iconfont icon-yonghuguanli",
           index: "4",
           name: "用户管理",
           children: [
@@ -146,7 +146,7 @@ export default {
           ]
         },
         {
-          icon: "el-icon-menu",
+          icon: "icon iconfont icon-xitongpeizhi",
           index: "5",
           name: "系统配置",
           children: [
@@ -222,9 +222,15 @@ export default {
 
 <style scoped>
 .leftnav {
-  width: 250px;
+  width: 180px;
   float: left;
   height: 100%;
   overflow: auto;
+}
+
+.icon{
+  font-size: 20px;
+  margin-right: 6px;
+  font-weight: bold;
 }
 </style>
