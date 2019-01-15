@@ -5,7 +5,7 @@
     </div>
     <el-menu
       :default-active="activeIndex"
-      backgroundColor="#272727"
+      backgroundColor="#15314a"
       class="topnav_right"
       mode="horizontal"
       @select="handleSelect"

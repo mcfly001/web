@@ -3,9 +3,8 @@ export default{
   zh: 'Chinese',
   num: 'num',
   login: {
-    title: 'Login',
-    logIn: '登录',
-    username: '账号',
-    password: '密码',
+    title: 'Account Login',
+    logIn: 'login',
+    password: 'password',
   }
 }

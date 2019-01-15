@@ -63,15 +63,7 @@ export default {
 .right-content {
   margin-left: 250px;
   height: 100%;
-  overflow-y: hidden;
-}
-
-.right-content > .main {
-  width: auto;
-  margin-top: -44px;
-  padding-top: 44px;
-  height: 100%;
-  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .breadcrumb {
