@@ -1,6 +1,9 @@
 <template>
   <div class="stalist">
-    <second-level-tab-list :active="SecondLevelTabActive" :list="SecondLevelTabList"></second-level-tab-list>
+    <second-level-tab-list
+      :active="SecondLevelTabActive"
+      :list="SecondLevelTabList"
+    ></second-level-tab-list>
     <div class="content">
       <div class="filter">
         <el-input
@@ -9,6 +12,18 @@
           placeholder="请输入内容"
           size="small"
         ></el-input>
+
+        <el-button
+          type="primary"
+          size="small"
+          @click="showMessage"
+        >点击显示message弹窗</el-button>
+        <el-button
+          type="primary"
+          size="small"
+          @click="showMessageBox"
+        >点击显示MessageBox</el-button>
+
         <div class="pull-right">
           <el-select
             size="small"
@@ -30,49 +45,49 @@
       </div>
 
       <div class="table-content">
-      <el-table
-        stripe
-        border
-        :default-sort="{prop: 'date', order: 'descending'}"
-        class="table"
-        :data="tableData"
-      >
-        <el-table-column
-          prop="date"
-          sortable
-          :sort-method="sortFn"
-          align='center'
-          label="用户ID"
-          width="180"
+        <el-table
+          stripe
+          border
+          :default-sort="{prop: 'date', order: 'descending'}"
+          class="table"
+          :data="tableData"
         >
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          align='center'
-          label="IP地址"
-          width="180"
-        >
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          align='center'
-          label="MAC地址"
-        >
-        </el-table-column>
-      </el-table>
+          <el-table-column
+            prop="date"
+            sortable
+            :sort-method="sortFn"
+            align='center'
+            label="用户ID"
+            width="180"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="name"
+            align='center'
+            label="IP地址"
+            width="180"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="address"
+            align='center'
+            label="MAC地址"
+          >
+          </el-table-column>
+        </el-table>
 
-      <el-pagination
-        size="small"
-        class="pagination"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
-        layout="total, sizes, prev, pager, next"
-        :total="total"
-      >
-      </el-pagination>
+        <el-pagination
+          size="small"
+          class="pagination"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[100, 200, 300, 400]"
+          :page-size="100"
+          layout="total, sizes, prev, pager, next"
+          :total="total"
+        >
+        </el-pagination>
       </div>
 
     </div>
@@ -80,7 +95,7 @@
 </template>
 
 <script>
-import SecondLevelTabList from '../../components/SecondLevelTabList'
+import SecondLevelTabList from "../../components/SecondLevelTabList";
 
 export default {
   data() {
@@ -167,7 +182,7 @@ export default {
         }
       ],
       SecondLevelTabList: ["用户状态"],
-      SecondLevelTabActive: '用户状态',
+      SecondLevelTabActive: "用户状态",
       currentPage: 1,
       total: 400
     };
@@ -180,7 +195,24 @@ export default {
       return a.date - b.date;
     },
     handleSizeChange() {},
-    handleCurrentChange() {}
+    handleCurrentChange() {},
+    showMessage() {
+       this.$message({
+         type: 'error',
+         message: '这是一条消息提示'
+       });
+    },
+    showMessageBox() {
+       this.$alert('这是一段内容', '标题名称', {
+          confirmButtonText: '确定',
+          callback: action => {
+            // this.$message({
+            //   type: 'info',
+            //   message: `action: ${ action }`
+            // });
+          }
+        });
+    }
   },
   components: {
     SecondLevelTabList
@@ -189,14 +221,14 @@ export default {
 </script>
 
 <style scoped>
-.content{
+.content {
   margin: 0 20px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
   background: white;
   padding: 10px 20px;
 }
 
-.filter{
+.filter {
   margin-bottom: 20px;
 }
 
@@ -205,5 +237,4 @@ export default {
   width: 100%;
   text-align: right;
 }
-
 </style>

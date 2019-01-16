@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import i18n from './lang'
 import { Menu, MenuItemGroup, MenuItem, Submenu, Button, Dropdown, DropdownMenu, DropdownItem,
-         Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem,
+         Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem, Message, MessageBox,
          Tabs, TabPane, Input, Table, TableColumn, Pagination } from 'element-ui'
 import './index.css'
 
@@ -38,6 +38,11 @@ let componentArr = [
 componentArr.forEach(item => {
   Vue.component(item.name, item)
 })
+
+Vue.prototype.$message = Message
+Vue.prototype.$alert = MessageBox.alert
+Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$prompt = MessageBox.prompt
 
 /* eslint-disable no-new */
 new Vue({
