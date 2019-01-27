@@ -27,6 +27,9 @@ body {
 
 #app {
   height: 100%;
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: space-around;
 }
 
 iframe{
@@ -40,26 +43,16 @@ ul{
 
 .el-input{
   display: inline-block;
-  width: 160px !important;
+  width: 100px !important;
+
+  &>input{
+     height: 25px !important;
+     line-height: 25px !important;
+   }
 }
 
-.tabs{
-  display: flex;
-  flex-flow: nowrap column;
-  margin: 20px;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.tabs .el-tabs__content{
-  flex: 1;
-}
-
-.el-tab-pane{
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100%;
-  box-sizing: border-box;
+.el-button{
+  padding: 5px 10px;
 }
 
 .pull-right{
@@ -72,32 +65,6 @@ ul{
 
 th{
   background: #f7f7fa !important;
-}
-
-.el-menu-item-group .el-menu-item{
-  background-color: #1f2d3d !important;
-}
-
-.el-menu-item:hover{
-  background-color: #001528 !important;
-  cursor: pointer;
-}
-
-.el-menu-item.is-active{
-  color: rgb(64, 158, 255) !important;
-}
-
-.leftnav .el-submenu__title:hover{
-  background-color: #001528 !important;
-}
-
-.topnav .is-active>.el-submenu__title{
-  color: rgb(64, 158, 255) !important;
-  border-bottom: 1px solid rgb(64, 158, 255) !important;
-}
-
-.topnav .el-submenu__title:hover{
-  background-color:rgb(21, 49, 74) !important;
 }
 
 .el-menu-item-group__title{

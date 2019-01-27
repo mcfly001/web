@@ -11,7 +11,7 @@
           separator="/"
         >
           <span class="current">当前位置：</span>
-          <el-breadcrumb-item v-for="item in breadList"    
+          <el-breadcrumb-item v-for="item in breadList"
                               :key="item">
               {{item}}
           </el-breadcrumb-item>
@@ -21,6 +21,7 @@
         </div>
       </div>
     </div>
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -53,28 +54,37 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  height: 100%;
-  margin-top: -61px;
-  box-sizing: border-box;
-  padding-top: 61px;
-}
+  .container {
+    flex: 1;
+    overflow: hidden;
+  }
 
-.right-content {
-  margin-left: 180px;
-  height: 100%;
-  overflow-y: auto;
-}
+  .right-content {
+    margin-left: 180px;
+    height: 100%;
+    display: flex;
+    flex-flow: nowrap column;
+    justify-content: space-around;
+  }
 
-.breadcrumb {
-  height: 44px;
-  padding: 15px 10px 15px 20px;
-  background: white;
-  box-sizing: border-box;
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
-}
+  .breadcrumb {
+    padding: 10px 10px 10px 20px;
+    background: white;
+    box-sizing: border-box;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
+  }
 
-.current {
-  float: left;
-}
+  .main{
+    flex: 1;
+    overflow: auto;
+  }
+
+  .current {
+    float: left;
+  }
+
+  .footer{
+    height: 40px;
+    background: #e9e9e9;
+  }
 </style>

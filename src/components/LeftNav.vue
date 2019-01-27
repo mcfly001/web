@@ -2,22 +2,26 @@
   <el-menu
     :default-active="defaultActive"
     class="leftnav"
-    backgroundColor="rgb(48, 65, 86)"
+    backgroundColor="#001525"
     text-color="#fff"
     :unique-opened="true"
-    active-text-color="#ffd04b"
+    active-text-color="#1585ff"
   >
     <div
       v-for="items in routerList"
       :key="items.name"
     >
       <el-menu-item
+        class="first-level"
         v-if="!items.children"
         :index="items.index"
         @click.native="jumpTo(items.path)"
       >
         <i :class="items.icon"></i>
-        <span slot="title">{{items.name}}</span>
+        <span
+          class="title"
+          slot="title"
+        >{{items.name}}</span>
       </el-menu-item>
 
       <el-submenu
@@ -26,16 +30,20 @@
       >
         <template slot="title">
           <i :class="items.icon"></i>
-          <span>{{items.name}}</span>
+          <span class="title">{{items.name}}</span>
         </template>
         <el-menu-item-group>
           <el-menu-item
+            class="second-level"
             v-for="item in items.children"
             @click.native="jumpTo(item.path)"
             :key="item.index"
             :index="item.index"
           >
-            <span slot="title">{{item.name}}</span>
+            <span
+              class="title"
+              slot="title"
+            >{{item.name}}</span>
           </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
@@ -49,7 +57,7 @@
 export default {
   data() {
     return {
-      defaultActive: '1',
+      defaultActive: "1",
       routerList: [
         {
           icon: "icon iconfont icon-xitongjiankong",
@@ -200,21 +208,60 @@ export default {
 };
 </script>
 
-<style scoped>
+<style type="text/scss" lang="scss" scoped>
 .leftnav {
   width: 180px;
   float: left;
   height: 100%;
   overflow: auto;
-}
 
-.icon{
-  font-size: 20px;
-  margin-right: 6px;
-  font-weight: bold;
-}
+  .title {
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
 
-.el-menu-item{
-  padding-left: 50px !important;
+  .is-active {
+    background: #1585ff !important;
+    > span {
+      color: white;
+    }
+  }
+
+  /deep/ .el-submenu__title {
+    height: 40px;
+    line-height: 40px;
+    color: white;
+  }
+
+  .icon {
+    font-size: 18px;
+    margin-right: 7px;
+    font-weight: bold;
+    display: inline-block;
+    color: white;
+    vertical-align: -2px;
+    margin-left: 3px;
+  }
+
+  .first-level {
+    height: 40px;
+    line-height: 40px;
+
+    &:hover {
+      color: #1585ff !important;
+    }
+  }
+
+  .second-level {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 50px !important;
+    min-width: auto;
+    color: white !important;
+
+    &:hover {
+      color: #1585ff !important;
+    }
+  }
 }
 </style>

@@ -16,11 +16,12 @@ export default {
 
 <style scoped>
  .tab-list{
-   margin: 20px;
+   margin: 10px 20px;
    background: white;
    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
-   padding: 20px 20px;
+   padding: 5px 20px;
    color: #999999;
+   font-size: 15px;
  }
 
  li.active{

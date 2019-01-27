@@ -27,6 +27,7 @@
         <div class="pull-right">
           <el-select
             size="small"
+            class=" m-r"
             v-model="choosedTime"
             placeholder="请选择"
           >
@@ -187,9 +188,6 @@ export default {
       total: 400
     };
   },
-  created() {
-    this.src = "../../static" + this.$route.path + ".html";
-  },
   methods: {
     sortFn(a, b) {
       return a.date - b.date;
@@ -220,7 +218,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style type="text/scss" lang="scss" scoped>
 .content {
   margin: 0 20px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);

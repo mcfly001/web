@@ -7,7 +7,7 @@ import i18n from './lang'
 import { Menu, MenuItemGroup, MenuItem, Submenu, Button, Dropdown, DropdownMenu, DropdownItem,
          Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem, Message, MessageBox,
          Tabs, TabPane, Input, Table, TableColumn, Pagination } from 'element-ui'
-import './index.css'
+import './index.scss'
 
 Vue.config.productionTip = false
 
