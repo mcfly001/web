@@ -96,9 +96,9 @@
         </div>
         <div id="top-right-chart">
           <el-table
-            class="m-t"
+            class="p-t"
             :data="tableData3"
-            height="180"
+            height="170"
             style="width: 100%"
           >
             <el-table-column
@@ -261,7 +261,6 @@ export default {
 
 <style type="text/scss" lang="scss" scoped>
 .chart {
-  // height: 100%;
   margin: 10px 20px 20px 20px;
   padding-bottom: 20px;
   box-sizing: border-box;
