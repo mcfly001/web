@@ -96,6 +96,7 @@
         </div>
         <div id="top-right-chart">
           <el-table
+            class="m-t"
             :data="tableData3"
             height="180"
             style="width: 100%"
@@ -224,7 +225,7 @@ export default {
       },
       grid: {
         left: "10px",
-        right: "30px",
+        right: 0,
         top: 0,
         bottom: "20px"
       },
@@ -313,6 +314,8 @@ export default {
     #bottom-right {
       width: 50%;
       box-sizing: border-box;
+      padding-left: 20px;
+      padding-right: 20px;
 
       .info {
         display: flex;
@@ -326,7 +329,6 @@ export default {
         }
 
         .args {
-          margin-right: 30px;
           flex: 1;
           padding-left: 25px;
           font-size: 13px;
@@ -343,12 +345,6 @@ export default {
     #top-left,
     #top-right {
       margin-bottom: 15px;
-    }
-
-    #top-right,
-    #bottom-right {
-      padding-left: 20px;
-      padding-right: 20px
     }
 
     #top-left,
@@ -375,7 +371,6 @@ export default {
       background: #f2f2f2;
       font-size: 13px;
       padding-left: 10px;
-      margin-right: 30px;
       margin-left: 10px;
       box-sizing: border-box;
     }
