@@ -272,7 +272,7 @@ export default {
     padding: 8px;
 
     & > .title {
-      font-size: 13px;
+      font-size: 15px;
     }
 
     & > .content {
@@ -289,6 +289,7 @@ export default {
       }
 
       .value {
+        font-size: 13px;
         margin-bottom: 5px;
         background-color: #f2f2f2 !important;
       }
