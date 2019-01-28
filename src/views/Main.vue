@@ -11,9 +11,11 @@
           separator="/"
         >
           <span class="current">当前位置：</span>
-          <el-breadcrumb-item v-for="item in breadList"
-                              :key="item">
-              {{item}}
+          <el-breadcrumb-item
+            v-for="item in breadList"
+            :key="item"
+          >
+            {{item}}
           </el-breadcrumb-item>
         </el-breadcrumb>
         <div class="main">
@@ -28,63 +30,63 @@
 <script>
 import TopHeader from "../components/TopHeader";
 import LeftNav from "../components/LeftNav";
-import enumList from '../enum'
+import enumList from "../enum";
 
 export default {
   name: "App",
-  data () {
+  data() {
     return {
       breadList: []
-    }
+    };
   },
-  created () {
-    let { path } = this.$route
-    this.breadList = enumList[path]
+  created() {
+    let { path } = this.$route;
+    this.breadList = enumList[path];
   },
   watch: {
-    '$route'(to, from){
-      this.breadList = enumList[to.path]
+    $route(to, from) {
+      this.breadList = enumList[to.path];
     }
   },
   components: {
     TopHeader,
-    LeftNav
+    LeftNav,
   }
 };
 </script>
 
 <style scoped>
-  .container {
-    flex: 1;
-    overflow: hidden;
-  }
+.container {
+  flex: 1;
+  overflow: hidden;
+}
 
-  .right-content {
-    margin-left: 180px;
-    height: 100%;
-    display: flex;
-    flex-flow: nowrap column;
-    justify-content: space-around;
-  }
+.right-content {
+  margin-left: 300px;
+  height: 100%;
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: space-around;
+}
 
-  .breadcrumb {
-    padding: 10px 10px 10px 20px;
-    background: white;
-    box-sizing: border-box;
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
-  }
+.breadcrumb {
+  padding: 10px 10px 10px 20px;
+  background: white;
+  box-sizing: border-box;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
+}
 
-  .main{
-    flex: 1;
-    overflow: auto;
-  }
+.main {
+  flex: 1;
+  overflow: auto;
+}
 
-  .current {
-    float: left;
-  }
+.current {
+  float: left;
+}
 
-  .footer{
-    height: 40px;
-    background: #e9e9e9;
-  }
+.footer {
+  height: 40px;
+  background: #e9e9e9;
+}
 </style>

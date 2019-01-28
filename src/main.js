@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import i18n from './lang'
+import SecondLevelTabList from "./components/SecondLevelTabList";
 import { Menu, MenuItemGroup, MenuItem, Submenu, Button, Dropdown, DropdownMenu, DropdownItem,
          Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem, Message, MessageBox,
          Tabs, TabPane, Input, Table, TableColumn, Pagination } from 'element-ui'
@@ -13,6 +14,7 @@ Vue.config.productionTip = false
 
 // 在这里注入需要用到的组件
 let componentArr = [
+  SecondLevelTabList,
   Menu,
   MenuItemGroup,
   MenuItem,

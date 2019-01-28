@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: 'SecondLevelTabList',
   props: ['list', 'active']
 }
 </script>

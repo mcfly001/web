@@ -96,8 +96,6 @@
 </template>
 
 <script>
-import SecondLevelTabList from "../../components/SecondLevelTabList";
-
 export default {
   data() {
     return {
@@ -211,9 +209,6 @@ export default {
           }
         });
     }
-  },
-  components: {
-    SecondLevelTabList
   }
 };
 </script>

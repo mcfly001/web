@@ -14,7 +14,7 @@ html{
 
 html, body{
   height: 100%;
-  background: #f7f7fa;
+  background: #eef0f4;
 }
 
 body {
@@ -69,4 +69,20 @@ th{
 
 .el-menu-item-group__title{
   padding: 0;
+}
+
+.el-select__caret{
+  line-height: 25px !important;
+}
+
+.m-r{
+  margin-right: 10px;
+}
+
+.green{
+  color: #9ce588;
+}
+
+.blue{
+  color: #6c7fdd;
 }

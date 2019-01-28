@@ -19,7 +19,6 @@ export default new Router({
     },
     {
       path: '/htmls',
-      name: 'htmls',
       component: Main,
       children: children
     }
