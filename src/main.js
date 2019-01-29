@@ -5,9 +5,9 @@ import App from './App'
 import router from './router'
 import i18n from './lang'
 import SecondLevelTabList from "./components/SecondLevelTabList";
-import { Menu, MenuItemGroup, MenuItem, Submenu, Button, Dropdown, DropdownMenu, DropdownItem,
+import { Col, DatePicker, TimePicker, Menu, MenuItemGroup, MenuItem, Submenu, Button, Dropdown, DropdownMenu, DropdownItem,
          Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem, Message, MessageBox,
-         Tabs, TabPane, Input, Table, TableColumn, Pagination } from 'element-ui'
+         Tabs, TabPane, Input, Table, TableColumn, Pagination, Dialog, Radio, RadioGroup } from 'element-ui'
 import './index.scss'
 
 Vue.config.productionTip = false
@@ -15,6 +15,9 @@ Vue.config.productionTip = false
 // 在这里注入需要用到的组件
 let componentArr = [
   SecondLevelTabList,
+  Col,
+  DatePicker,
+  TimePicker,
   Menu,
   MenuItemGroup,
   MenuItem,
@@ -34,7 +37,10 @@ let componentArr = [
   Input,
   Table,
   TableColumn,
-  Pagination
+  Pagination,
+  Dialog,
+  Radio,
+  RadioGroup
 ]
 
 componentArr.forEach(item => {

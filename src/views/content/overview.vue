@@ -208,9 +208,7 @@ export default {
   mounted() {
     let topLeft = echarts.init(document.getElementById("top-left-chart"));
     let bottomLeft = echarts.init(document.getElementById("bottom-left-chart"));
-    let bottomRight = echarts.init(
-      document.getElementById("bottom-right-chart")
-    );
+    let bottomRight = echarts.init(document.getElementById("bottom-right-chart"));
 
     const breakLineOptions = {
       xAxis: {

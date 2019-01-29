@@ -32,51 +32,16 @@ body {
   justify-content: space-around;
 }
 
-iframe{
-  border: none;
-  width: 99% !important;
-}
-
 ul{
   list-style-type: none;
-}
-
-.el-input{
-  display: inline-block;
-  width: 100px !important;
-
-  &>input{
-     height: 25px !important;
-     line-height: 25px !important;
-   }
-}
-
-.el-button{
-  padding: 5px 10px;
 }
 
 .pull-right{
   float: right;
 }
 
-.el-pagination .el-input{
-  width: 100px !important;
-}
-
-th{
-  background: #f7f7fa !important;
-}
-
-.el-menu-item-group__title{
-  padding: 0;
-}
-
-.el-select__caret{
-  line-height: 25px !important;
-}
-
-.m-r{
-  margin-right: 10px;
+.pull-left{
+  float: left;
 }
 
 .green{
@@ -87,10 +52,63 @@ th{
   color: #6c7fdd;
 }
 
+.m-r{
+  margin-right: 10px;
+}
+
+.m-l{
+  margin-left: 10px
+}
+
 .m-t{
   margin-top: 10px;
 }
 
 .p-t{
   padding-top: 10px;
+}
+
+.el-table{
+  border-top: 1px solid #ebeef5;
+
+  & td, & th{
+    padding: 8px 0 !important;
+  }
+}
+
+.el-dialog__header{
+  border-bottom: 1px solid #ccc;
+}
+
+.el-dialog__body{
+  padding-bottom: 10px !important;
+}
+
+.el-button{
+  height: 35px;
+  line-height: 35px;
+  padding: 0 20px !important;
+}
+
+.el-form{
+  input{
+    width: 250px;
+    height: 30px;
+  }
+}
+
+.el-pagination .el-input{
+  width: 100px !important;
+}
+
+.el-select{
+  input{
+    height: 35px;
+    line-height: 35px;
+    width: 100px;
+  }
+
+  .el-select__caret{
+    line-height: 25px !important;
+  }
 }

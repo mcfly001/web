@@ -6,12 +6,7 @@
     ></second-level-tab-list>
     <div class="content">
       <div class="filter">
-        <el-input
-          class="search-input"
-          v-model.tirm="searchVal"
-          placeholder="请输入内容"
-          size="small"
-        ></el-input>
+        <search :value="searchVal"></search>
 
         <el-button
           type="primary"
@@ -26,7 +21,6 @@
 
         <div class="pull-right">
           <el-select
-            size="small"
             class=" m-r"
             v-model="choosedTime"
             placeholder="请选择"
@@ -39,16 +33,15 @@
             >
             </el-option>
           </el-select>
-          <el-button size="small">刷新</el-button>
-          <el-button size="small">移动到</el-button>
-          <el-button size="small">加入黑名单</el-button>
+          <el-button type="primary">刷新</el-button>
+          <el-button type="primary">移动到</el-button>
+          <el-button type="primary">加入黑名单</el-button>
         </div>
       </div>
 
       <div class="table-content">
         <el-table
           stripe
-          border
           :default-sort="{prop: 'date', order: 'descending'}"
           class="table"
           :data="tableData"
@@ -96,6 +89,8 @@
 </template>
 
 <script>
+import Search from '../../components/Search'
+
 export default {
   data() {
     return {
@@ -209,6 +204,9 @@ export default {
           }
         });
     }
+  },
+  components: {
+    Search
   }
 };
 </script>

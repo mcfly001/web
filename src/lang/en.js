@@ -6,5 +6,9 @@ export default{
     title: 'Account Login',
     logIn: 'login',
     password: 'password',
+  },
+  changePassword: {
+    title: 'modify password',
+    next: 'next'
   }
 }

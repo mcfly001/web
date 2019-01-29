@@ -62,7 +62,7 @@ export default {
 }
 
 .right-content {
-  margin-left: 300px;
+  margin-left: 250px;
   height: 100%;
   display: flex;
   flex-flow: nowrap column;
@@ -70,7 +70,9 @@ export default {
 }
 
 .breadcrumb {
-  padding: 10px 10px 10px 20px;
+  padding: 0 0 0 20px;
+  height: 50px;
+  line-height: 50px;
   background: white;
   box-sizing: border-box;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);

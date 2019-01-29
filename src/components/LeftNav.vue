@@ -210,7 +210,7 @@ export default {
 
 <style type="text/scss" lang="scss" scoped>
 .leftnav {
-  width: 300px;
+  width: 250px;
   float: left;
   height: 100%;
   overflow: auto;

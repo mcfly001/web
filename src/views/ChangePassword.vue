@@ -6,8 +6,7 @@
       </div>
 
       <div class="info">
-        <h3 class="title">{{ $t('login.title') }}</h3>
-        <lang-select class="set-language" />
+        <h3 class="title">{{ $t('changePassword.title') }}</h3>
       </div>
       <el-form
         class="login-form"
@@ -38,12 +37,13 @@
           class="submit"
           type="primary"
           @click.native.prevent="handleLogin"
-        >{{ $t('login.logIn') }}</el-button>
+        >{{ $t('changePassword.next') }}</el-button>
       </el-form>
       <div class="footer">
         copyright<em>@</em>爱莲科技
       </div>
     </div>
+
   </div>
 </template>
 
@@ -169,11 +169,11 @@ export default {
   cursor: pointer;
 }
 
-.footer{
+.footer {
   color: white;
   text-align: center;
 
-  & > em{
+  & > em {
     color: #1f8bff;
     margin-left: 5px;
     margin-right: 3px;

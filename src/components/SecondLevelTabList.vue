@@ -18,11 +18,19 @@ export default {
 <style scoped>
  .tab-list{
    margin: 10px 20px;
+   height: 40px;
+   line-height: 40px;
    background: white;
    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
-   padding: 5px 20px;
+   padding: 0 20px;
    color: #999999;
    font-size: 15px;
+ }
+
+ li{
+   display: inline-block;
+   padding: 0 10px;
+   border-bottom: 2px solid rgb(64, 158, 255);
  }
 
  li.active{
