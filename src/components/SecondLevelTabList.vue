@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
  .tab-list{
-   margin: 10px 20px;
+   margin: 10px 20px 15px;
    height: 40px;
    line-height: 40px;
    background: white;

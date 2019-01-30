@@ -75,6 +75,7 @@ export default {
   line-height: 50px;
   background: white;
   box-sizing: border-box;
+  border-bottom: 0.5px solid #ccc;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
 }
 

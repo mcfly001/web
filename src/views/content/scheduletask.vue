@@ -63,7 +63,7 @@
         :class="{'en': lang === 'en'}"
         title="新增"
         :visible.sync="dialogVisible"
-        width="450px"
+        width="490px"
       >
         <el-form
           label-position="left"
@@ -74,22 +74,93 @@
           class="demo-ruleForm"
         >
           <el-form-item
-            label="用户名"
+            label="任务名称"
             prop="name"
           >
             <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
+
           <el-form-item
-            label="MAC地址"
+            label="生效对象"
             prop="mac"
           >
-            <el-input v-model="ruleForm.name"></el-input>
+            <el-select
+              v-model="ruleForm.region"
+              placeholder="请选择活动区域"
+            >
+              <el-option
+                label="区域一"
+                value="shanghai"
+              ></el-option>
+              <el-option
+                label="区域二"
+                value="beijing"
+              ></el-option>
+            </el-select>
           </el-form-item>
+
           <el-form-item
-            label="备注"
-            prop="note"
+            label="任务间隔"
+            prop="mac"
           >
-            <el-input v-model="ruleForm.name"></el-input>
+            <el-select
+              v-model="ruleForm.region"
+              placeholder="请选择活动区域"
+            >
+              <el-option
+                label="区域一"
+                value="shanghai"
+              ></el-option>
+              <el-option
+                label="区域二"
+                value="beijing"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+
+          <el-form-item
+            label="运行时间"
+            prop="mac"
+          >
+            <el-select
+              v-model="ruleForm.region"
+              placeholder="请选择活动区域"
+            >
+              <el-option
+                label="区域一"
+                value="shanghai"
+              ></el-option>
+              <el-option
+                label="区域二"
+                value="beijing"
+              ></el-option>
+            </el-select>
+             <el-time-picker
+              class="time"
+              type="fixed-time"
+              placeholder="选择时间"
+              v-model="time"
+              style="width: 100%;"
+            ></el-time-picker>
+          </el-form-item>
+
+          <el-form-item
+            label="任务内容"
+            prop="mac"
+          >
+            <el-select
+              v-model="ruleForm.region"
+              placeholder="请选择活动区域"
+            >
+              <el-option
+                label="区域一"
+                value="shanghai"
+              ></el-option>
+              <el-option
+                label="区域二"
+                value="beijing"
+              ></el-option>
+            </el-select>
           </el-form-item>
         </el-form>
         <div class="model-footer">
@@ -114,6 +185,7 @@ export default {
       lang: 'zh',
       searchVal: "",
       dialogVisible: false,
+      time: '',
       ruleForm: {
         name: "",
         mac: "",
@@ -206,8 +278,8 @@ export default {
           address: "00-01-6C-06-A6-45"
         }
       ],
-      SecondLevelTabList: ["黑名单"],
-      SecondLevelTabActive: "黑名单",
+      SecondLevelTabList: ["任务计划"],
+      SecondLevelTabActive: "任务计划",
       currentPage: 1,
       total: 400
     };
@@ -252,7 +324,7 @@ export default {
 }
 
 /deep/ .el-dialog__title::after{
-  content: '黑名单';
+  content: '任务计划';
   display: inline-block;
   font-size: 13px;
   margin-left: 10px;
@@ -261,11 +333,19 @@ export default {
 
 .en{
   /deep/ .el-dialog__title::after{
-  content: 'blacklist';
+  content: 'Schedule task';
   display: inline-block;
   font-size: 13px;
   margin-left: 10px;
   color: #a8a8a8;
+  }
+}
+
+.time{
+  width: 100px !important;
+
+  /deep/ input{
+    height: 35px;
   }
 }
 </style>

@@ -6,7 +6,7 @@
       </div>
 
       <div class="info">
-        <h3 class="title">{{ $t('changePassword.title') }}</h3>
+        <h3 class="title">{{ $t('outnetset.title') }}</h3>
       </div>
       <el-form
         class="login-form"
@@ -14,30 +14,67 @@
         label-position="left"
       >
         <el-form-item prop="password">
-          <span class="svg-container svg-password">
-            <i class="iconfont icon-password"></i>
-          </span>
-          <el-input
-            :type="passwordType"
-            class="password"
-            v-model="password"
-            :placeholder="$t('login.password')"
-            name="password"
-            auto-complete="on"
-            @keyup.enter.native="handleLogin"
-          />
-          <span
-            class="show-pwd"
-            @click="showPwd"
+          <el-select
+            v-model="value"
+            placeholder="请选择"
           >
-            <i class="iconfont icon-eye-copy"></i>
-          </span>
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
         </el-form-item>
+
+        <el-form-item v-show="value === '2'">
+          <el-input
+            v-model="ip"
+            placeholder="IP地址"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item v-show="value === '2'">
+          <el-input
+            v-model="subnetmask"
+            placeholder="子网掩码"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item v-show="value === '2'">
+          <el-input
+            v-model="gateway"
+            placeholder="网关地址"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item v-show="value === '2'">
+          <el-input
+            v-model="dns"
+            placeholder="DNS服务器"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item v-show="value === '3'">
+          <el-input
+            v-model="userName"
+            placeholder="用户名"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item v-show="value === '3'">
+          <el-input
+            v-model="password"
+            placeholder="密码"
+          ></el-input>
+        </el-form-item>
+
         <el-button
           class="submit"
           type="primary"
-          @click.native.prevent="handleLogin"
-        >{{ $t('changePassword.next') }}</el-button>
+          @click.native.prevent="handleClick"
+        >{{ $t('next') }}</el-button>
       </el-form>
       <div class="footer">
         copyright<em>@</em>爱莲科技
@@ -48,29 +85,38 @@
 </template>
 
 <script>
-import LangSelect from "../components/LangSelect";
-
 export default {
   data() {
     return {
-      passwordType: "password",
+      value: "1",
+      options: [
+        {
+          label: "动态接入",
+          value: "1"
+        },
+        {
+          label: "固定接入",
+          value: "2"
+        },
+        {
+          label: "PPPoE接入",
+          value: "3"
+        }
+      ],
+      ip: '',
+      subnetmask: '',
+      gateway: '',
+      dns: '',
+      userName: "",
       password: ""
     };
   },
   methods: {
-    showPwd() {
-      if (this.passwordType === "password") {
-        this.passwordType = "";
-      } else {
-        this.passwordType = "password";
-      }
-    },
-    handleLogin() {
-      this.$router.replace("/htmls/overview");
+    handleClick() {
+      this.$router.push({
+        path: "/login"
+      });
     }
-  },
-  components: {
-    LangSelect
   }
 };
 </script>
@@ -127,8 +173,8 @@ export default {
   overflow: hidden;
 }
 
-.password {
-  width: 350px !important;
+.el-select {
+  width: 100%;
 }
 
 .submit {

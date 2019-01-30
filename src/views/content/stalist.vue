@@ -41,7 +41,6 @@
 
       <div class="table-content">
         <el-table
-          stripe
           :default-sort="{prop: 'date', order: 'descending'}"
           class="table"
           :data="tableData"

@@ -71,26 +71,54 @@ ul{
 .el-table{
   border-top: 1px solid #ebeef5;
 
+  & th{
+    background: #fafafa;
+  }
+
   & td, & th{
     padding: 8px 0 !important;
   }
 }
 
-.el-dialog__header{
-  border-bottom: 1px solid #ccc;
+.el-dialog{
+  .el-dialog__header{
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .el-dialog__body{
+    padding: 15px 15px 10px 0 !important
+  }
+
+  form{
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  input{
+    width: 175px !important;
+  }
 }
 
-.el-dialog__body{
-  padding-bottom: 10px !important;
-}
-
-.el-button{
-  height: 35px;
-  line-height: 35px;
-  padding: 0 20px !important;
+.main{
+  .el-button{
+    height: 35px;
+    line-height: 35px;
+    padding: 0 20px !important;
+  }
 }
 
 .el-form{
+  .el-form-item{
+    margin-bottom: 10px;
+  }
+
+  .el-form-item__error{
+    padding-top: 0px;
+    margin-top: -2px;
+  }
+
   input{
     width: 250px;
     height: 30px;

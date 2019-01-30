@@ -103,6 +103,7 @@ export default {
 }
 
 .el-button {
+  margin-top: 25px;
   padding: 12px 20px;
 }
 

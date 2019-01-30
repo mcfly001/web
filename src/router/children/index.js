@@ -122,5 +122,13 @@ export default [
       title: '系统维护'
     },
     component: () => import(`../../views/content/systemUp.vue`)
+  },
+  {
+    path: 'scheduletask',
+    name: 'scheduletask',
+    meta: {
+      title: '系统维护'
+    },
+    component: () => import(`../../views/content/scheduletask.vue`)
   }
 ]

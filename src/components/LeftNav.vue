@@ -164,7 +164,7 @@ export default {
             {
               index: "5-4",
               name: "计划任务",
-              path: "/htmls/workMode"
+              path: "/htmls/scheduletask"
             }
           ]
         },
@@ -186,7 +186,7 @@ export default {
             {
               index: "6-3",
               name: "外网配置",
-              path: "/htmls/workMode"
+              path: "/outnetset"
             },
             {
               index: "6-4",

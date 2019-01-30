@@ -6,7 +6,7 @@
       </div>
 
       <div class="info">
-        <h3 class="title">{{ $t('changePassword.title') }}</h3>
+        <h3 class="title">{{ $t('workmodeset.title') }}</h3>
       </div>
       <el-form
         class="login-form"
@@ -14,30 +14,25 @@
         label-position="left"
       >
         <el-form-item prop="password">
-          <span class="svg-container svg-password">
-            <i class="iconfont icon-password"></i>
-          </span>
-          <el-input
-            :type="passwordType"
-            class="password"
-            v-model="password"
-            :placeholder="$t('login.password')"
-            name="password"
-            auto-complete="on"
-            @keyup.enter.native="handleLogin"
-          />
-          <span
-            class="show-pwd"
-            @click="showPwd"
+          <el-select
+            v-model="value"
+            placeholder="工作模式"
           >
-            <i class="iconfont icon-eye-copy"></i>
-          </span>
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
         </el-form-item>
+
         <el-button
           class="submit"
           type="primary"
-          @click.native.prevent="handleLogin"
-        >{{ $t('changePassword.next') }}</el-button>
+          @click.native.prevent="handleClick"
+        >{{ $t('next') }}</el-button>
       </el-form>
       <div class="footer">
         copyright<em>@</em>爱莲科技
@@ -48,29 +43,28 @@
 </template>
 
 <script>
-import LangSelect from "../components/LangSelect";
-
 export default {
   data() {
     return {
-      passwordType: "password",
-      password: ""
+      value: "",
+      options: [
+        {
+          label: "本地管理",
+          value: "1"
+        },
+        {
+          label: "集中管理",
+          value: "2"
+        },
+      ]
     };
   },
   methods: {
-    showPwd() {
-      if (this.passwordType === "password") {
-        this.passwordType = "";
-      } else {
-        this.passwordType = "password";
-      }
-    },
-    handleLogin() {
-      this.$router.replace("/htmls/overview");
+    handleClick() {
+      this.$router.push({
+        path: "/login"
+      });
     }
-  },
-  components: {
-    LangSelect
   }
 };
 </script>
@@ -127,8 +121,8 @@ export default {
   overflow: hidden;
 }
 
-.password {
-  width: 350px !important;
+.el-select {
+  width: 100%;
 }
 
 .submit {

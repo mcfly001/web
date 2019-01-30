@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <el-input
-      placeholder="请输入内容"
+      placeholder="请输入搜索内容"
       v-model="text"
       class="input-with-select"
     >
