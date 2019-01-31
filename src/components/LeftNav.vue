@@ -30,7 +30,7 @@
       >
         <template slot="title">
           <i :class="items.icon"></i>
-          <span class="title">{{items.name}}</span>
+          <span class="title">{{ items.name }}</span>
         </template>
         <el-menu-item-group>
           <el-menu-item
@@ -159,7 +159,7 @@ export default {
             {
               index: "5-3",
               name: "系统维护",
-              path: "/htmls/systemMaintenance"
+              path: "/htmls/systemUp"
             },
             {
               index: "5-4",
@@ -262,6 +262,10 @@ export default {
     &:hover {
       color: #1585ff !important;
     }
+  }
+
+  /deep/ .el-menu-item-group__title{
+    padding: 0;
   }
 }
 </style>

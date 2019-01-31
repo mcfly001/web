@@ -100,8 +100,8 @@ export default [
     component: () => import(`../../views/content/blacklist.vue`)
   },
   {
-    path: 'keyManage',
-    name: 'keyManage',
+    path: 'managementStrategy',
+    name: 'managementStrategy',
     meta: {
       title: '网管策略'
     },
@@ -127,7 +127,7 @@ export default [
     path: 'scheduletask',
     name: 'scheduletask',
     meta: {
-      title: '系统维护'
+      title: '计划任务'
     },
     component: () => import(`../../views/content/scheduletask.vue`)
   }

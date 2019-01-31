@@ -1,7 +1,7 @@
 <template>
   <div class="stalist">
     <second-level-tab-list
-      :active="SecondLevelTabActive"
+      v-model="SecondLevelTabActive"
       :list="SecondLevelTabList"
     ></second-level-tab-list>
     <div class="content">

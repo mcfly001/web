@@ -1,7 +1,7 @@
 <template>
   <div class="work-mode">
     <second-level-tab-list
-      :active="SecondLevelTabActive"
+      v-model="SecondLevelTabActive"
       :list="SecondLevelTabList"
     ></second-level-tab-list>
     <el-form

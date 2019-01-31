@@ -1,8 +1,8 @@
 <template>
-    <ul class="tab-list">
+    <ul class="tab-list" @click="changeTab">
       <li
         v-for="item in list"
-        :class="{active: active === item}"
+        :class="{active: value === item}"
         :key="item"
       >{{ item }}</li>
     </ul>
@@ -11,7 +11,12 @@
 <script>
 export default {
   name: 'SecondLevelTabList',
-  props: ['list', 'active']
+  props: ['list', 'value'],
+  methods: {
+    changeTab(e) {
+      this.$emit('input', e.target.innerHTML)
+    }
+  }
 }
 </script>
 
@@ -30,12 +35,13 @@ export default {
  li{
    display: inline-block;
    padding: 0 10px;
-   border-bottom: 2px solid rgb(64, 158, 255);
+   cursor: pointer;
  }
 
  li.active{
    color: rgb(64, 158, 255);
    cursor: pointer;
    font-weight: bold;
+   border-bottom: 2px solid rgb(64, 158, 255);
  }
 </style>

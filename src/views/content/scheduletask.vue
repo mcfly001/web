@@ -2,7 +2,7 @@
   <div class="stalist">
     <second-level-tab-list
       class="tab"
-      :active="SecondLevelTabActive"
+      v-model="SecondLevelTabActive"
       :list="SecondLevelTabList"
     ></second-level-tab-list>
     <div class="content">

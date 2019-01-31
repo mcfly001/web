@@ -7,7 +7,7 @@ import i18n from './lang'
 import SecondLevelTabList from "./components/SecondLevelTabList";
 import { Col, DatePicker, TimePicker, Menu, MenuItemGroup, MenuItem, Submenu, Button, Dropdown, DropdownMenu, DropdownItem,
          Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem, Message, MessageBox,
-         Tabs, TabPane, Input, Table, TableColumn, Pagination, Dialog, Radio, RadioGroup } from 'element-ui'
+         Tabs, TabPane, Input, Table, TableColumn, Pagination, Dialog, Radio, RadioGroup, Checkbox, Upload } from 'element-ui'
 import './index.scss'
 
 Vue.config.productionTip = false
@@ -40,7 +40,9 @@ let componentArr = [
   Pagination,
   Dialog,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Checkbox,
+  Upload
 ]
 
 componentArr.forEach(item => {
