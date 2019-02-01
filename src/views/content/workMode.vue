@@ -1,97 +1,39 @@
 <template>
-  <div class="work-mode">
+  <div class="workmode-wrapper">
     <second-level-tab-list
       v-model="SecondLevelTabActive"
       :list="SecondLevelTabList"
     ></second-level-tab-list>
-    <el-form
-      :model="ruleForm"
-      :rules="rules"
-      ref="ruleForm"
-      label-position="left"
-      label-width="120px"
-      class="ruleForm"
-    >
-      <el-form-item label="当前时间">
-        {{ new Date()}}
-      </el-form-item>
-
-      <el-form-item
-        label="时区选择"
-        prop="region"
+    <div class="content">
+      <el-form
+        label-position="left"
+        ref="ruleForm"
+        label-width="100px"
+        class="demo-ruleForm"
       >
-        <el-select
-          v-model="ruleForm.region"
-          placeholder="请选择活动区域"
-        >
-          <el-option
-            label="区域一"
-            value="shanghai"
-          ></el-option>
-          <el-option
-            label="区域二"
-            value="beijing"
-          ></el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="时间设置方式">
-        <el-radio-group v-model="ruleForm.resource">
-          <el-radio label="手动设置"></el-radio>
-          <el-radio label="网络同步"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-
-      <el-form-item class="date">
-        <el-form-item prop="date1" class="pull-left m-r">
-          <el-date-picker
-            type="date"
-            placeholder="选择日期"
-            v-model="ruleForm.date1"
-            style="width: 300px;"
-          ></el-date-picker>
+        <el-form-item label="工作模式">
+          <el-select
+            v-model="type"
+            placeholder="请选择"
+          >
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item class="pull-left">-</el-form-item>
-        <el-form-item prop="date2" class="pull-left m-l">
-          <el-time-picker
-            type="fixed-time"
-            placeholder="选择时间"
-            v-model="ruleForm.date2"
-            style="width: 300px;"
-          ></el-time-picker>
-        </el-form-item>
-      </el-form-item>
-
-      <el-form-item
-        label="服务器1 IP地址"
-        prop="name1"
-      >
-        <el-input v-model="ruleForm.name"></el-input>
-      </el-form-item>
-
-      <el-form-item
-        label="服务器2 IP地址"
-        prop="name2"
-      >
-        <el-input v-model="ruleForm.name"></el-input>
-      </el-form-item>
-
-      <el-form-item
-        label="服务器3 IP地址"
-        prop="name3"
-      >
-        <el-input v-model="ruleForm.name"></el-input>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
+      </el-form>
+      <div class="align-center">
+        <el-button @click="dialogVisible = false">重置</el-button>
         <el-button
           type="primary"
-          @click="submitForm('ruleForm')"
-        >确定</el-button>
-      </el-form-item>
-
-    </el-form>
+          @click="dialogVisible = false"
+        >确 定</el-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -99,78 +41,43 @@
 export default {
   data() {
     return {
-      SecondLevelTabList: ["时间设置"],
-      SecondLevelTabActive: "时间设置",
-      ruleForm: {
-        name1: "",
-        name2: "",
-        date1: "",
-        date2: "",
-        resource: "",
-        desc: ""
-      },
-      rules: {
-        name1: [
-          { required: true, message: "请输入活动名称", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
-        ],
-        name2: [
-          { required: true, message: "请输入活动名称", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
-        ],
-        date1: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择日期",
-            trigger: "change"
-          }
-        ],
-        date2: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择时间",
-            trigger: "change"
-          }
-        ],
-        resource: [
-          { required: true, message: "请选择活动资源", trigger: "change" }
-        ],
-        desc: [{ required: true, message: "请填写活动形式", trigger: "blur" }]
-      }
+      SecondLevelTabList: ["工作模式"],
+      SecondLevelTabActive: "工作模式",
+      type: "本地管理",
+      options: [
+        {
+          label: '本地管理',
+          value: '1'
+        }
+      ]
     };
-  }
+  },
+  methods: {}
 };
-</script> 
+</script>
 
-<style lang="scss" scoped>
-.work-mode {
-  height: 100%;
+<style type="text/scss" lang="scss" scoped>
+.workmode-wrapper {
   display: flex;
   flex-flow: nowrap column;
+  height: 100%;
+}
 
-  .ruleForm {
-    flex: 1;
-    background: white;
-    margin: 0 20px;
-    padding-top: 10px;
-    box-sizing: border-box;
-    padding-left: 20px;
+.content {
+  flex: 1;
+  margin: 0 20px;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
+  background: white;
+  padding: 10px 20px;
 
-    /deep/ input {
-      width: 400px;
-      height: 30px;
-      line-height: 30px;
-    }
-  }
-
-  .date {
-    margin-top: -20px;
-    box-sizing: border-box;
+  form {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f1f1f1;
 
     /deep/ input{
-      width: 300px;
+      width: auto !important;
+      height: 35px;
     }
   }
 }

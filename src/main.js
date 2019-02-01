@@ -6,7 +6,7 @@ import router from './router'
 import i18n from './lang'
 import SecondLevelTabList from "./components/SecondLevelTabList";
 import { Col, DatePicker, TimePicker, Menu, MenuItemGroup, MenuItem, Submenu, Button, Dropdown, DropdownMenu, DropdownItem,
-         Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem, Message, MessageBox,
+         Select, Option, Breadcrumb, BreadcrumbItem, Form, FormItem, Message, MessageBox, Switch,
          Tabs, TabPane, Input, Table, TableColumn, Pagination, Dialog, Radio, RadioGroup, Checkbox, Upload } from 'element-ui'
 import './index.scss'
 
@@ -26,6 +26,7 @@ let componentArr = [
   Dropdown,
   DropdownMenu,
   DropdownItem,
+  Switch,
   Select,
   Option,
   Breadcrumb,

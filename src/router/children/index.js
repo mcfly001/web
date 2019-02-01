@@ -33,7 +33,7 @@ export default [
     meta: {
       title: '内网配置'
     },
-    component: () => import(`../../views/content/lanSet.vue`)
+    component: () => import(`../../views/content/lanSet/index.vue`)
   },
   {
     path: 'dhcpSet',

@@ -1,16 +1,319 @@
 <template>
-  <iframe :src="src"></iframe>
+  <div class="stalist">
+    <second-level-tab-list
+      class="tab"
+      v-model="SecondLevelTabActive"
+      :list="SecondLevelTabList"
+    ></second-level-tab-list>
+    <div class="content">
+      <div class="filter">
+        <search :value="searchVal"></search>
+        <div class="pull-right">
+          <el-button
+            type="primary"
+            @click="dialogVisible = true"
+          >新增</el-button>
+          <el-button type="primary">删除</el-button>
+        </div>
+      </div>
+
+      <div class="table-content">
+        <el-table
+          :default-sort="{prop: 'date', order: 'descending'}"
+          class="table"
+          :data="tableData"
+        >
+          <el-table-column
+            prop="date"
+            sortable
+            :sort-method="sortFn"
+            align='center'
+            label="用户ID"
+            width="180"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="name"
+            align='center'
+            label="IP地址"
+            width="180"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="address"
+            align='center'
+            label="MAC地址"
+          >
+          </el-table-column>
+        </el-table>
+
+        <el-pagination
+          class="pagination"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[100, 200, 300, 400]"
+          :page-size="100"
+          layout="total, sizes, prev, pager, next"
+          :total="total"
+        >
+        </el-pagination>
+      </div>
+      <el-dialog
+        :class="{'en': lang === 'en'}"
+        title="新增"
+        :visible.sync="dialogVisible"
+        width="450px"
+      >
+        <el-form
+          label-position="left"
+          :model="ruleForm"
+          :rules="rules"
+          ref="ruleForm"
+          label-width="100px"
+          class="demo-ruleForm"
+        >
+          <el-form-item
+            label="状态"
+            prop="state"
+          >
+            <el-input v-model="ruleForm.state"></el-input>
+          </el-form-item>
+
+          <el-form-item
+            label="规则名称"
+            prop="ruleName"
+          >
+            <el-input v-model="ruleForm.ruleName"></el-input>
+          </el-form-item>
+
+          <el-form-item
+            label="内网地址"
+            prop="netAddress"
+          >
+            <el-input v-model="ruleForm.netAddress"></el-input>
+          </el-form-item>
+
+          <el-form-item label="协议">
+            <el-select
+              v-model="ruleForm.agreement"
+              placeholder="请选择"
+            >
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+
+           <el-form-item
+            label="内网端口"
+            prop="innerPort"
+          >
+            <el-input v-model="ruleForm.innerPort"></el-input>
+          </el-form-item>
+
+           <el-form-item
+            label="外网端口"
+            prop="outterPort"
+          >
+            <el-input v-model="ruleForm.outterPort"></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="model-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button
+            type="primary"
+            @click="dialogVisible = false"
+          >确 定</el-button>
+        </div>
+      </el-dialog>
+    </div>
+  </div>
 </template>
 
 <script>
+import Search from "../../components/Search";
+import NewBlack from "../../components/NewBlack";
+
 export default {
-  data () {
+  data() {
     return {
-      src: ''
-    }
+      lang: "zh",
+      searchVal: "",
+      dialogVisible: false,
+      options: [
+        {
+          value: '1',
+          label: 'TCP/UDP'
+        }
+      ],
+      ruleForm: {
+        state: "",
+        ruleName: "",
+        netAddress: "",
+        agreement: '',
+        innerPort: '',
+        outterPort: ''
+      },
+      rules: {
+        ruleName: [
+          { required: true, message: "请输入活动名称", trigger: "blur" },
+          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+        ],
+        netAddress: [
+          { required: true, message: "请输入活动名称", trigger: "blur" },
+          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+        ],
+        innerPort: [
+          { required: true, message: "请输入活动名称", trigger: "blur" },
+          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+        ],
+        outterPort: [
+          { required: true, message: "请输入活动名称", trigger: "blur" },
+          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+        ]
+      },
+      tableData: [
+        {
+          date: "1",
+          name: "127.0.0.2",
+          address: "00-01-6C-06-A6-29"
+        },
+        {
+          date: "2",
+          name: "127.0.0.3",
+          address: "00-01-6C-06-A6-30"
+        },
+        {
+          date: "3",
+          name: "127.0.0.4",
+          address: "00-01-6C-06-A6-31"
+        },
+        {
+          date: "4",
+          name: "127.0.0.5",
+          address: "00-01-6C-06-A6-32"
+        },
+        {
+          date: "5",
+          name: "127.0.0.6",
+          address: "00-01-6C-06-A6-33"
+        },
+        {
+          date: "6",
+          name: "127.0.0.7",
+          address: "00-01-6C-06-A6-34"
+        },
+        {
+          date: "7",
+          name: "127.0.0.111",
+          address: "00-01-6C-06-A6-35"
+        },
+        {
+          date: "8",
+          name: "127.0.0.8",
+          address: "00-01-6C-06-A6-36"
+        },
+        {
+          date: "9",
+          name: "127.0.0.9",
+          address: "00-01-6C-06-A6-37"
+        },
+        {
+          date: "10",
+          name: "127.0.0.10",
+          address: "00-01-6C-06-A6-38"
+        },
+        {
+          date: "11",
+          name: "127.0.0.11",
+          address: "00-01-6C-06-A6-39"
+        },
+        {
+          date: "12",
+          name: "127.0.0.12",
+          address: "00-01-6C-06-A6-40"
+        },
+        {
+          date: "13",
+          name: "127.0.0.13",
+          address: "00-01-6C-06-A6-41"
+        },
+        {
+          date: "14",
+          name: "127.0.0.14",
+          address: "00-01-6C-06-A6-43"
+        },
+        {
+          date: "15",
+          name: "127.0.0.15",
+          address: "00-01-6C-06-A6-45"
+        }
+      ],
+      SecondLevelTabList: ["端口映射"],
+      SecondLevelTabActive: "端口映射",
+      currentPage: 1,
+      total: 400
+    };
   },
-  created () {
-    this.src = '../../static' + this.$route.path + '.html'
+  created() {
+    this.lang = this.$i18n.locale;
+  },
+  methods: {
+    sortFn(a, b) {
+      return a.date - b.date;
+    },
+    handleSizeChange() {},
+    handleCurrentChange() {}
+  },
+  components: {
+    Search,
+    NewBlack
+  }
+};
+</script>
+
+<style type="text/scss" lang="scss" scoped>
+.content {
+  margin: 0 20px;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
+  background: white;
+  padding: 10px 20px;
+}
+
+.filter {
+  margin-bottom: 20px;
+}
+
+.pagination {
+  margin-top: 30px;
+  width: 100%;
+  text-align: right;
+}
+
+.model-footer {
+  text-align: right;
+}
+
+/deep/ .el-dialog__title::after {
+  content: "端口映射";
+  display: inline-block;
+  font-size: 13px;
+  margin-left: 10px;
+  color: #a8a8a8;
+}
+
+.en {
+  /deep/ .el-dialog__title::after {
+    content: "virtual server";
+    display: inline-block;
+    font-size: 13px;
+    margin-left: 10px;
+    color: #a8a8a8;
   }
 }
-</script>
+</style>
