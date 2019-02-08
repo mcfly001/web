@@ -4,7 +4,7 @@ import Login from '../views/Login'
 import ChangePassword from '../views/ChangePassword'
 import Main from '../views/Main'
 import children from './children'
-import outnetset from '../views/outnetset'
+import outnetset from '../views/outnetset/index.vue'
 import workmodeset from '../views/workmodeset'
 
 Vue.use(Router)

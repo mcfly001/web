@@ -2,7 +2,7 @@
   <div class="login">
     <div class="form">
       <div class="logo">
-        <img src="../image/logo.png" />
+        <img src="../../image/logo.png" />
       </div>
 
       <div class="info">
@@ -28,47 +28,9 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item v-show="value === '2'">
-          <el-input
-            v-model="ip"
-            placeholder="IP地址"
-          ></el-input>
-        </el-form-item>
+        <seconde v-show="value === '2'"></seconde>
 
-        <el-form-item v-show="value === '2'">
-          <el-input
-            v-model="subnetmask"
-            placeholder="子网掩码"
-          ></el-input>
-        </el-form-item>
-
-        <el-form-item v-show="value === '2'">
-          <el-input
-            v-model="gateway"
-            placeholder="网关地址"
-          ></el-input>
-        </el-form-item>
-
-        <el-form-item v-show="value === '2'">
-          <el-input
-            v-model="dns"
-            placeholder="DNS服务器"
-          ></el-input>
-        </el-form-item>
-
-        <el-form-item v-show="value === '3'">
-          <el-input
-            v-model="userName"
-            placeholder="用户名"
-          ></el-input>
-        </el-form-item>
-
-        <el-form-item v-show="value === '3'">
-          <el-input
-            v-model="password"
-            placeholder="密码"
-          ></el-input>
-        </el-form-item>
+        <third v-show="value === '3'"></third>
 
         <el-button
           class="submit"
@@ -85,6 +47,9 @@
 </template>
 
 <script>
+import seconde from "./children/seconde";
+import third from "./children/third";
+
 export default {
   data() {
     return {
@@ -102,13 +67,7 @@ export default {
           label: "PPPoE接入",
           value: "3"
         }
-      ],
-      ip: '',
-      subnetmask: '',
-      gateway: '',
-      dns: '',
-      userName: "",
-      password: ""
+      ]
     };
   },
   methods: {
@@ -117,6 +76,10 @@ export default {
         path: "/login"
       });
     }
+  },
+  components: {
+    seconde,
+    third
   }
 };
 </script>
