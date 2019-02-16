@@ -5,9 +5,6 @@
             <div class="filter">
                 <search :value="searchVal"></search>
 
-                <el-button type="primary" size="small" @click="showMessage">点击显示message弹窗</el-button>
-                <el-button type="primary" size="small" @click="showMessageBox">点击显示MessageBox</el-button>
-
                 <div class="pull-right">
                     <el-select class="m-r" v-model="choosedTime" placeholder="请选择">
                         <el-option
@@ -161,24 +158,7 @@ export default {
         handleSelectionChange() {},
         handleDelete() {},
         handleSizeChange() {},
-        handleCurrentChange() {},
-        showMessage() {
-            this.$message({
-                type: "error",
-                message: "这是一条消息提示"
-            });
-        },
-        showMessageBox() {
-            this.$alert("这是一段内容", "标题名称", {
-                confirmButtonText: "确定",
-                callback: action => {
-                    // this.$message({
-                    //   type: 'info',
-                    //   message: `action: ${ action }`
-                    // });
-                }
-            });
-        }
+        handleCurrentChange() {}
     },
     components: {
         Search
