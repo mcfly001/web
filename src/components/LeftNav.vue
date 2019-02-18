@@ -84,7 +84,7 @@ export default {
                         {
                             index: "2-7",
                             name: "动态域名",
-                            path: "/htmls/wlan"
+                            path: "/htmls/dynamicDns"
                         }
                     ]
                 },

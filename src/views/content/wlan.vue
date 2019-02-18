@@ -22,9 +22,10 @@
                     :data="tableData"
                 >
                     <el-table-column type="selection" width="25"></el-table-column>
-                    <el-table-column prop="state" align="center" label="状态" width="180"></el-table-column>
-                    <el-table-column prop="service" align="center" label="服务商"></el-table-column>
-                    <el-table-column prop="ip" align="center" label="IP地址"></el-table-column>
+                    <el-table-column prop="name" align="center" label="名称"></el-table-column>
+                    <el-table-column prop="encryptionType" align="加密方式" label="服务商"></el-table-column>
+                    <el-table-column prop="wifiPassword" align="center" label="无线密码" width="150"></el-table-column>
+                    <el-table-column prop="vlan" align="加密方式" label="VLAN"></el-table-column>
                     <el-table-column align="center" label="操作">
                         <template slot-scope="scope">
                             <span
@@ -172,13 +173,14 @@ export default {
             },
             tableData: [
                 {
-                    state: "已连接",
-                    service: "花生壳（www.oray.com）",
-                    ip: "192.168.1.12"
+                    name: "myWifi",
+                    encryptionType: "WAP个人",
+                    wifiPassword: "123456789",
+                    vlan: "80"
                 }
             ],
-            SecondLevelTabList: ["动态域名"],
-            SecondLevelTabActive: "动态域名",
+            SecondLevelTabList: ["无线网络"],
+            SecondLevelTabActive: "无线网络",
             currentPage: 1,
             total: 400
         };
@@ -188,26 +190,7 @@ export default {
     },
     methods: {
         handleSelectionChange() {},
-        handleChange() {
-            this.$confirm("此操作将永久删除该条数据, 是否继续?", "提示", {
-                confirmButtonText: "确定",
-                cancelButtonText: "取消",
-                type: "warning"
-            })
-                .then(() => {
-                    this.tableData = [];
-                    this.$message({
-                        type: "success",
-                        message: "删除成功!"
-                    });
-                })
-                .catch(() => {
-                    this.$message({
-                        type: "info",
-                        message: "已取消删除"
-                    });
-                });
-        },
+        handleChange() {},
         handleDelete() {
             this.$confirm("此操作将永久删除该条数据, 是否继续?", "提示", {
                 confirmButtonText: "确定",

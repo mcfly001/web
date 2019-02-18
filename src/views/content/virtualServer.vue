@@ -17,8 +17,8 @@
             <div class="table-content">
                 <el-table class="table" @selection-change="handleSelectionChange" :data="tableData">
                     <el-table-column type="selection" width="25"></el-table-column>
-                    <el-table-column prop="ruleName" align="center" label="规则名称" width="180"></el-table-column>
-                    <el-table-column prop="state" align="center" label="状态" width="180">
+                    <el-table-column prop="ruleName" align="center" label="规则名称"></el-table-column>
+                    <el-table-column prop="state" align="center" label="状态">
                         <template slot-scope="scope">
                             <el-switch
                                 v-model="scope.row.state"
@@ -27,8 +27,8 @@
                             ></el-switch>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="innerAddress" align="center" label="内网地址"></el-table-column>
-                    <el-table-column prop="agreement" align="center" label="协议"></el-table-column>
+                    <el-table-column prop="innerAddress" align="center" label="内网地址" width="150"></el-table-column>
+                    <el-table-column prop="agreement" align="center" label="协议" width="150"></el-table-column>
                     <el-table-column prop="innerPort" align="center" label="内网端口"></el-table-column>
                     <el-table-column prop="outterPort" align="center" label="外网端口"></el-table-column>
                     <el-table-column align="center" label="操作">
