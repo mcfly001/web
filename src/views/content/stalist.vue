@@ -1,5 +1,5 @@
 <template>
-    <div class="stalist">
+    <div class="stalist-wrapper">
         <second-level-tab-list v-model="SecondLevelTabActive" :list="SecondLevelTabList"></second-level-tab-list>
         <div class="content">
             <div class="filter">
@@ -28,16 +28,16 @@
                     :data="tableData"
                 >
                     <el-table-column type="selection" width="25"></el-table-column>
-                    <el-table-column prop="date" align="center" label="ID"></el-table-column>
-                    <el-table-column prop="name" align="center" label="用户名"></el-table-column>
-                    <el-table-column prop="name" align="center" label="IP地址"></el-table-column>
-                    <el-table-column prop="address" align="center" label="MAC地址"></el-table-column>
-                    <el-table-column prop="name" align="center" label="终端类型"></el-table-column>
-                    <el-table-column prop="name" align="center" label="连接的SSID"></el-table-column>
-                    <el-table-column prop="name" align="center" label="信号强度"></el-table-column>
-                    <el-table-column prop="name" align="center" label="协商速率"></el-table-column>
-                    <el-table-column prop="name" align="center" label="上行数率"></el-table-column>
-                    <el-table-column prop="name" align="center" label="下行速率"></el-table-column>
+                    <el-table-column prop="id" align="center" label="ID"></el-table-column>
+                    <el-table-column prop="userName" align="center" label="用户名"></el-table-column>
+                    <el-table-column prop="ip" align="center" label="IP地址" width="120"></el-table-column>
+                    <el-table-column prop="macAddress" align="center" label="MAC地址" width="150"></el-table-column>
+                    <el-table-column prop="terminalType" align="center" label="终端类型"></el-table-column>
+                    <el-table-column prop="ssid" align="center" label="连接的SSID" width="100"></el-table-column>
+                    <el-table-column prop="signal" align="center" label="信号强度"></el-table-column>
+                    <el-table-column prop="speed" align="center" label="协商速率"></el-table-column>
+                    <el-table-column prop="upper" align="center" label="上行数率"></el-table-column>
+                    <el-table-column prop="down" align="center" label="下行速率"></el-table-column>
                     <el-table-column align="center" label="操作">
                         <template slot-scope="scope">
                             <span class="a-blue" @click="handleDelete(scope.$index, scope.row)">黑名单</span>
@@ -73,79 +73,16 @@ export default {
             timeOptions: ["3", "5", "10", "60", "手动"],
             tableData: [
                 {
-                    date: "1",
-                    name: "127.0.0.2",
-                    address: "00-01-6C-06-A6-29"
-                },
-                {
-                    date: "2",
-                    name: "127.0.0.3",
-                    address: "00-01-6C-06-A6-30"
-                },
-                {
-                    date: "3",
-                    name: "127.0.0.4",
-                    address: "00-01-6C-06-A6-31"
-                },
-                {
-                    date: "4",
-                    name: "127.0.0.5",
-                    address: "00-01-6C-06-A6-32"
-                },
-                {
-                    date: "5",
-                    name: "127.0.0.6",
-                    address: "00-01-6C-06-A6-33"
-                },
-                {
-                    date: "6",
-                    name: "127.0.0.7",
-                    address: "00-01-6C-06-A6-34"
-                },
-                {
-                    date: "7",
-                    name: "127.0.0.111",
-                    address: "00-01-6C-06-A6-35"
-                },
-                {
-                    date: "8",
-                    name: "127.0.0.8",
-                    address: "00-01-6C-06-A6-36"
-                },
-                {
-                    date: "9",
-                    name: "127.0.0.9",
-                    address: "00-01-6C-06-A6-37"
-                },
-                {
-                    date: "10",
-                    name: "127.0.0.10",
-                    address: "00-01-6C-06-A6-38"
-                },
-                {
-                    date: "11",
-                    name: "127.0.0.11",
-                    address: "00-01-6C-06-A6-39"
-                },
-                {
-                    date: "12",
-                    name: "127.0.0.12",
-                    address: "00-01-6C-06-A6-40"
-                },
-                {
-                    date: "13",
-                    name: "127.0.0.13",
-                    address: "00-01-6C-06-A6-41"
-                },
-                {
-                    date: "14",
-                    name: "127.0.0.14",
-                    address: "00-01-6C-06-A6-43"
-                },
-                {
-                    date: "15",
-                    name: "127.0.0.15",
-                    address: "00-01-6C-06-A6-45"
+                    id: "1",
+                    userName: "小米",
+                    ip: "192.168.168.1",
+                    macAddress: "00-01-6C-06-A6-29",
+                    terminalType: "WIFI-5G",
+                    ssid: "你敢连么？",
+                    signal: "-36",
+                    speed: "144",
+                    upper: "300",
+                    down: "600"
                 }
             ],
             SecondLevelTabList: ["用户状态"],
@@ -167,7 +104,14 @@ export default {
 </script>
 
 <style type="text/scss" lang="scss" scoped>
+.stalist-wrapper {
+    display: flex;
+    flex-flow: nowrap column;
+    height: 100%;
+}
+
 .content {
+    flex: 1;
     margin: 0 20px;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
     background: white;

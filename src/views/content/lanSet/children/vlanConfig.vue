@@ -9,21 +9,22 @@
         </div>
 
         <div class="table-content">
-            <el-table
-                :default-sort="{prop: 'date', order: 'descending'}"
-                class="table"
-                @selection-change="handleSelectionChange"
-                :data="tableData"
-            >
+            <el-table class="table" @selection-change="handleSelectionChange" :data="tableData">
                 <el-table-column type="selection" width="25"></el-table-column>
-                <el-table-column prop="date" align="center" label="任务名称" width="180"></el-table-column>
-                <el-table-column prop="name" align="center" label="IP地址" width="180"></el-table-column>
-                <el-table-column prop="address" align="center" label="子网掩码"></el-table-column>
-                <el-table-column prop="address" align="center" label="VLAN ID"></el-table-column>
+                <el-table-column prop="ruleName" align="center" label="任务名称" width="180"></el-table-column>
+                <el-table-column prop="ip" align="center" label="IP地址" width="180"></el-table-column>
+                <el-table-column prop="subnetMark" align="center" label="子网掩码"></el-table-column>
+                <el-table-column prop="vlanId" align="center" label="VLAN ID"></el-table-column>
                 <el-table-column align="center" label="操作">
                     <template slot-scope="scope">
-                        <span class="a-blue" @click="handleChange(scope.$index, scope.row)">修改</span>
-                        <span class="a-blue" @click="handleDelete(scope.$index, scope.row)">删除</span>
+                        <span
+                            class="a-blue pointer"
+                            @click="handleChange(scope.$index, scope.row)"
+                        >修改</span>
+                        <span
+                            class="a-blue pointer"
+                            @click="handleDelete(scope.$index, scope.row)"
+                        >删除</span>
                     </template>
                 </el-table-column>
             </el-table>
@@ -164,7 +165,26 @@ export default {
     },
     methods: {
         handleSelectionChange() {},
-        handleDelete() {},
+        handleDelete() {
+            this.$confirm("此操作将永久删除该条数据, 是否继续?", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    this.tableData = [];
+                    this.$message({
+                        type: "success",
+                        message: "删除成功!"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消删除"
+                    });
+                });
+        },
         handleChange() {},
         handleSizeChange() {},
         handleCurrentChange() {}

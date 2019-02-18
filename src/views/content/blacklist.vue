@@ -1,5 +1,5 @@
 <template>
-    <div class="stalist">
+    <div class="blacklist-wrapper">
         <second-level-tab-list
             class="tab"
             v-model="SecondLevelTabActive"
@@ -22,15 +22,18 @@
                     :data="tableData"
                 >
                     <el-table-column type="selection" width="25"></el-table-column>
-                    <el-table-column prop="date" align="center" label="ID"></el-table-column>
-                    <el-table-column prop="date" align="center" label="用户名"></el-table-column>
-                    <el-table-column prop="name" align="center" label="IP地址"></el-table-column>
-                    <el-table-column prop="address" align="center" label="MAC地址"></el-table-column>
-                    <el-table-column prop="date" align="center" label="加入时间"></el-table-column>
-                    <el-table-column prop="date" align="center" label="备注"></el-table-column>
+                    <el-table-column prop="id" align="center" label="ID"></el-table-column>
+                    <el-table-column prop="userName" align="center" label="用户名"></el-table-column>
+                    <el-table-column prop="ip" align="center" label="IP地址"></el-table-column>
+                    <el-table-column prop="macAddress" align="center" label="MAC地址"></el-table-column>
+                    <el-table-column prop="joinDate" align="center" label="加入时间"></el-table-column>
+                    <el-table-column prop="note" align="center" label="备注"></el-table-column>
                     <el-table-column align="center" label="操作">
                         <template slot-scope="scope">
-                            <span class="a-blue" @click="handleDelete(scope.$index, scope.row)">删除</span>
+                            <span
+                                class="a-blue pointer"
+                                @click="handleDelete(scope.$index, scope.row)"
+                            >删除</span>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -124,79 +127,12 @@ export default {
             },
             tableData: [
                 {
-                    date: "1",
-                    name: "127.0.0.2",
-                    address: "00-01-6C-06-A6-29"
-                },
-                {
-                    date: "2",
-                    name: "127.0.0.3",
-                    address: "00-01-6C-06-A6-30"
-                },
-                {
-                    date: "3",
-                    name: "127.0.0.4",
-                    address: "00-01-6C-06-A6-31"
-                },
-                {
-                    date: "4",
-                    name: "127.0.0.5",
-                    address: "00-01-6C-06-A6-32"
-                },
-                {
-                    date: "5",
-                    name: "127.0.0.6",
-                    address: "00-01-6C-06-A6-33"
-                },
-                {
-                    date: "6",
-                    name: "127.0.0.7",
-                    address: "00-01-6C-06-A6-34"
-                },
-                {
-                    date: "7",
-                    name: "127.0.0.111",
-                    address: "00-01-6C-06-A6-35"
-                },
-                {
-                    date: "8",
-                    name: "127.0.0.8",
-                    address: "00-01-6C-06-A6-36"
-                },
-                {
-                    date: "9",
-                    name: "127.0.0.9",
-                    address: "00-01-6C-06-A6-37"
-                },
-                {
-                    date: "10",
-                    name: "127.0.0.10",
-                    address: "00-01-6C-06-A6-38"
-                },
-                {
-                    date: "11",
-                    name: "127.0.0.11",
-                    address: "00-01-6C-06-A6-39"
-                },
-                {
-                    date: "12",
-                    name: "127.0.0.12",
-                    address: "00-01-6C-06-A6-40"
-                },
-                {
-                    date: "13",
-                    name: "127.0.0.13",
-                    address: "00-01-6C-06-A6-41"
-                },
-                {
-                    date: "14",
-                    name: "127.0.0.14",
-                    address: "00-01-6C-06-A6-43"
-                },
-                {
-                    date: "15",
-                    name: "127.0.0.15",
-                    address: "00-01-6C-06-A6-45"
+                    id: "1",
+                    ip: "127.0.0.2",
+                    userName: "小米",
+                    macAddress: "00-01-6C-06-A6-29",
+                    joinDate: "12月13日 11:38",
+                    note: "老板"
                 }
             ],
             SecondLevelTabList: ["黑名单"],
@@ -210,7 +146,26 @@ export default {
     },
     methods: {
         handleSelectionChange() {},
-        handleDelete() {},
+        handleDelete() {
+            this.$confirm("此操作将永久删除该条数据, 是否继续?", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    this.tableData = [];
+                    this.$message({
+                        type: "success",
+                        message: "删除成功!"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消删除"
+                    });
+                });
+        },
         handleSizeChange() {},
         handleCurrentChange() {}
     },
@@ -222,7 +177,13 @@ export default {
 </script>
 
 <style type="text/scss" lang="scss" scoped>
+.blacklist-wrapper {
+    display: flex;
+    flex-flow: nowrap column;
+    height: 100%;
+}
 .content {
+    flex: 1;
     margin: 0 20px;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
     background: white;
