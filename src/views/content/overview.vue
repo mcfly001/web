@@ -109,6 +109,7 @@
             <el-table-column
               prop="ip"
               label="IP地址"
+              width="110"
             >
             </el-table-column>
             <el-table-column
