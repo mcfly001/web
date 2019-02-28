@@ -17,6 +17,7 @@
             <div class="table-content">
                 <el-table
                     :default-sort="{prop: 'date', order: 'descending'}"
+                    stripe
                     class="table"
                     @selection-change="handleSelectionChange"
                     :data="tableData"

@@ -9,7 +9,7 @@
         </div>
 
         <div class="table-content">
-            <el-table class="table" @selection-change="handleSelectionChange" :data="tableData">
+            <el-table class="table" stripe @selection-change="handleSelectionChange" :data="tableData">
                 <el-table-column type="selection" width="25"></el-table-column>
                 <el-table-column prop="ruleName" align="center" label="任务名称" width="180"></el-table-column>
                 <el-table-column prop="ip" align="center" label="IP地址" width="180"></el-table-column>

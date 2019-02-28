@@ -97,6 +97,7 @@
         <div id="top-right-chart">
           <el-table
             class="p-t"
+            stripe
             :data="tableData3"
             height="170"
             style="width: 100%"
@@ -260,7 +261,7 @@ export default {
 
 <style type="text/scss" lang="scss" scoped>
 .chart {
-  margin: 10px 20px 20px 20px;
+  padding: 10px 20px 20px 20px;
   padding-bottom: 20px;
   box-sizing: border-box;
   background: white;
@@ -313,7 +314,6 @@ export default {
     #bottom-right {
       width: 50%;
       box-sizing: border-box;
-      padding-left: 20px;
       padding-right: 20px;
 
       .info {

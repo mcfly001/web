@@ -1,162 +1,164 @@
 @import './icon/iconfont.css';
 
-*{
-  margin: 0;
-  padding: 0;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-html{
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+html {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
 }
 
-html, body{
-  height: 100%;
-  background: #eef0f4;
+html,
+body {
+    height: 100%;
+    background: #eef0f4;
 }
 
 body {
-  height: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
 #app {
-  height: 100%;
-  display: flex;
-  flex-flow: nowrap column;
-  justify-content: space-around;
+    height: 100%;
+    display: flex;
+    flex-flow: nowrap column;
+    justify-content: space-around;
 }
 
-ul{
-  list-style-type: none;
+ul {
+    list-style-type: none;
 }
 
-.pull-right{
-  float: right;
+.pull-right {
+    float: right;
 }
 
-.pull-left{
-  float: left;
+.pull-left {
+    float: left;
 }
 
-.green{
-  color: #9ce588;
+.green {
+    color: #9ce588;
 }
 
-.blue{
-  color: #6c7fdd;
+.blue {
+    color: #6c7fdd;
 }
 
-.a-blue{
+.a-blue {
     color: #449cFB;
 }
 
-.align-center{
+.align-center {
     text-align: center;
 }
 
-.m-r{
-  margin-right: 10px;
+.m-r {
+    margin-right: 10px;
 }
 
-.m-l{
-  margin-left: 10px
+.m-l {
+    margin-left: 10px
 }
 
-.m-t{
-  margin-top: 10px;
+.m-t {
+    margin-top: 10px;
 }
 
-.p-t{
-  padding-top: 10px;
+.p-t {
+    padding-top: 10px;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
-.stalist{
+.stalist {
     height: 100%;
 }
 
-.align-center{
-  text-align: center;
+.align-center {
+    text-align: center;
 }
 
-.el-table{
-  border-top: 1px solid #ebeef5;
+.el-table {
+    border-top: 1px solid #ebeef5;
 
-  & th{
-    background: #fafafa;
-  }
+    & th {
+        background: #fafafa;
+    }
 
-  & td, & th{
-    padding: 8px 0 !important;
-  }
+    & td,
+    & th {
+        padding: 13px 0 !important;
+    }
 }
 
-.el-dialog{
-  .el-dialog__header{
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .el-dialog__body{
-    padding: 15px 15px 10px 0 !important
-  }
+.el-dialog {
+    .el-dialog__header {
+        border-bottom: 1px solid #ccc;
+    }
 
-  form{
-    margin-bottom: 10px;
-    padding-bottom: 30px;
-    padding-left: 20px;
-    border-bottom: 1px solid #ccc;
-  }
+    .el-dialog__body {
+        padding: 15px 15px 10px 0 !important
+    }
 
-  input{
-    width: 175px !important;
-  }
+    form {
+        margin-bottom: 10px;
+        padding-bottom: 30px;
+        padding-left: 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    input {
+        width: 175px !important;
+    }
 }
 
-.main{
-  .el-button{
-    height: 35px;
-    line-height: 35px;
-    padding: 0 20px !important;
-  }
+.main {
+    .el-button {
+        height: 35px;
+        line-height: 35px;
+        padding: 0 20px !important;
+    }
 }
 
-.el-form{
-  .el-form-item{
-    margin-bottom: 10px;
-  }
+.el-form {
+    .el-form-item {
+        margin-bottom: 10px;
+    }
 
-  .el-form-item__error{
-    padding-top: 0px;
-    margin-top: -2px;
-  }
+    .el-form-item__error {
+        padding-top: 0px;
+        margin-top: -2px;
+    }
 
-  input{
-    width: 250px;
-    height: 30px;
-  }
+    input {
+        width: 250px;
+        height: 30px;
+    }
 }
 
-.el-pagination .el-input{
-  width: 100px !important;
+.el-pagination .el-input {
+    width: 100px !important;
 }
 
-.el-select{
-  input{
-    height: 35px;
-    line-height: 35px;
-    width: 100px;
-  }
+.el-select {
+    input {
+        height: 35px;
+        line-height: 35px;
+        width: 100px;
+    }
 
-  .el-select__caret{
-    line-height: 25px !important;
-  }
+    .el-select__caret {
+        line-height: 25px !important;
+    }
 }

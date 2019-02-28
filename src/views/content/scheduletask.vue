@@ -17,6 +17,7 @@
             <div class="table-content">
                 <el-table
                     :default-sort="{prop: 'date', order: 'descending'}"
+                    stripe
                     class="table"
                     @selection-change="handleSelectionChange"
                     :data="tableData"
@@ -161,6 +162,13 @@ export default {
                     startType: "每天",
                     workTime: "11:38",
                     workContent: "设备重启"
+                },
+                {
+                    ruleName: "定时重启2",
+                    effectiveObj: "本设备2",
+                    startType: "每天2",
+                    workTime: "11:38",
+                    workContent: "设备重启2"
                 }
             ],
             SecondLevelTabList: ["任务计划"],

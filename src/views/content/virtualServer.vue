@@ -9,13 +9,18 @@
             <div class="filter">
                 <search :value="searchVal"></search>
                 <div class="pull-right">
-                    <el-button type="primary" @click="dialogVisible = true">新增</el-button>
+                    <el-button type="primary" @click="handleAdd">新增</el-button>
                     <el-button type="primary" @click="handleDelete">删除</el-button>
                 </div>
             </div>
 
             <div class="table-content">
-                <el-table class="table" @selection-change="handleSelectionChange" :data="tableData">
+                <el-table
+                    class="table"
+                    stripe
+                    @selection-change="handleSelectionChange"
+                    :data="tableData"
+                >
                     <el-table-column type="selection" width="25"></el-table-column>
                     <el-table-column prop="ruleName" align="center" label="规则名称"></el-table-column>
                     <el-table-column prop="state" align="center" label="状态">
@@ -33,6 +38,10 @@
                     <el-table-column prop="outterPort" align="center" label="外网端口"></el-table-column>
                     <el-table-column align="center" label="操作">
                         <template slot-scope="scope">
+                            <span
+                                class="a-blue pointer"
+                                @click="handleChange(scope.$index, scope.row)"
+                            >修改</span>
                             <span
                                 class="a-blue pointer"
                                 @click="handleDelete(scope.$index, scope.row)"
@@ -54,7 +63,7 @@
             </div>
             <el-dialog
                 :class="{'en': lang === 'en'}"
-                title="新增"
+                :title="isAdd ? '新增' : '修改'"
                 :visible.sync="dialogVisible"
                 width="450px"
             >
@@ -116,6 +125,7 @@ export default {
             lang: "zh",
             searchVal: "",
             dialogVisible: false,
+            isAdd: true,
             options: [
                 {
                     value: "1",
@@ -205,6 +215,14 @@ export default {
     },
     methods: {
         handleSelectionChange() {},
+        handleAdd() {
+            this.dialogVisible = true;
+            this.isAdd = true;
+        },
+        handleChange() {
+            this.dialogVisible = true;
+            this.isAdd = false;
+        },
         handleDelete() {
             this.$confirm("此操作将永久删除该条数据, 是否继续?", "提示", {
                 confirmButtonText: "确定",
