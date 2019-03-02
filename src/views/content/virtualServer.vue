@@ -76,7 +76,11 @@
                     class="demo-ruleForm"
                 >
                     <el-form-item label="状态" prop="state">
-                        <el-input v-model="ruleForm.state"></el-input>
+                        <el-switch
+                            v-model="ruleForm.state"
+                            active-color="#2b8afa"
+                            inactive-color="#ccc"
+                        ></el-switch>
                     </el-form-item>
 
                     <el-form-item label="规则名称" prop="ruleName">
@@ -142,7 +146,7 @@ export default {
                 }
             ],
             ruleForm: {
-                state: "",
+                state: true,
                 ruleName: "",
                 netAddress: "",
                 agreement: "TCP/UDP",

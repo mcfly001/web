@@ -45,7 +45,7 @@
                 <el-form-item class="form-item" v-show="SecondLevelTabActive === '配置管理'">
                     <div class="title">备份配置</div>
                     <div class="item-content">
-                        <el-button type="primary">新建配置</el-button>
+                        <el-button type="primary">新建备份</el-button>
                     </div>
                 </el-form-item>
 
@@ -93,7 +93,7 @@ export default {
             SecondLevelTabActive: "软件升级",
             ruleForm: {},
             rules: {},
-            checked: false,
+            checked: true,
             fileList: [
                 {
                     name: "food.jpeg",

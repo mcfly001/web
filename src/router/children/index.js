@@ -121,5 +121,5 @@ export default [{
             title: '计划任务',
         },
         component: () => import(`../../views/content/scheduletask.vue`),
-    },
+    }
 ];

@@ -157,7 +157,7 @@ export default {
                         {
                             index: "6-1",
                             name: "密码修改",
-                            path: "/htmls/workMode"
+                            path: "/changepassword"
                         },
                         {
                             index: "6-2",
@@ -172,7 +172,7 @@ export default {
                         {
                             index: "6-4",
                             name: "无线配置",
-                            path: "/htmls/workMode"
+                            path: "/wireconfig"
                         }
                     ]
                 }

@@ -78,10 +78,14 @@
                         </el-select>
                     </el-form-item>
 
-                    <el-form-item label="任务间隔" prop="mac">
-                        <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                    <el-form-item label="任务间隔" prop="interval">
+                        <el-select v-model="ruleForm.interval">
+                            <el-option
+                                v-for="item in intervals"
+                                :key="item"
+                                :label="item"
+                                value="item"
+                            ></el-option>
                         </el-select>
                     </el-form-item>
 
@@ -99,10 +103,9 @@
                         ></el-time-picker>
                     </el-form-item>
 
-                    <el-form-item label="任务内容" prop="mac">
+                    <el-form-item label="任务内容" prop="region">
                         <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                            <el-option label="设备重启" value="设备重启"></el-option>
                         </el-select>
                     </el-form-item>
                 </el-form>
@@ -126,30 +129,8 @@ export default {
             searchVal: "",
             dialogVisible: false,
             time: "",
-            effectiveObject: [
-                {
-                    label: "本设备",
-                    value: "本设备"
-                }
-            ],
-            interval: [
-                {
-                    label: "每星期",
-                    value: "每星期"
-                },
-                {
-                    label: "每天",
-                    value: "每天"
-                },
-                {
-                    label: "每小时",
-                    value: "每小时"
-                },
-                {
-                    label: "每分钟",
-                    value: "每分钟"
-                }
-            ],
+            effectiveObject: ["本设备"],
+            intervals: ["每星期", "每天", "每小时", "每分钟"],
             time: [
                 {
                     label: "本设备",
@@ -164,9 +145,9 @@ export default {
             ],
             ruleForm: {
                 name: "",
-                effective: "",
-                mac: "",
-                note: ""
+                effective: "本设备",
+                interval: "每星期",
+                region: "设备重启"
             },
             rules: {
                 name: [

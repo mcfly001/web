@@ -3,13 +3,18 @@
         <div class="filter">
             <search :value="searchVal"></search>
             <div class="pull-right">
-                <el-button type="primary" @click="dialogVisible = true">新增</el-button>
+                <el-button type="primary" @click="handleAdd">新增</el-button>
                 <el-button type="primary">删除</el-button>
             </div>
         </div>
 
         <div class="table-content">
-            <el-table class="table" stripe @selection-change="handleSelectionChange" :data="tableData">
+            <el-table
+                class="table"
+                stripe
+                @selection-change="handleSelectionChange"
+                :data="tableData"
+            >
                 <el-table-column type="selection" width="25"></el-table-column>
                 <el-table-column prop="ruleName" align="center" label="任务名称" width="180"></el-table-column>
                 <el-table-column prop="ip" align="center" label="IP地址" width="180"></el-table-column>
@@ -20,7 +25,7 @@
                         <span
                             class="a-blue pointer"
                             @click="handleChange(scope.$index, scope.row)"
-                        >修改</span>
+                        >编辑</span>
                         <span
                             class="a-blue pointer"
                             @click="handleDelete(scope.$index, scope.row)"
@@ -42,7 +47,7 @@
         </div>
         <el-dialog
             :class="{'en': lang === 'en'}"
-            title="新增"
+            :title="isAdd ? (lang === 'en' ? 'add' : '新增') : (lang === 'en' ? 'edit' : '修改')"
             :visible.sync="dialogVisible"
             width="450px"
         >
@@ -71,8 +76,8 @@
                 </el-form-item>
             </el-form>
             <div class="model-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                <el-button @click="handleModelCancel">取 消</el-button>
+                <el-button type="primary" @click="handleModelComfirm">确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -86,6 +91,7 @@ import table from "../../../../mock/table";
 export default {
     data() {
         return {
+            isAdd: true,
             lang: "zh",
             searchVal: "",
             dialogVisible: false,
@@ -164,6 +170,26 @@ export default {
         this.lang = this.$i18n.locale;
     },
     methods: {
+        handleAdd() {
+            this.ruleForm = {
+                name: "",
+                ip: "",
+                subnet: "",
+                vlanId: ""
+            };
+            this.dialogVisible = true;
+            this.isAdd = true;
+        },
+        handleChange() {
+            this.ruleForm = {
+                name: "",
+                ip: "",
+                subnet: "",
+                vlanId: ""
+            };
+            this.dialogVisible = true;
+            this.isAdd = false;
+        },
         handleSelectionChange() {},
         handleDelete() {
             this.$confirm("此操作将永久删除该条数据, 是否继续?", "提示", {
@@ -185,7 +211,20 @@ export default {
                     });
                 });
         },
-        handleChange() {},
+        handleModelCancel() {
+            this.dialogVisible = false;
+            this.$refs["ruleForm"].resetFields();
+        },
+        handleModelComfirm() {
+            this.$refs["ruleForm"].validate(valid => {
+                if (valid) {
+                    this.dialogVisible = false;
+                } else {
+                    console.log("error submit!!");
+                    return false;
+                }
+            });
+        },
         handleSizeChange() {},
         handleCurrentChange() {}
     },

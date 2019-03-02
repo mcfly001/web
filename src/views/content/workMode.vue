@@ -4,13 +4,8 @@
         <div class="content">
             <el-form label-position="left" ref="ruleForm" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="工作模式">
-                    <el-select v-model="type" placeholder="请选择">
-                        <el-option
-                            v-for="item in options"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value"
-                        ></el-option>
+                    <el-select v-model="type">
+                        <el-option v-for="item in options" :key="item" :label="item" :value="item"></el-option>
                     </el-select>
                 </el-form-item>
             </el-form>
@@ -29,16 +24,7 @@ export default {
             SecondLevelTabList: ["工作模式"],
             SecondLevelTabActive: "工作模式",
             type: "本地管理",
-            options: [
-                {
-                    label: "本地管理",
-                    value: "1"
-                },
-                {
-                    label: "集中管理",
-                    value: "2"
-                }
-            ]
+            options: ["本地管理", "集中管理"]
         };
     },
     methods: {}
