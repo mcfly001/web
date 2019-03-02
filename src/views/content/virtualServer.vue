@@ -40,10 +40,6 @@
                         <template slot-scope="scope">
                             <span
                                 class="a-blue pointer"
-                                @click="handleChange(scope.$index, scope.row)"
-                            >修改</span>
-                            <span
-                                class="a-blue pointer"
                                 @click="handleDelete(scope.$index, scope.row)"
                             >删除</span>
                         </template>
@@ -63,7 +59,7 @@
             </div>
             <el-dialog
                 :class="{'en': lang === 'en'}"
-                :title="isAdd ? '新增' : '修改'"
+                :title="isAdd ? (lang === 'en' ? 'add' : '新增') : (lang === 'en' ? 'edit' : '修改')"
                 :visible.sync="dialogVisible"
                 width="450px"
             >
@@ -107,8 +103,8 @@
                     </el-form-item>
                 </el-form>
                 <div class="model-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                    <el-button @click="handleModelCancel">取 消</el-button>
+                    <el-button type="primary" @click="handleModelComfirm">确 定</el-button>
                 </div>
             </el-dialog>
         </div>
@@ -118,6 +114,7 @@
 <script>
 import Search from "../../components/Search";
 import NewBlack from "../../components/NewBlack";
+import { isValidIP } from "../../utils";
 
 export default {
     data() {
@@ -128,7 +125,15 @@ export default {
             isAdd: true,
             options: [
                 {
-                    value: "1",
+                    value: "TCP",
+                    label: "TCP"
+                },
+                {
+                    value: "UDP",
+                    label: "UDP"
+                },
+                {
+                    value: "TCP/UDP",
                     label: "TCP/UDP"
                 }
             ],
@@ -136,7 +141,7 @@ export default {
                 state: "",
                 ruleName: "",
                 netAddress: "",
-                agreement: "",
+                agreement: "TCP/UDP",
                 innerPort: "",
                 outterPort: ""
             },
@@ -144,53 +149,67 @@ export default {
                 ruleName: [
                     {
                         required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
+                        message: "长度在 0 到 64 个字节",
+                        trigger: "blur",
+                        validator: (rule, value, callback) => {
+                            if (!value) {
+                                callback("不能为空");
+                            } else if (value.length > 64) {
+                                callback("长度不能超过64个字节");
+                            } else {
+                                callback();
+                            }
+                        }
                     }
                 ],
                 netAddress: [
                     {
                         required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
+                        message: "ip地址不合法",
+                        trigger: "blur",
+                        validator: (rule, value, callback) => {
+                            if (isValidIP(value)) {
+                                callback();
+                            } else {
+                                callback("ip地址不合法");
+                            }
+                        }
                     }
                 ],
                 innerPort: [
                     {
                         required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
+                        message: "请输入数字, 且在 1 到 65535之间",
+                        trigger: "blur",
+                        validator: (rule, value, callback) => {
+                            if (value < 1) {
+                                callback("不能为空");
+                            } else if (value > 65535) {
+                                callback("长度不能超过64个字节");
+                            } else if (isNaN(value)) {
+                                callback("请输入数字");
+                            } else {
+                                callback();
+                            }
+                        }
                     }
                 ],
                 outterPort: [
                     {
                         required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
+                        message: "请输入数字, 且在 1 到 65535之间",
+                        trigger: "blur",
+                        validator: (rule, value, callback) => {
+                            if (value < 1) {
+                                callback("不能为空");
+                            } else if (value > 65535) {
+                                callback("长度不能超过64个字节");
+                            } else if (isNaN(value)) {
+                                callback("请输入数字");
+                            } else {
+                                callback();
+                            }
+                        }
                     }
                 ]
             },
@@ -216,12 +235,16 @@ export default {
     methods: {
         handleSelectionChange() {},
         handleAdd() {
+            this.ruleForm = {
+                state: "",
+                ruleName: "",
+                netAddress: "",
+                agreement: "TCP/UDP",
+                innerPort: "",
+                outterPort: ""
+            };
             this.dialogVisible = true;
             this.isAdd = true;
-        },
-        handleChange() {
-            this.dialogVisible = true;
-            this.isAdd = false;
         },
         handleDelete() {
             this.$confirm("此操作将永久删除该条数据, 是否继续?", "提示", {
@@ -242,6 +265,20 @@ export default {
                         message: "已取消删除"
                     });
                 });
+        },
+        handleModelCancel() {
+            this.dialogVisible = false;
+            this.$refs["ruleForm"].resetFields();
+        },
+        handleModelComfirm() {
+            this.$refs["ruleForm"].validate(valid => {
+                if (valid) {
+                    this.dialogVisible = false;
+                } else {
+                    console.log("error submit!!");
+                    return false;
+                }
+            });
         },
         handleSizeChange() {},
         handleCurrentChange() {}

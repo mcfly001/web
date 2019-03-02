@@ -7,8 +7,7 @@
             <left-nav></left-nav>
             <div class="right-content">
                 <el-breadcrumb class="breadcrumb" separator="/">
-                    <span class="current">当前位置：</span>
-                    <el-breadcrumb-item v-for="item in breadList" :key="item">{{item}}</el-breadcrumb-item>
+                    <el-breadcrumb-item class="item" v-for="item in breadList" :key="item">{{item}}</el-breadcrumb-item>
                 </el-breadcrumb>
                 <div class="main">
                     <router-view/>
@@ -69,6 +68,11 @@ export default {
     box-sizing: border-box;
     border-bottom: 0.5px solid #ccc;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
+}
+
+.breadcrumb .item {
+    font-size: 13px;
+    cursor: pointer;
 }
 
 .main {

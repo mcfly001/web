@@ -68,9 +68,13 @@
                     </el-form-item>
 
                     <el-form-item label="生效对象" prop="mac">
-                        <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="ruleForm.effective">
+                            <el-option
+                                v-for="item in effectiveObject"
+                                :key="item"
+                                :label="item"
+                                value="item"
+                            ></el-option>
                         </el-select>
                     </el-form-item>
 
@@ -122,8 +126,45 @@ export default {
             searchVal: "",
             dialogVisible: false,
             time: "",
+            effectiveObject: [
+                {
+                    label: "本设备",
+                    value: "本设备"
+                }
+            ],
+            interval: [
+                {
+                    label: "每星期",
+                    value: "每星期"
+                },
+                {
+                    label: "每天",
+                    value: "每天"
+                },
+                {
+                    label: "每小时",
+                    value: "每小时"
+                },
+                {
+                    label: "每分钟",
+                    value: "每分钟"
+                }
+            ],
+            time: [
+                {
+                    label: "本设备",
+                    value: "本设备"
+                }
+            ],
+            content: [
+                {
+                    label: "设备重启",
+                    value: "设备重启"
+                }
+            ],
             ruleForm: {
                 name: "",
+                effective: "",
                 mac: "",
                 note: ""
             },
@@ -131,27 +172,15 @@ export default {
                 name: [
                     {
                         required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
-                    }
-                ],
-                mac: [
-                    {
-                        required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
+                        message: "任务名称不能为空",
+                        trigger: "blur",
+                        validator: (rule, value, callback) => {
+                            if (!!value) {
+                                callback();
+                            } else {
+                                callback("任务名称不能为空");
+                            }
+                        }
                     }
                 ]
             },
