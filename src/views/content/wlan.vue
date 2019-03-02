@@ -252,7 +252,7 @@ export default {
 }
 
 /deep/ .el-dialog__title::after {
-    content: "端口映射";
+    content: "无线网络";
     display: inline-block;
     font-size: 13px;
     margin-left: 10px;

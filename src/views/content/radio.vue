@@ -6,27 +6,51 @@
                 <div class="title">2.4G射频</div>
                 <el-form :model="form" label-width="80px" label-position="left">
                     <el-form-item label="模式">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.model2">
+                            <el-option
+                                v-for="item in models2"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="信道">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.signal2">
+                            <el-option
+                                v-for="item in signals2"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="信道带宽">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.bandwidth2">
+                            <el-option
+                                v-for="item in bandwidths2"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="传输功率">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.power2">
+                            <el-option
+                                v-for="item in powers2"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
+                        </el-select>
+                        <el-select v-model="form.power26" v-show="form.power2 === '手动'">
+                            <el-option
+                                v-for="item in powers26"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
                     </el-form-item>
                 </el-form>
@@ -35,31 +59,51 @@
                 <div class="title">5G射频</div>
                 <el-form :model="form" label-width="80px" label-position="left">
                     <el-form-item label="模式">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.model5">
+                            <el-option
+                                v-for="item in models5"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="信道">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.signal5">
+                            <el-option
+                                v-for="item in signals5"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="信道带宽">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.bandwidth5">
+                            <el-option
+                                v-for="item in bandwidths5"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="传输功率">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.power5">
+                            <el-option
+                                v-for="item in powers5"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option label="区域一" value="shanghai"></el-option>
-                            <el-option label="区域二" value="beijing"></el-option>
+                        <el-select v-model="form.power56" v-show="form.power5 === '手动'">
+                            <el-option
+                                v-for="item in powers56"
+                                :key="item"
+                                :lable="item"
+                                :value="item"
+                            >{{item}}</el-option>
                         </el-select>
                     </el-form-item>
                 </el-form>
@@ -79,8 +123,27 @@ export default {
             SecondLevelTabList: ["射频配置"],
             SecondLevelTabActive: "射频配置",
             form: {
-                region: ""
-            }
+                model2: "仅11g",
+                signal2: "自动",
+                bandwidth2: "自动",
+                power2: "自动",
+                power26: "中",
+                model5: "仅11g",
+                signal5: "自动",
+                bandwidth5: "自动",
+                power5: "手动",
+                power56: "中"
+            },
+            models2: ["仅11g", "仅11n", "11b/g/n混合"],
+            signals2: ["自动", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            bandwidths2: ["自动", "20M"],
+            powers2: ["自动", "手动"],
+            powers26: ["高", "中", "低"],
+            models5: ["仅11n", "11a/n混合"],
+            signals5: ["自动", 36, 40, 44, 48, 149, 153, 157, 161, 165],
+            bandwidths5: ["自动", "20M"],
+            powers5: ["自动", "手动"],
+            powers56: ["高", "中", "低"]
         };
     },
     created() {}

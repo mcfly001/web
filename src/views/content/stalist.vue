@@ -6,16 +6,15 @@
                 <search :value="searchVal"></search>
 
                 <div class="pull-right">
-                    <el-select class="m-r" v-model="choosedTime" placeholder="请选择">
+                    <!-- <el-select class="m-r" v-model="choosedTime" placeholder="请选择">
                         <el-option
                             v-for="item in timeOptions"
                             :key="item"
                             :label="item"
                             :value="item"
                         ></el-option>
-                    </el-select>
+                    </el-select>-->
                     <el-button type="primary">刷新</el-button>
-                    <el-button type="primary">移动到</el-button>
                     <el-button type="primary">加入黑名单</el-button>
                 </div>
             </div>
@@ -70,8 +69,8 @@ export default {
         return {
             activeTab: "first",
             searchVal: "",
-            choosedTime: "5",
-            timeOptions: ["3", "5", "10", "60", "手动"],
+            // choosedTime: "5",
+            // timeOptions: ["3", "5", "10", "60", "手动"],
             tableData: [
                 {
                     id: "1",

@@ -15,3 +15,10 @@ export const checkMask = mask => {
         return true; //"合法"
     }
 }
+
+// mac地址是否正确
+export const CheckForm2 = (value) => {
+    //mac地址正则表达式 
+    var reg_name = /[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}/;
+    return reg_name.test(value)
+}

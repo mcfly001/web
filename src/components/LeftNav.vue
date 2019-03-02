@@ -134,7 +134,7 @@ export default {
                         },
                         {
                             index: "5-2",
-                            name: "时钟管理",
+                            name: "时间设置",
                             path: "/htmls/basicSet"
                         },
                         {

@@ -9,7 +9,7 @@
             label-width="120px"
             class="ruleForm"
         >
-            <el-form-item label="当前时间">{{ new Date()}}</el-form-item>
+            <el-form-item label="当前时间">{{ currentTime }}</el-form-item>
 
             <el-form-item label="时区选择" prop="region">
                 <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
@@ -25,7 +25,7 @@
                 </el-radio-group>
             </el-form-item>
 
-            <el-form-item class="date">
+            <el-form-item class="date" v-show="ruleForm.resource === '手动设置'">
                 <el-form-item prop="date1" class="pull-left m-r">
                     <el-date-picker
                         type="date"
@@ -45,15 +45,15 @@
                 </el-form-item>
             </el-form-item>
 
-            <el-form-item label="服务器1 IP地址" prop="name1">
+            <el-form-item v-show="ruleForm.resource === '网络同步'" label="服务器1 IP地址" prop="name1">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
 
-            <el-form-item label="服务器2 IP地址" prop="name2">
+            <el-form-item v-show="ruleForm.resource === '网络同步'" label="服务器2 IP地址" prop="name2">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
 
-            <el-form-item label="服务器3 IP地址" prop="name3">
+            <el-form-item v-show="ruleForm.resource === '网络同步'" label="服务器3 IP地址" prop="name3">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
 
@@ -76,7 +76,7 @@ export default {
                 name2: "",
                 date1: "",
                 date2: "",
-                resource: "",
+                resource: "手动设置",
                 desc: ""
             },
             rules: {
@@ -138,6 +138,22 @@ export default {
                 ]
             }
         };
+    },
+    computed: {
+        currentTime() {
+            let date = new Date();
+            return (
+                date.getFullYear() +
+                "年" +
+                (date.getMonth() + 1) +
+                "月" +
+                date.getDate() +
+                "日 " +
+                date.getHours() +
+                ":" +
+                date.getMinutes()
+            );
+        }
     }
 };
 </script> 
@@ -157,7 +173,7 @@ export default {
         padding-left: 20px;
 
         /deep/ input {
-            width: 400px;
+            width: 300px;
             height: 30px;
             line-height: 30px;
         }

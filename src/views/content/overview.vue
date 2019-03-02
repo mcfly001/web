@@ -61,96 +61,155 @@
         </div>
 
         <div class="chart-list">
-            <div id="top-left">
-                <div class="info">
-                    <span class="label">实时网络状态</span>
-                    <div class="args">
-                        <div class="m-r">
-                            <span class="title">实时下行流量:</span>
-                            <span class="value green">168KB/S</span>
+            <div class="half pull-left">
+                <div id="top-left">
+                    <div class="label m-l name">
+                        <span>实时网络状态</span>
+                        <i
+                            style="font-size: 30px; margin-top: -7px; margin-left: 15px"
+                            :class="openState[0] ? 'icon-haofangtuoiconfont_shaixuanzhedie iconfont pull-right' :  'icon-haofangtuoiconfont_shaixuanzhedieguanbi iconfont pull-right'"
+                            @click="changeState(0)"
+                        ></i>
+                        <i
+                            @click="refresh(0)"
+                            style="font-weight: bold;"
+                            class="iconfont pull-right icon-shuaxin"
+                        ></i>
+                    </div>
+                    <div v-show="!openState[0]">
+                        <div class="info">
+                            <div class="args">
+                                <div class="m-r">
+                                    <span class="title">实时下行流量:</span>
+                                    <span class="value green">168KB/S</span>
+                                </div>
+                                <div>
+                                    <span class="title">实时上行流量:</span>
+                                    <span class="value blue">16.8KB/S</span>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <span class="title">实时上行流量:</span>
-                            <span class="value blue">16.8KB/S</span>
+                        <div id="top-left-chart"></div>
+                        <div class="footer">
+                            <span class="label">最快下载：</span>
+                            <span class="value blue">768.99KB/S</span>
                         </div>
                     </div>
                 </div>
-                <div id="top-left-chart"></div>
-                <div class="footer">
-                    <span class="label">最快下载：</span>
-                    <span class="value blue">768.99KB/S</span>
+                <div id="bottom-left">
+                    <div class="label m-l name">
+                        <span>当前CPU状态</span>
+                        <i
+                            style="font-size: 30px; margin-top: -7px; margin-left: 15px"
+                            :class="openState[2] ? 'icon-haofangtuoiconfont_shaixuanzhedie iconfont pull-right' :  'icon-haofangtuoiconfont_shaixuanzhedieguanbi iconfont pull-right'"
+                            @click="changeState(2)"
+                        ></i>
+                        <i
+                            @click="refresh(2)"
+                            style="font-weight: bold;"
+                            class="iconfont pull-right icon-shuaxin"
+                        ></i>
+                    </div>
+                    <div v-show="!openState[2]">
+                        <div class="info">
+                            <div class="args">
+                                <div class="m-r">
+                                    <span class="title">当前CPU负载:</span>
+                                    <span class="value green">168KB/S</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bottom-left-chart"></div>
+                        <div class="footer">
+                            <span class="label">CPU核心数:</span>
+                            <span class="value blue">4</span>
+                            <span class="label">核心频率:</span>
+                            <span class="value blue">880/Mhz</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="half pull-left">
+                <div id="top-right">
+                    <div class="label m-l name">
+                        <span>终端流量统计</span>
+                        <i
+                            style="font-size: 30px; margin-top: -7px; margin-left: 15px"
+                            :class="openState[1] ? 'icon-haofangtuoiconfont_shaixuanzhedie iconfont pull-right' :  'icon-haofangtuoiconfont_shaixuanzhedieguanbi iconfont pull-right'"
+                            @click="changeState(1)"
+                        ></i>
+                        <i
+                            @click="refresh(1)"
+                            style="font-weight: bold;"
+                            class="iconfont pull-right icon-shuaxin"
+                        ></i>
+                    </div>
+                    <div v-show="!openState[1]">
+                        <div class="info">
+                            <div class="args">
+                                <div class="m-r">
+                                    <span class="title">当前终端:</span>
+                                    <span class="value green">1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="top-right-chart">
+                            <el-table
+                                class="p-t"
+                                stripe
+                                :data="tableData3"
+                                height="170"
+                                style="width: 100%"
+                            >
+                                <el-table-column prop="user" label="用户"></el-table-column>
+                                <el-table-column prop="ip" label="IP地址" width="110"></el-table-column>
+                                <el-table-column prop="mac" label="MAC地址" width="150"></el-table-column>
+                                <el-table-column prop="upload" label="上次数据"></el-table-column>
+                                <el-table-column prop="download" label="下载数据"></el-table-column>
+                            </el-table>
+                        </div>
+                        <div class="footer">
+                            <span class="label">总下载量:</span>
+                            <span class="value blue">68M</span>
+                            <span class="label">/总上传量:</span>
+                            <span class="value blue">6.8MB</span>
+                            <span class="label">/累计终端:</span>
+                            <span class="value blue">3</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div id="top-right">
-                <div class="info">
-                    <span class="label">终端流量统计</span>
-                    <div class="args">
-                        <div class="m-r">
-                            <span class="title">当前终端:</span>
-                            <span class="value green">1</span>
+                <div id="bottom-right">
+                    <div class="label m-l name">
+                        <span>当前内存状态</span>
+                        <i
+                            style="font-size: 30px; margin-top: -7px; margin-left: 15px"
+                            :class="openState[3] ? 'icon-haofangtuoiconfont_shaixuanzhedie iconfont pull-right' :  'icon-haofangtuoiconfont_shaixuanzhedieguanbi iconfont pull-right'"
+                            @click="changeState(3)"
+                        ></i>
+                        <i
+                            @click="refresh(3)"
+                            style="font-weight: bold;"
+                            class="iconfont pull-right icon-shuaxin"
+                        ></i>
+                    </div>
+                    <div v-show="!openState[3]">
+                        <div class="info">
+                            <div class="args">
+                                <div class="m-r">
+                                    <span class="title">当前内存占用:</span>
+                                    <span class="value green">28%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bottom-right-chart"></div>
+                        <div class="footer">
+                            <span class="label">CPU核心数:</span>
+                            <span class="value blue">4</span>
+                            <span class="label">核心频率:</span>
+                            <span class="value blue">880/Mhz</span>
                         </div>
                     </div>
-                </div>
-                <div id="top-right-chart">
-                    <el-table
-                        class="p-t"
-                        stripe
-                        :data="tableData3"
-                        height="170"
-                        style="width: 100%"
-                    >
-                        <el-table-column prop="user" label="用户"></el-table-column>
-                        <el-table-column prop="ip" label="IP地址" width="110"></el-table-column>
-                        <el-table-column prop="mac" label="MAC地址" width="150"></el-table-column>
-                        <el-table-column prop="upload" label="上次数据"></el-table-column>
-                        <el-table-column prop="download" label="下载数据"></el-table-column>
-                    </el-table>
-                </div>
-                <div class="footer">
-                    <span class="label">总下载量:</span>
-                    <span class="value blue">68M</span>
-                    <span class="label">/总上传量:</span>
-                    <span class="value blue">6.8MB</span>
-                    <span class="label">/累计终端:</span>
-                    <span class="value blue">3</span>
-                </div>
-            </div>
-            <div id="bottom-left">
-                <div class="info">
-                    <span class="label">当前CPU状态</span>
-                    <div class="args">
-                        <div class="m-r">
-                            <span class="title">当前CPU负载:</span>
-                            <span class="value green">168KB/S</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="bottom-left-chart"></div>
-                <div class="footer">
-                    <span class="label">CPU核心数:</span>
-                    <span class="value blue">4</span>
-                    <span class="label">核心频率:</span>
-                    <span class="value blue">880/Mhz</span>
-                </div>
-            </div>
-
-            <div id="bottom-right">
-                <div class="info">
-                    <span class="label">当前内存状态</span>
-                    <div class="args">
-                        <div class="m-r">
-                            <span class="title">当前内存占用:</span>
-                            <span class="value green">28%</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="bottom-right-chart"></div>
-                <div class="footer">
-                    <span class="label">CPU核心数:</span>
-                    <span class="value blue">4</span>
-                    <span class="label">核心频率:</span>
-                    <span class="value blue">880/Mhz</span>
                 </div>
             </div>
         </div>
@@ -161,6 +220,7 @@
 export default {
     data() {
         return {
+            openState: [false, false, false, false],
             tableData3: [
                 {
                     user: "xiaoming",
@@ -231,7 +291,14 @@ export default {
         bottomLeft.setOption(breakLineOptions);
         bottomRight.setOption(breakLineOptions);
     },
-    methods: {}
+    methods: {
+        changeState(index) {
+            this.openState.splice(index, 1, !this.openState[index]);
+        },
+        refresh(index) {
+            console.log(index);
+        }
+    }
 };
 </script>
 
@@ -241,6 +308,7 @@ export default {
     padding-bottom: 20px;
     box-sizing: border-box;
     background: white;
+    overflow: hidden;
 
     .network-info,
     .router-info {
@@ -278,9 +346,6 @@ export default {
     }
 
     .chart-list {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
         align-content: center;
         background: white;
 
@@ -288,9 +353,8 @@ export default {
         #top-right,
         #bottom-left,
         #bottom-right {
-            width: 50%;
             box-sizing: border-box;
-            padding-right: 20px;
+            padding-right: 10px;
 
             .info {
                 display: flex;
@@ -320,10 +384,6 @@ export default {
         #top-left,
         #top-right {
             margin-bottom: 15px;
-        }
-
-        #top-right {
-            padding-right: 0;
         }
 
         #top-left,
@@ -364,5 +424,14 @@ export default {
 /deep/ td {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+}
+
+.name {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #0098fe;
+}
+
+.half {
+    width: 50%;
 }
 </style>

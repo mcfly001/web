@@ -9,7 +9,7 @@
             <div class="filter">
                 <search :value="searchVal"></search>
                 <div class="pull-right">
-                    <el-button type="primary" @click="dialogVisible = true">新增</el-button>
+                    <el-button type="primary" @click="handleAdd">新增</el-button>
                     <el-button type="primary">删除</el-button>
                 </div>
             </div>
@@ -68,15 +68,15 @@
                         <el-input v-model="ruleForm.name"></el-input>
                     </el-form-item>
                     <el-form-item label="MAC地址" prop="mac">
-                        <el-input v-model="ruleForm.name"></el-input>
+                        <el-input v-model="ruleForm.mac"></el-input>
                     </el-form-item>
                     <el-form-item label="备注" prop="note">
-                        <el-input v-model="ruleForm.name"></el-input>
+                        <el-input v-model="ruleForm.note"></el-input>
                     </el-form-item>
                 </el-form>
                 <div class="model-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                    <el-button @click="handleCancel">取 消</el-button>
+                    <el-button type="primary" @click="handleComfirm">确 定</el-button>
                 </div>
             </el-dialog>
         </div>
@@ -86,6 +86,7 @@
 <script>
 import Search from "../../components/Search";
 import NewBlack from "../../components/NewBlack";
+import { CheckForm2 } from "../../utils";
 
 export default {
     data() {
@@ -102,27 +103,30 @@ export default {
                 name: [
                     {
                         required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
+                        message: "用户名不能为空",
+                        trigger: "blur",
+                        validator: (rule, value, callback) => {
+                            if (!!value) {
+                                callback();
+                            } else {
+                                callback("用户名不能为空");
+                            }
+                        }
                     }
                 ],
                 mac: [
                     {
                         required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
+                        trigger: "blur",
+                        validator: (rule, value, callback) => {
+                            if (!value) {
+                                callback("MAC地址不能为空");
+                            } else if (!CheckForm2(value)) {
+                                callback("MAC地址不规范");
+                            } else {
+                                callback("");
+                            }
+                        }
                     }
                 ]
             },
@@ -131,7 +135,7 @@ export default {
                     id: "1",
                     ip: "127.0.0.2",
                     userName: "小米",
-                    macAddress: "00-01-6C-06-A6-29",
+                    macAddress: "00:01:6C:06:A6:29",
                     joinDate: "12月13日 11:38",
                     note: "老板"
                 }
@@ -146,6 +150,14 @@ export default {
         this.lang = this.$i18n.locale;
     },
     methods: {
+        handleAdd() {
+            this.ruleForm = {
+                name: "",
+                mac: "",
+                note: ""
+            };
+            this.dialogVisible = true;
+        },
         handleSelectionChange() {},
         handleDelete() {
             this.$confirm("此操作将永久删除该条数据, 是否继续?", "提示", {
@@ -166,6 +178,20 @@ export default {
                         message: "已取消删除"
                     });
                 });
+        },
+        handleCancel() {
+            this.$refs["ruleForm"].resetFields();
+            this.dialogVisible = false;
+        },
+        handleComfirm() {
+            this.$refs["ruleForm"].validate(valid => {
+                if (valid) {
+                    this.dialogVisible = false;
+                } else {
+                    console.log("error submit!!");
+                    return false;
+                }
+            });
         },
         handleSizeChange() {},
         handleCurrentChange() {}
