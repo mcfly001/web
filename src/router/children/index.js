@@ -64,7 +64,7 @@ export default [{
         meta: {
             title: '网络名称',
         },
-        component: () => import(`../../views/content/wlan.vue`),
+        component: () => import(`../../views/content/wlan/index.vue`),
     },
     {
         path: 'radio',

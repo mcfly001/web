@@ -32,7 +32,7 @@
                             <span
                                 class="a-blue pointer"
                                 @click="handleChange(scope.$index, scope.row)"
-                            >修改</span>
+                            >编辑</span>
                             <span
                                 class="a-blue pointer"
                                 @click="handleDelete(scope.$index, scope.row)"
@@ -52,51 +52,26 @@
                     :total="total"
                 ></el-pagination>
             </div>
-            <el-dialog
-                :class="{'en': lang === 'en'}"
-                title="新增"
-                :visible.sync="dialogVisible"
-                width="450px"
-            >
-                <el-form
-                    label-position="left"
-                    :model="ruleForm"
-                    :rules="rules"
-                    ref="ruleForm"
-                    label-width="100px"
-                    class="demo-ruleForm"
-                >
-                    <el-form-item label="服务商">
-                        <el-select v-model="ruleForm.agreement" placeholder="请选择">
-                            <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value"
-                            ></el-option>
-                        </el-select>
-                    </el-form-item>
-
-                    <el-form-item label="用户名" prop="innerPort">
-                        <el-input v-model="ruleForm.innerPort"></el-input>
-                    </el-form-item>
-
-                    <el-form-item label="密码" prop="outterPort">
-                        <el-input v-model="ruleForm.outterPort"></el-input>
-                    </el-form-item>
-                </el-form>
-                <div class="model-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                </div>
-            </el-dialog>
         </div>
+        <el-dialog
+            :class="{'en': lang === 'en'}"
+            title="新增"
+            :visible.sync="dialogVisible"
+            width="450px"
+        >
+            <Model></Model>
+            <div class="model-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
 <script>
-import Search from "../../components/Search";
-import NewBlack from "../../components/NewBlack";
+import Search from "../../../components/Search";
+import NewBlack from "../../../components/NewBlack";
+import Model from "./Model.vue";
 
 export default {
     data() {
@@ -110,68 +85,6 @@ export default {
                     label: "TCP/UDP"
                 }
             ],
-            ruleForm: {
-                state: "",
-                ruleName: "",
-                netAddress: "",
-                agreement: "",
-                innerPort: "",
-                outterPort: ""
-            },
-            rules: {
-                ruleName: [
-                    {
-                        required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
-                    }
-                ],
-                netAddress: [
-                    {
-                        required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
-                    }
-                ],
-                innerPort: [
-                    {
-                        required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
-                    }
-                ],
-                outterPort: [
-                    {
-                        required: true,
-                        message: "请输入活动名称",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "长度在 3 到 5 个字符",
-                        trigger: "blur"
-                    }
-                ]
-            },
             tableData: [
                 {
                     name: "myWifi",
@@ -218,7 +131,8 @@ export default {
     },
     components: {
         Search,
-        NewBlack
+        NewBlack,
+        Model
     }
 };
 </script>
