@@ -237,13 +237,7 @@ export default {
 
 <style type="style/scss" lang="scss" scoped>
 .filter {
-    margin-bottom: 20px;
-}
-
-.pagination {
-    margin-top: 30px;
-    width: 100%;
-    text-align: right;
+    margin-bottom: 10px;
 }
 
 .model-footer {

@@ -18,27 +18,34 @@ export default {
 
 <style scoped>
 .tab-list {
-    margin: 10px 20px 15px;
-    height: 40px;
-    line-height: 40px;
+    margin-left: 10px;
+    border-bottom: 2px solid #0969c8;
+    height: 25px;
+    line-height: 25px;
     background: white;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
-    padding: 0 20px;
     color: #999999;
     font-size: 15px;
+    margin-top: 10px;
 }
 
 li {
     display: inline-block;
-    padding: 0 10px;
     margin-right: 15px;
     cursor: pointer;
+    color: #6f6f6f;
+    font-size: 12px;
+    padding: 2px 15px;
+    height: 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 li.active {
-    color: rgb(64, 158, 255);
+    color: white;
     cursor: pointer;
     font-weight: bold;
-    border-bottom: 2px solid rgb(64, 158, 255);
+    background: #0969c8;
+    border-bottom: 2px solid #0969c8;
 }
 </style>

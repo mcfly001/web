@@ -152,7 +152,7 @@ export default {
 }
 
 .filter {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .pagination {

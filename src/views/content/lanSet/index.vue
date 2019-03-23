@@ -18,8 +18,8 @@ import vlanConfig from "./children/vlanConfig.vue";
 export default {
     data() {
         return {
-            SecondLevelTabList: ["LAN配置"],
-            SecondLevelTabActive: "LAN配置"
+            SecondLevelTabList: ["LAN口配置"],
+            SecondLevelTabActive: "LAN口配置"
         };
     },
 
@@ -39,9 +39,8 @@ export default {
 
 .content {
     flex: 1;
-    margin: 0 20px;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
     background: white;
-    padding: 10px 20px;
+    padding: 10px 10px;
 }
 </style>

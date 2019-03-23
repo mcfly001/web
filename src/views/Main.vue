@@ -53,6 +53,7 @@ export default {
 }
 
 .right-content {
+    background: white;
     margin-left: 170px;
     height: 100%;
     display: flex;
@@ -61,10 +62,10 @@ export default {
 }
 
 .breadcrumb {
-    padding: 0 0 0 20px;
-    height: 50px;
-    line-height: 50px;
-    background: white;
+    padding: 6px 10px;
+    padding-top: 5px;
+    border-bottom: 1px solid #cecece;
+    background: linear-gradient(to bottom, #e7e7e7 30%, #e7e7e7 100%);
     box-sizing: border-box;
     border-bottom: 0.5px solid #ccc;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);

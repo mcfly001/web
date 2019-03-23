@@ -1,5 +1,3 @@
-@import './icon/iconfont.css';
-
 * {
     margin: 0;
     padding: 0;
@@ -90,15 +88,18 @@ ul {
 }
 
 .el-table {
-    border-top: 1px solid #ebeef5;
+    border: 1px solid #ddd;
 
     & th {
+        
         background: #fafafa;
     }
 
     & td,
     & th {
-        padding: 13px 0 !important;
+        color: black !important;
+        padding: 4px 0 !important;
+        font-size: 12px;
     }
 }
 
@@ -125,9 +126,12 @@ ul {
 
 .main {
     .el-button {
-        height: 35px;
-        line-height: 35px;
-        padding: 0 20px !important;
+        height: 26px;
+        line-height: 26px;
+        background: #f5f5f5;
+        color: #5F5F5F;
+        font-size: 12px;
+        padding: 0 10px !important;
     }
 }
 
@@ -149,6 +153,38 @@ ul {
 
 .el-pagination .el-input {
     width: 100px !important;
+    font-size: 12px !important;
+}
+
+.el-pagination{
+    text-align: right;
+    margin-top: 5px;
+
+    span{
+        font-size: 12px !important;
+    }
+
+    .el-pagination__sizes{
+        .el-input--mini .el-input__inner{
+            height: 20px !important;
+            line-height: 20px !important;
+        }
+    }
+
+    .btn-prev, .btn-next{
+        height: 20px;
+        line-height: 20px;
+        margin-top: 3px;
+    }
+
+    .el-pager{
+        li{
+            font-size: 12px;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 3px;
+        }
+    }
 }
 
 .el-select {
@@ -169,4 +205,30 @@ i {
 
 .pointer {
     cursor: pointer;
+}
+
+.el-breadcrumb__inner {
+    color: #333 !important;
+}
+
+.el-scrollbar__view{
+    padding: 0;
+    li{
+        font-size: 12px;
+        padding: 0;
+        text-align: center;
+        line-height: 20px;
+        height: 20px;
+    }
+}
+
+.el-pagination__sizes{
+    height: 20px !important;
+    line-height: 20px !important;
+    margin-top: 3px;
+    font-size: 12px !important;
+}
+
+.el-pagination__sizes .el-input .el-input__inner{
+    font-size: 12px;
 }

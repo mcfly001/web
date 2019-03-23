@@ -2,10 +2,10 @@
     <el-menu
         :default-active="defaultActive"
         class="leftnav"
-        backgroundColor="#001525"
-        text-color="#fff"
+        background="linear-gradient(to bottom, #eff0f5 30%, #eff0f5 100%);"
+        text-color="#333"
         :unique-opened="true"
-        active-text-color="#1585ff"
+        active-text-color="#096ed2"
     >
         <div v-for="items in routerList" :key="items.name">
             <el-menu-item
@@ -46,13 +46,13 @@ export default {
             defaultActive: "1",
             routerList: [
                 {
-                    icon: "icon iconfont icon-xitongjiankong",
+                    icon: "icon icon1",
                     index: "1",
                     name: "系统监控",
                     path: "/htmls/overview"
                 },
                 {
-                    icon: "icon iconfont icon-wangluopeizhi",
+                    icon: "icon icon2",
                     index: "2",
                     name: "网络配置",
                     children: [
@@ -89,7 +89,7 @@ export default {
                     ]
                 },
                 {
-                    icon: "icon iconfont icon-wuxianpeizhi",
+                    icon: "icon icon3",
                     index: "3",
                     name: "无线配置",
                     children: [
@@ -106,7 +106,7 @@ export default {
                     ]
                 },
                 {
-                    icon: "icon iconfont icon-yonghuguanli",
+                    icon: "icon icon4",
                     index: "4",
                     name: "用户管理",
                     children: [
@@ -123,7 +123,7 @@ export default {
                     ]
                 },
                 {
-                    icon: "icon iconfont icon-xitongpeizhi",
+                    icon: "icon icon5",
                     index: "5",
                     name: "系统配置",
                     children: [
@@ -150,7 +150,7 @@ export default {
                     ]
                 },
                 {
-                    icon: "el-icon-menu",
+                    icon: "icon icon6",
                     index: "6",
                     name: "引导",
                     children: [
@@ -195,23 +195,25 @@ export default {
     float: left;
     height: 100%;
     overflow: auto;
+    background: #eff0f5;
+    padding: 0 5px;
+    font-weight: bold;
 
     .title {
-        font-size: 13px;
+        font-size: 12px;
         letter-spacing: 2px;
     }
 
     .is-active {
-        background: #1585ff !important;
         > span {
-            color: white;
+            color: #096ed2 !important;
         }
     }
 
     /deep/ .el-submenu__title {
-        height: 40px;
-        line-height: 40px;
-        color: white;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid #c0d4f5;
     }
 
     .icon {
@@ -219,34 +221,65 @@ export default {
         margin-right: 7px;
         font-weight: bold;
         display: inline-block;
-        color: white;
         vertical-align: -2px;
         margin-left: 3px;
     }
 
     .first-level {
-        height: 40px;
-        line-height: 40px;
-
-        &:hover {
-            color: #1585ff !important;
-        }
+        height: 30px;
+        line-height: 30px;
+        padding: 0 5px;
+        border-bottom: 1px solid #c0d4f5;
     }
 
     .second-level {
-        height: 40px;
-        line-height: 40px;
+        height: 30px;
+        line-height: 30px;
         padding-left: 50px !important;
         min-width: auto;
-        color: white !important;
+        border-bottom: 1px solid #c8c8c8;
+        background: #e9e9e9;
 
         &:hover {
-            color: #1585ff !important;
+            color: #096ed2 !important;
         }
     }
 
     /deep/ .el-menu-item-group__title {
         padding: 0;
     }
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    background: url("../../static/icon.png");
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon1 {
+    background-position: -16px;
+}
+
+.icon2 {
+    background-position: -32px;
+}
+
+.icon3 {
+    background-position: -48px;
+}
+
+.icon4 {
+    background-position: -80px;
+}
+
+.icon5 {
+    background-position: -176px;
+}
+
+.icon6 {
+    background-position: -160px;
 }
 </style>

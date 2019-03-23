@@ -22,23 +22,24 @@ export default {
 }
 
 .el-input {
-    width: 270px !important;
+    width: 230px !important;
 
     /deep/ input {
-        height: 35px !important;
-        line-height: 35px !important;
+        height: 26px !important;
+        line-height: 26px !important;
     }
 
     button {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        height: 35px;
-        vertical-align: -1px;
+        height: 26px;
+        line-height: 26px;
+        vertical-align: 1px;
     }
 }
 
 .primary {
-    background: #1f8bff !important;
+    background: #0969c8 !important;
     color: white !important;
     letter-spacing: 3px;
 }
